@@ -1302,6 +1302,13 @@
             con.innerHTML='<div class="loading"><div class="spinner"></div><div class="loading-text">뉴스를 불러오고 있습니다...</div></div>';
             try{
                 let h=await loadWeather();
+                
+                // 이리고 동문 & 익산시장 뉴스 (우선 표시)
+                const pride=[];
+                pride.push(...await loadNews('이리고등학교','이리고 동문',3));
+                pride.push(...await loadNews('최병관 익산시장','익산시장',2));
+                if(pride.length>0) h+=newsCard('🎓','자랑스러운 소식',pride);
+                
                 const f=[];f.push(...await loadNews('손흥민 토트넘','해외축구',2),...await loadNews('이강인','해외축구',2),...await loadNews('K리그','K리그',2));
                 h+=newsCard('⚽','축구 뉴스',f);
                 const s=[];s.push(...await loadNews('MLB 야구','MLB',2),...await loadNews('NBA 농구','NBA',2));
