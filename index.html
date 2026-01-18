@@ -1175,7 +1175,12 @@
             `;
             
             const top=DATA.ranking.slice(0,3);
-            document.getElementById('top3Content').innerHTML=`<div class="top3-area">${top.map((p,i)=>`<div class="top3-item ${['second','first','third'][i]}"><div class="top3-medal">${p.medal}</div><div class="top3-name">${p.name}</div><div class="top3-goals">${p.goals}골</div></div>`).join('')}</div>`;
+            // 순서: 2등(왼쪽), 1등(가운데), 3등(오른쪽)
+            document.getElementById('top3Content').innerHTML=`<div class="top3-area">
+                <div class="top3-item second"><div class="top3-medal">${top[1].medal}</div><div class="top3-name">${top[1].name}</div><div class="top3-goals">${top[1].goals}골</div></div>
+                <div class="top3-item first"><div class="top3-medal">${top[0].medal}</div><div class="top3-name">${top[0].name}</div><div class="top3-goals">${top[0].goals}골</div></div>
+                <div class="top3-item third"><div class="top3-medal">${top[2].medal}</div><div class="top3-name">${top[2].name}</div><div class="top3-goals">${top[2].goals}골</div></div>
+            </div>`;
         }
         
         function loadRanking(){
