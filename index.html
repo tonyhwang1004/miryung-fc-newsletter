@@ -54,22 +54,46 @@
             margin: 20px auto;
             padding: 0 15px 30px;
         }
+        
+        /* 섹션 구분 */
+        .section-divider {
+            text-align: center;
+            margin: 30px 0 20px;
+            position: relative;
+        }
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+        .section-divider span {
+            background: #1a1a2e;
+            padding: 0 20px;
+            position: relative;
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        
         .refresh-btn {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 12px;
             border-radius: 12px;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             margin-bottom: 20px;
             transition: all 0.3s;
         }
         .refresh-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.4);
         }
         .refresh-btn:disabled {
             opacity: 0.7;
@@ -99,7 +123,8 @@
         .news-card-header.local { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
         .news-card-header.economy { background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); }
         .news-card-header.match { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .news-card-header.quote { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%); }
+        .news-card-header.notice { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%); }
+        .news-card-header.quote { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
         .news-card-body { padding: 20px; }
         .news-item {
             padding: 14px 0;
@@ -127,76 +152,54 @@
         .news-title a:hover {
             color: #667eea;
         }
-        .weather-content {
-            text-align: center;
-            padding: 10px;
-        }
-        .weather-temp {
-            font-size: 48px;
+        
+        /* 경기 결과 */
+        .match-result { text-align: center; padding: 10px; }
+        .match-date { color: #666; font-size: 14px; margin-bottom: 15px; }
+        .match-score { font-size: 42px; font-weight: bold; margin: 15px 0; }
+        .team-blue { color: #2196F3; }
+        .team-white { color: #757575; }
+        .goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; text-align: left; }
+        .goals-team { background: #f8f9fa; padding: 15px; border-radius: 12px; }
+        .goals-team h4 { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #eee; font-size: 14px; }
+        .goal-scorer { padding: 5px 0; font-size: 14px; color: #555; }
+        .mom-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
+            padding: 12px 25px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
             font-weight: bold;
-            color: #333;
-            margin: 10px 0;
+            font-size: 15px;
         }
-        .weather-desc {
-            font-size: 18px;
-            color: #666;
-        }
-        .weather-detail {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 15px;
-            color: #888;
-        }
-        .stock-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
-        .stock-item {
-            background: #f8f9fa;
-            padding: 20px 15px;
-            border-radius: 12px;
-            text-align: center;
-        }
+        
+        /* 날씨 */
+        .weather-content { text-align: center; padding: 10px; }
+        .weather-temp { font-size: 48px; font-weight: bold; color: #333; margin: 10px 0; }
+        .weather-desc { font-size: 18px; color: #666; }
+        .weather-detail { display: flex; justify-content: center; gap: 30px; margin-top: 15px; color: #888; }
+        
+        /* 주식 */
+        .stock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .stock-item { background: #f8f9fa; padding: 20px 15px; border-radius: 12px; text-align: center; }
         .stock-label { font-size: 13px; color: #666; margin-bottom: 8px; }
         .stock-value { font-size: 20px; font-weight: bold; color: #333; }
         .stock-change { font-size: 14px; margin-top: 5px; font-weight: 600; }
         .stock-change.up { color: #f44336; }
         .stock-change.down { color: #2196F3; }
-        .quote-content {
-            text-align: center;
-            padding: 10px;
-        }
-        .quote-text {
-            font-size: 18px;
-            font-style: italic;
-            color: #333;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .quote-author {
-            color: #888;
-            font-size: 14px;
-        }
-        .loading {
-            text-align: center;
-            padding: 30px;
-            color: #888;
-        }
-        .loading-spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid #f0f0f0;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        
+        /* 명언 */
+        .quote-content { text-align: center; padding: 10px; }
+        .quote-text { font-size: 18px; font-style: italic; color: #333; line-height: 1.6; margin-bottom: 15px; }
+        .quote-author { color: #888; font-size: 14px; }
+        
+        /* 공지사항 */
+        .notice-item { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+        .notice-item:last-child { border-bottom: none; }
+        .notice-date { font-size: 12px; color: #999; margin-bottom: 5px; }
+        .notice-text { font-size: 15px; color: #333; line-height: 1.5; }
+        
+        /* 순위 */
         .ranking-list { list-style: none; }
         .ranking-item {
             display: flex;
@@ -207,11 +210,22 @@
             background: #f8f9fa;
             border-radius: 12px;
         }
-        .ranking-item.top3 {
-            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
-        }
+        .ranking-item.top3 { background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%); }
         .rank-medal { font-size: 22px; margin-right: 10px; }
         .rank-goals { font-weight: bold; color: #667eea; font-size: 18px; }
+        
+        /* 로딩 */
+        .loading { text-align: center; padding: 30px; color: #888; }
+        .loading-spinner {
+            width: 30px; height: 30px;
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
         .tab-content { display: none; }
         .tab-content.active { display: block; }
         .footer {
@@ -220,17 +234,12 @@
             color: rgba(255,255,255,0.6);
             font-size: 13px;
         }
-        .error-msg {
-            background: #fff3cd;
-            color: #856404;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-        }
         @media (max-width: 600px) {
             .stock-grid { grid-template-columns: 1fr; }
+            .goals-grid { grid-template-columns: 1fr; }
             .header h1 { font-size: 24px; }
             .weather-temp { font-size: 36px; }
+            .match-score { font-size: 32px; }
         }
     </style>
 </head>
@@ -238,22 +247,54 @@
     <header class="header">
         <h1>⚽ 미령FC</h1>
         <p>이리고등학교 동문 축구 모임</p>
-        <div class="update-time" id="updateTime">업데이트: -</div>
+        <div class="update-time" id="updateTime">뉴스 업데이트: -</div>
         <nav class="nav">
-            <button class="nav-btn active" onclick="showTab('news', this)">📰 오늘의 소식</button>
+            <button class="nav-btn active" onclick="showTab('home', this)">🏠 홈</button>
             <button class="nav-btn" onclick="showTab('ranking', this)">🏆 시즌 순위</button>
+            <button class="nav-btn" onclick="showTab('history', this)">📜 지난 경기</button>
         </nav>
     </header>
     
     <div class="container">
-        <!-- 오늘의 소식 탭 -->
-        <div id="news-tab" class="tab-content active">
+        <!-- 홈 탭 -->
+        <div id="home-tab" class="tab-content active">
+            
+            <!-- ========== 미령FC 소식 (수동 관리) ========== -->
+            <div id="clubSection">
+                <!-- 공지사항 -->
+                <div class="news-card" id="noticeCard" style="display:none;">
+                    <div class="news-card-header notice">📢 공지사항</div>
+                    <div class="news-card-body" id="noticeContent"></div>
+                </div>
+                
+                <!-- 이번 주 경기 결과 -->
+                <div class="news-card" id="matchCard" style="display:none;">
+                    <div class="news-card-header match">⚽ 이번 주 경기 결과</div>
+                    <div class="news-card-body" id="matchContent"></div>
+                </div>
+                
+                <!-- 득점 순위 미니 -->
+                <div class="news-card" id="topScorersCard" style="display:none;">
+                    <div class="news-card-header match">🏆 득점 TOP 3</div>
+                    <div class="news-card-body" id="topScorersContent"></div>
+                </div>
+            </div>
+            
+            <!-- ========== 구분선 ========== -->
+            <div class="section-divider">
+                <span>📰 실시간 뉴스</span>
+            </div>
+            
+            <!-- ========== 실시간 뉴스 (자동) ========== -->
             <button class="refresh-btn" id="refreshBtn" onclick="loadAllNews()">
                 🔄 새로고침 - 최신 뉴스 불러오기
             </button>
             
             <div id="newsContainer">
-                <!-- 뉴스가 여기에 로드됩니다 -->
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>최신 뉴스를 검색하고 있습니다...</p>
+                </div>
             </div>
         </div>
         
@@ -266,47 +307,101 @@
                 </div>
             </div>
         </div>
+        
+        <!-- 지난 경기 탭 -->
+        <div id="history-tab" class="tab-content">
+            <div id="matchHistory"></div>
+        </div>
     </div>
     
     <footer class="footer">
         <p>⚽ 미령FC 운영위원회</p>
-        <p style="margin-top: 5px; font-size: 11px;">실시간 뉴스 자동 검색</p>
+        <p style="margin-top: 5px; font-size: 11px;">축구회 소식 + 실시간 뉴스</p>
     </footer>
     
     <script>
         // ============================================
-        // 설정
+        // 미령FC 데이터 (수동 관리 - 주 1회 업데이트)
         // ============================================
-        const CONFIG = {
-            city: '익산',
-            latitude: 35.9483,
-            longitude: 126.9576
+        const CLUB_DATA = {
+            // 공지사항
+            notices: [
+                { date: '2025-01-18', text: '1월 25일(토) 정기운동 오후 2시 익산종합운동장' },
+                { date: '2025-01-15', text: '2025년 연회비 납부 안내 - 회비: 10만원' }
+            ],
+            
+            // 이번 주 경기 결과
+            latestMatch: {
+                date: '2025년 1월 18일 (토)',
+                location: '익산종합운동장',
+                blueScore: 3,
+                whiteScore: 2,
+                blueGoals: [
+                    { name: '김철수', goals: 2 },
+                    { name: '박영호', goals: 1 }
+                ],
+                whiteGoals: [
+                    { name: '이정민', goals: 1 },
+                    { name: '홍길동', goals: 1 }
+                ],
+                mom: '김철수'
+            },
+            
+            // 시즌 순위
+            seasonRanking: [
+                { rank: 1, name: '김철수', goals: 12, medal: '🥇' },
+                { rank: 2, name: '박영호', goals: 9, medal: '🥈' },
+                { rank: 3, name: '이정민', goals: 7, medal: '🥉' },
+                { rank: 4, name: '홍길동', goals: 5 },
+                { rank: 5, name: '최민수', goals: 4 },
+                { rank: 6, name: '정대만', goals: 3 },
+                { rank: 7, name: '송태섭', goals: 3 },
+                { rank: 8, name: '강백호', goals: 2 }
+            ],
+            
+            // 지난 경기 기록
+            matchHistory: [
+                {
+                    date: '2025년 1월 18일 (토)',
+                    blueScore: 3, whiteScore: 2,
+                    blueGoals: [{ name: '김철수', goals: 2 }, { name: '박영호', goals: 1 }],
+                    whiteGoals: [{ name: '이정민', goals: 1 }, { name: '홍길동', goals: 1 }],
+                    mom: '김철수'
+                },
+                {
+                    date: '2025년 1월 11일 (토)',
+                    blueScore: 2, whiteScore: 2,
+                    blueGoals: [{ name: '박영호', goals: 1 }, { name: '최민수', goals: 1 }],
+                    whiteGoals: [{ name: '김철수', goals: 1 }, { name: '정대만', goals: 1 }],
+                    mom: '박영호'
+                },
+                {
+                    date: '2025년 1월 4일 (토)',
+                    blueScore: 4, whiteScore: 1,
+                    blueGoals: [{ name: '김철수', goals: 3 }, { name: '이정민', goals: 1 }],
+                    whiteGoals: [{ name: '홍길동', goals: 1 }],
+                    mom: '김철수'
+                }
+            ]
         };
         
-        // 시즌 순위 (수동 관리)
-        const seasonRanking = [
-            { rank: 1, name: '김철수', goals: 12, medal: '🥇' },
-            { rank: 2, name: '박영호', goals: 9, medal: '🥈' },
-            { rank: 3, name: '이정민', goals: 7, medal: '🥉' },
-            { rank: 4, name: '홍길동', goals: 5 },
-            { rank: 5, name: '최민수', goals: 4 }
-        ];
-        
-        // 오늘의 명언
+        // 명언
         const quotes = [
             { text: "승리는 가장 끈기 있는 자에게 돌아간다.", author: "나폴레옹 보나파르트" },
-            { text: "교육은 미래를 위한 가장 강력한 무기다.", author: "넬슨 만델라" },
-            { text: "천 리 길도 한 걸음부터 시작된다.", author: "노자" },
-            { text: "오늘 할 수 있는 일을 내일로 미루지 마라.", author: "벤자민 프랭클린" },
-            { text: "실패는 성공의 어머니다.", author: "토마스 에디슨" },
-            { text: "꿈을 크게 가져라. 큰 꿈만이 사람의 가슴을 뛰게 한다.", author: "괴테" },
             { text: "함께하면 더 멀리 갈 수 있다.", author: "아프리카 속담" },
             { text: "포기하지 않는 한 실패는 없다.", author: "마이클 조던" },
             { text: "축구는 단순한 게임이 아니라 인생이다.", author: "빌 생클리" },
             { text: "팀워크가 꿈을 이루게 한다.", author: "무명" },
             { text: "노력은 배신하지 않는다.", author: "무명" },
-            { text: "오늘의 땀이 내일의 영광을 만든다.", author: "무명" }
+            { text: "오늘의 땀이 내일의 영광을 만든다.", author: "무명" },
+            { text: "즐기면 이기고, 두려워하면 진다.", author: "무명" }
         ];
+        
+        const CONFIG = {
+            city: '익산',
+            latitude: 35.9483,
+            longitude: 126.9576
+        };
         
         // ============================================
         // 탭 전환
@@ -317,11 +412,134 @@
             document.getElementById(tabName + '-tab').classList.add('active');
             btn.classList.add('active');
             
-            if (tabName === 'ranking') loadRanking();
+            if (tabName === 'ranking') loadFullRanking();
+            if (tabName === 'history') loadMatchHistory();
         }
         
         // ============================================
-        // 날씨 API (Open-Meteo - 무료)
+        // 미령FC 소식 로드 (수동 데이터)
+        // ============================================
+        function loadClubData() {
+            // 공지사항
+            if (CLUB_DATA.notices && CLUB_DATA.notices.length > 0) {
+                document.getElementById('noticeCard').style.display = 'block';
+                document.getElementById('noticeContent').innerHTML = CLUB_DATA.notices.map(n => `
+                    <div class="notice-item">
+                        <div class="notice-date">${n.date}</div>
+                        <div class="notice-text">${n.text}</div>
+                    </div>
+                `).join('');
+            }
+            
+            // 이번 주 경기 결과
+            if (CLUB_DATA.latestMatch) {
+                const m = CLUB_DATA.latestMatch;
+                document.getElementById('matchCard').style.display = 'block';
+                
+                const blueGoalsHtml = m.blueGoals.map(g => 
+                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+                ).join('');
+                const whiteGoalsHtml = m.whiteGoals.map(g => 
+                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+                ).join('');
+                
+                document.getElementById('matchContent').innerHTML = `
+                    <div class="match-result">
+                        <div class="match-date">${m.date}</div>
+                        <div class="match-score">
+                            <span class="team-blue">🔵 ${m.blueScore}</span>
+                            <span style="color:#999; margin:0 15px;">:</span>
+                            <span class="team-white">${m.whiteScore} ⚪</span>
+                        </div>
+                        <div class="goals-grid">
+                            <div class="goals-team">
+                                <h4 style="color:#2196F3;">🔵 청팀</h4>
+                                ${blueGoalsHtml}
+                            </div>
+                            <div class="goals-team">
+                                <h4 style="color:#757575;">⚪ 백팀</h4>
+                                ${whiteGoalsHtml}
+                            </div>
+                        </div>
+                        <div class="mom-badge">🏆 MOM: ${m.mom}</div>
+                    </div>
+                `;
+            }
+            
+            // TOP 3 득점자
+            if (CLUB_DATA.seasonRanking && CLUB_DATA.seasonRanking.length > 0) {
+                document.getElementById('topScorersCard').style.display = 'block';
+                const top3 = CLUB_DATA.seasonRanking.slice(0, 3);
+                document.getElementById('topScorersContent').innerHTML = `
+                    <ul class="ranking-list">
+                        ${top3.map((p, i) => `
+                            <li class="ranking-item top3">
+                                <span><span class="rank-medal">${p.medal}</span> ${p.name}</span>
+                                <span class="rank-goals">${p.goals}골</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            }
+        }
+        
+        // ============================================
+        // 전체 순위
+        // ============================================
+        function loadFullRanking() {
+            const html = CLUB_DATA.seasonRanking.map((p, i) => `
+                <li class="ranking-item ${i < 3 ? 'top3' : ''}">
+                    <span><span class="rank-medal">${p.medal || (i+1)+'.'}</span> ${p.name}</span>
+                    <span class="rank-goals">${p.goals}골</span>
+                </li>
+            `).join('');
+            document.getElementById('rankingList').innerHTML = html;
+        }
+        
+        // ============================================
+        // 지난 경기 기록
+        // ============================================
+        function loadMatchHistory() {
+            const html = CLUB_DATA.matchHistory.map(m => {
+                const blueGoalsHtml = m.blueGoals.map(g => 
+                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+                ).join('');
+                const whiteGoalsHtml = m.whiteGoals.map(g => 
+                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+                ).join('');
+                
+                return `
+                    <div class="news-card">
+                        <div class="news-card-header match">⚽ ${m.date}</div>
+                        <div class="news-card-body">
+                            <div class="match-result">
+                                <div class="match-score">
+                                    <span class="team-blue">🔵 ${m.blueScore}</span>
+                                    <span style="color:#999; margin:0 15px;">:</span>
+                                    <span class="team-white">${m.whiteScore} ⚪</span>
+                                </div>
+                                <div class="goals-grid">
+                                    <div class="goals-team">
+                                        <h4 style="color:#2196F3;">🔵 청팀</h4>
+                                        ${blueGoalsHtml}
+                                    </div>
+                                    <div class="goals-team">
+                                        <h4 style="color:#757575;">⚪ 백팀</h4>
+                                        ${whiteGoalsHtml}
+                                    </div>
+                                </div>
+                                <div class="mom-badge">🏆 MOM: ${m.mom}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('matchHistory').innerHTML = html;
+        }
+        
+        // ============================================
+        // 날씨 API
         // ============================================
         async function loadWeather() {
             try {
@@ -331,8 +549,7 @@
                 
                 const weatherCodes = {
                     0: '맑음 ☀️', 1: '대체로 맑음 🌤️', 2: '약간 흐림 ⛅', 3: '흐림 ☁️',
-                    45: '안개 🌫️', 48: '안개 🌫️', 51: '이슬비 🌧️', 53: '이슬비 🌧️',
-                    61: '비 🌧️', 63: '비 🌧️', 65: '폭우 ⛈️', 71: '눈 🌨️', 73: '눈 🌨️', 75: '폭설 ❄️'
+                    45: '안개 🌫️', 51: '이슬비 🌧️', 61: '비 🌧️', 71: '눈 🌨️'
                 };
                 
                 const current = Math.round(data.current.temperature_2m);
@@ -356,13 +573,12 @@
                     </div>
                 `;
             } catch (e) {
-                console.error('날씨 로드 실패:', e);
                 return '';
             }
         }
         
         // ============================================
-        // 뉴스 API (Google News RSS via RSS2JSON - 무료)
+        // 뉴스 API
         // ============================================
         async function loadNews(query, category, maxItems = 5) {
             try {
@@ -375,19 +591,18 @@
                 if (data.status === 'ok' && data.items?.length > 0) {
                     return data.items.slice(0, maxItems).map(item => {
                         let title = item.title.replace(/ - .*$/, '');
-                        if (title.length > 60) title = title.substring(0, 60) + '...';
+                        if (title.length > 55) title = title.substring(0, 55) + '...';
                         return { category, title, link: item.link };
                     });
                 }
                 return [];
             } catch (e) {
-                console.error('뉴스 로드 실패:', query, e);
                 return [];
             }
         }
         
         // ============================================
-        // 주식/환율 (Yahoo Finance - 무료)
+        // 주식 API
         // ============================================
         async function loadStocks() {
             const stocks = {
@@ -397,26 +612,42 @@
             };
             
             try {
-                // 코스피
-                const kospiData = await fetchYahooQuote('^KS11');
-                if (kospiData) stocks.kospi = kospiData;
+                const symbols = ['^KS11', '^KQ11', 'KRW=X'];
+                const names = ['kospi', 'kosdaq', 'usdkrw'];
                 
-                // 코스닥
-                const kosdaqData = await fetchYahooQuote('^KQ11');
-                if (kosdaqData) stocks.kosdaq = kosdaqData;
-                
-                // 환율
-                const usdData = await fetchYahooQuote('KRW=X');
-                if (usdData) {
-                    stocks.usdkrw = {
-                        value: Math.round(parseFloat(usdData.value)).toLocaleString(),
-                        change: usdData.change,
-                        up: usdData.up
-                    };
+                for (let i = 0; i < symbols.length; i++) {
+                    try {
+                        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbols[i]}?interval=1d&range=2d`;
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        
+                        if (data.chart?.result?.[0]) {
+                            const meta = data.chart.result[0].meta;
+                            const price = meta.regularMarketPrice;
+                            const prevClose = meta.previousClose || meta.chartPreviousClose;
+                            
+                            if (price && prevClose) {
+                                const change = ((price - prevClose) / prevClose * 100).toFixed(2);
+                                const isUp = price >= prevClose;
+                                
+                                if (names[i] === 'usdkrw') {
+                                    stocks[names[i]] = {
+                                        value: Math.round(price).toLocaleString(),
+                                        change: (isUp ? '+' : '') + change + '%',
+                                        up: isUp
+                                    };
+                                } else {
+                                    stocks[names[i]] = {
+                                        value: price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
+                                        change: (isUp ? '+' : '') + change + '%',
+                                        up: isUp
+                                    };
+                                }
+                            }
+                        }
+                    } catch (e) {}
                 }
-            } catch (e) {
-                console.error('주식 로드 실패:', e);
-            }
+            } catch (e) {}
             
             return `
                 <div class="news-card">
@@ -442,34 +673,6 @@
                     </div>
                 </div>
             `;
-        }
-        
-        async function fetchYahooQuote(symbol) {
-            try {
-                // CORS 우회를 위한 프록시 사용
-                const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=2d`;
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.chart?.result?.[0]) {
-                    const meta = data.chart.result[0].meta;
-                    const price = meta.regularMarketPrice;
-                    const prevClose = meta.previousClose || meta.chartPreviousClose;
-                    
-                    if (price && prevClose) {
-                        const change = ((price - prevClose) / prevClose * 100).toFixed(2);
-                        const isUp = price >= prevClose;
-                        return {
-                            value: price.toLocaleString(undefined, {maximumFractionDigits: 2}),
-                            change: (isUp ? '+' : '') + change + '%',
-                            up: isUp
-                        };
-                    }
-                }
-            } catch (e) {
-                console.error('Yahoo 데이터 실패:', symbol);
-            }
-            return null;
         }
         
         // ============================================
@@ -535,51 +738,49 @@
             try {
                 let html = '';
                 
-                // 1. 날씨
+                // 날씨
                 html += await loadWeather();
                 
-                // 2. 축구 뉴스
+                // 축구 뉴스
                 const footballNews = [];
-                const football1 = await loadNews('손흥민 토트넘', '해외축구', 2);
-                const football2 = await loadNews('이강인 김민재', '해외축구', 2);
-                const football3 = await loadNews('K리그 전북현대 울산', 'K리그', 3);
-                const football4 = await loadNews('프리미어리그 라리가', '유럽축구', 2);
-                footballNews.push(...football1, ...football2, ...football3, ...football4);
+                const f1 = await loadNews('손흥민 토트넘', '해외축구', 2);
+                const f2 = await loadNews('이강인 김민재', '해외축구', 2);
+                const f3 = await loadNews('K리그 전북현대', 'K리그', 2);
+                const f4 = await loadNews('프리미어리그', '유럽축구', 2);
+                footballNews.push(...f1, ...f2, ...f3, ...f4);
                 html += generateNewsCard('football', '⚽ 축구 뉴스', footballNews);
                 
-                // 3. 스포츠 뉴스
+                // 스포츠
                 const sportsNews = [];
-                const sports1 = await loadNews('MLB 오타니 김하성', 'MLB', 3);
-                const sports2 = await loadNews('NBA 농구', 'NBA', 2);
-                const sports3 = await loadNews('골프 PGA LPGA', '골프', 2);
-                sportsNews.push(...sports1, ...sports2, ...sports3);
+                const s1 = await loadNews('MLB 오타니 김하성', 'MLB', 2);
+                const s2 = await loadNews('NBA 농구', 'NBA', 2);
+                const s3 = await loadNews('골프 PGA', '골프', 2);
+                sportsNews.push(...s1, ...s2, ...s3);
                 html += generateNewsCard('sports', '🏀 스포츠 소식', sportsNews);
                 
-                // 4. 세계 뉴스
+                // 세계 뉴스
                 const worldNews = [];
-                const world1 = await loadNews('미국 바이든 트럼프', '🇺🇸 미국', 2);
-                const world2 = await loadNews('중국 시진핑', '🇨🇳 중국', 2);
-                const world3 = await loadNews('일본 도쿄', '🇯🇵 일본', 2);
-                const world4 = await loadNews('유럽 EU', '🇪🇺 유럽', 2);
-                worldNews.push(...world1, ...world2, ...world3, ...world4);
+                const w1 = await loadNews('미국 트럼프 바이든', '🇺🇸 미국', 2);
+                const w2 = await loadNews('중국 시진핑', '🇨🇳 중국', 2);
+                const w3 = await loadNews('일본 도쿄', '🇯🇵 일본', 2);
+                worldNews.push(...w1, ...w2, ...w3);
                 html += generateNewsCard('world', '🌍 세계 뉴스', worldNews);
                 
-                // 5. 국내 뉴스
+                // 국내 뉴스
                 const koreaNews = [];
-                const korea1 = await loadNews('국회 대통령 정치', '정치', 2);
-                const korea2 = await loadNews('경제 물가 금리', '경제', 2);
-                const korea3 = await loadNews('사회 서울', '사회', 2);
-                koreaNews.push(...korea1, ...korea2, ...korea3);
+                const k1 = await loadNews('국회 대통령', '정치', 2);
+                const k2 = await loadNews('경제 물가 금리', '경제', 2);
+                koreaNews.push(...k1, ...k2);
                 html += generateNewsCard('korea', '🇰🇷 국내 뉴스', koreaNews);
                 
-                // 6. 지역 뉴스
+                // 지역 뉴스
                 const localNews = await loadNews('익산 전북 전주', '익산/전북', 4);
                 html += generateNewsCard('local', '🏠 익산/전북 소식', localNews);
                 
-                // 7. 경제
+                // 경제
                 html += await loadStocks();
                 
-                // 8. 명언
+                // 명언
                 html += getQuoteCard();
                 
                 container.innerHTML = html;
@@ -587,16 +788,10 @@
                 // 업데이트 시간
                 const now = new Date();
                 document.getElementById('updateTime').textContent = 
-                    `업데이트: ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                    `뉴스 업데이트: ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
                 
             } catch (e) {
-                console.error('뉴스 로드 실패:', e);
-                container.innerHTML = `
-                    <div class="error-msg">
-                        뉴스를 불러오는 중 오류가 발생했습니다.<br>
-                        잠시 후 다시 시도해주세요.
-                    </div>
-                `;
+                container.innerHTML = `<div class="news-card"><div class="news-card-body" style="text-align:center;padding:30px;color:#666;">뉴스를 불러오는 중 오류가 발생했습니다.</div></div>`;
             }
             
             btn.disabled = false;
@@ -604,24 +799,12 @@
         }
         
         // ============================================
-        // 순위
-        // ============================================
-        function loadRanking() {
-            const html = seasonRanking.map((p, i) => `
-                <li class="ranking-item ${i < 3 ? 'top3' : ''}">
-                    <span><span class="rank-medal">${p.medal || (i+1)+'.'}</span> ${p.name}</span>
-                    <span class="rank-goals">${p.goals}골</span>
-                </li>
-            `).join('');
-            document.getElementById('rankingList').innerHTML = html;
-        }
-        
-        // ============================================
         // 초기화
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            loadAllNews();
-            loadRanking();
+            loadClubData();      // 미령FC 소식 (수동)
+            loadAllNews();       // 실시간 뉴스 (자동)
+            loadFullRanking();
         });
     </script>
 </body>
