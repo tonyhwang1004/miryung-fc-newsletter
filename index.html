@@ -23,15 +23,11 @@
         }
         .header h1 { font-size: 28px; margin-bottom: 5px; }
         .header p { opacity: 0.9; font-size: 14px; }
-        .header .update-time {
-            margin-top: 10px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
+        .header .update-time { margin-top: 10px; font-size: 12px; opacity: 0.8; }
         .nav {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             margin-top: 15px;
             flex-wrap: wrap;
         }
@@ -39,10 +35,10 @@
             background: rgba(255,255,255,0.2);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 16px;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             transition: all 0.3s;
         }
         .nav-btn:hover, .nav-btn.active {
@@ -54,8 +50,6 @@
             margin: 20px auto;
             padding: 0 15px 30px;
         }
-        
-        /* 섹션 구분 */
         .section-divider {
             text-align: center;
             margin: 30px 0 20px;
@@ -64,9 +58,7 @@
         .section-divider::before {
             content: '';
             position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
+            left: 0; right: 0; top: 50%;
             height: 1px;
             background: rgba(255,255,255,0.2);
         }
@@ -77,7 +69,6 @@
             color: rgba(255,255,255,0.7);
             font-size: 14px;
         }
-        
         .refresh-btn {
             display: block;
             width: 100%;
@@ -91,14 +82,8 @@
             margin-bottom: 20px;
             transition: all 0.3s;
         }
-        .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 188, 212, 0.4);
-        }
-        .refresh-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+        .refresh-btn:hover { transform: translateY(-2px); }
+        .refresh-btn:disabled { opacity: 0.7; cursor: not-allowed; }
         .news-card {
             background: white;
             border-radius: 16px;
@@ -125,6 +110,8 @@
         .news-card-header.match { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
         .news-card-header.notice { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%); }
         .news-card-header.quote { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .news-card-header.member { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .news-card-header.fee { background: linear-gradient(135deg, #FC466B 0%, #3F5EFB 100%); }
         .news-card-body { padding: 20px; }
         .news-item {
             padding: 14px 0;
@@ -145,13 +132,8 @@
             color: #333;
             line-height: 1.5;
         }
-        .news-title a {
-            color: #333;
-            text-decoration: none;
-        }
-        .news-title a:hover {
-            color: #667eea;
-        }
+        .news-title a { color: #333; text-decoration: none; }
+        .news-title a:hover { color: #667eea; }
         
         /* 경기 결과 */
         .match-result { text-align: center; padding: 10px; }
@@ -174,12 +156,14 @@
         }
         
         /* 날씨 */
-        .weather-content { text-align: center; padding: 10px; }
-        .weather-temp { font-size: 48px; font-weight: bold; color: #333; margin: 10px 0; }
-        .weather-desc { font-size: 18px; color: #666; }
-        .weather-detail { display: flex; justify-content: center; gap: 30px; margin-top: 15px; color: #888; }
+        .weather-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .weather-item { text-align: center; padding: 15px; background: #f8f9fa; border-radius: 12px; }
+        .weather-city { font-size: 14px; color: #666; margin-bottom: 8px; }
+        .weather-temp { font-size: 32px; font-weight: bold; color: #333; }
+        .weather-desc { font-size: 14px; color: #888; margin-top: 5px; }
+        .weather-range { font-size: 12px; color: #aaa; margin-top: 5px; }
         
-        /* 주식 */
+        /* 경제 */
         .stock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .stock-item { background: #f8f9fa; padding: 20px 15px; border-radius: 12px; text-align: center; }
         .stock-label { font-size: 13px; color: #666; margin-bottom: 8px; }
@@ -187,6 +171,7 @@
         .stock-change { font-size: 14px; margin-top: 5px; font-weight: 600; }
         .stock-change.up { color: #f44336; }
         .stock-change.down { color: #2196F3; }
+        .stock-time { font-size: 11px; color: #aaa; margin-top: 20px; text-align: center; }
         
         /* 명언 */
         .quote-content { text-align: center; padding: 10px; }
@@ -198,6 +183,72 @@
         .notice-item:last-child { border-bottom: none; }
         .notice-date { font-size: 12px; color: #999; margin-bottom: 5px; }
         .notice-text { font-size: 15px; color: #333; line-height: 1.5; }
+        
+        /* 회장단 */
+        .executive-list { }
+        .executive-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 8px 0;
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .executive-icon { font-size: 24px; margin-right: 15px; }
+        .executive-info { }
+        .executive-position { font-size: 12px; color: #888; margin-bottom: 3px; }
+        .executive-name { font-size: 16px; font-weight: bold; color: #333; }
+        
+        /* 회원 명단 */
+        .member-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .member-item {
+            background: #f8f9fa;
+            padding: 12px 8px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .member-count { margin-top: 15px; text-align: center; font-weight: bold; color: #667eea; }
+        
+        /* 회비 현황 */
+        .fee-summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .fee-total { font-size: 28px; font-weight: bold; margin: 10px 0; }
+        .fee-list { max-height: 300px; overflow-y: auto; }
+        .fee-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+        .fee-item:nth-child(even) { background: #f8f9fa; }
+        .fee-amount { font-weight: bold; color: #667eea; }
+        .fee-info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        .fee-info strong { color: #856404; }
+        .fee-account {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .fee-account strong { color: #155724; font-size: 16px; }
         
         /* 순위 */
         .ranking-list { list-style: none; }
@@ -237,8 +288,9 @@
         @media (max-width: 600px) {
             .stock-grid { grid-template-columns: 1fr; }
             .goals-grid { grid-template-columns: 1fr; }
+            .weather-grid { grid-template-columns: 1fr; }
+            .member-grid { grid-template-columns: repeat(3, 1fr); }
             .header h1 { font-size: 24px; }
-            .weather-temp { font-size: 36px; }
             .match-score { font-size: 32px; }
         }
     </style>
@@ -250,42 +302,56 @@
         <div class="update-time" id="updateTime">뉴스 업데이트: -</div>
         <nav class="nav">
             <button class="nav-btn active" onclick="showTab('home', this)">🏠 홈</button>
-            <button class="nav-btn" onclick="showTab('ranking', this)">🏆 시즌 순위</button>
-            <button class="nav-btn" onclick="showTab('history', this)">📜 지난 경기</button>
+            <button class="nav-btn" onclick="showTab('ranking', this)">🏆 순위</button>
+            <button class="nav-btn" onclick="showTab('member', this)">👥 회원</button>
+            <button class="nav-btn" onclick="showTab('fee', this)">💰 회비</button>
+            <button class="nav-btn" onclick="showTab('history', this)">📜 기록</button>
         </nav>
     </header>
     
     <div class="container">
         <!-- 홈 탭 -->
         <div id="home-tab" class="tab-content active">
+            <!-- 공지사항 -->
+            <div class="news-card" id="noticeCard">
+                <div class="news-card-header notice">📢 공지사항</div>
+                <div class="news-card-body" id="noticeContent"></div>
+            </div>
             
-            <!-- ========== 미령FC 소식 (수동 관리) ========== -->
-            <div id="clubSection">
-                <!-- 공지사항 -->
-                <div class="news-card" id="noticeCard" style="display:none;">
-                    <div class="news-card-header notice">📢 공지사항</div>
-                    <div class="news-card-body" id="noticeContent"></div>
-                </div>
-                
-                <!-- 이번 주 경기 결과 -->
-                <div class="news-card" id="matchCard" style="display:none;">
-                    <div class="news-card-header match">⚽ 이번 주 경기 결과</div>
-                    <div class="news-card-body" id="matchContent"></div>
-                </div>
-                
-                <!-- 득점 순위 미니 -->
-                <div class="news-card" id="topScorersCard" style="display:none;">
-                    <div class="news-card-header match">🏆 득점 TOP 3</div>
-                    <div class="news-card-body" id="topScorersContent"></div>
+            <!-- 운동 안내 -->
+            <div class="news-card">
+                <div class="news-card-header" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">📍 정기 운동 안내</div>
+                <div class="news-card-body" style="text-align: center;">
+                    <div style="font-size: 18px; font-weight: bold; color: #333; margin-bottom: 15px;">
+                        ⏰ 매주 토요일 오전 7시 ~ 10시
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 12px; margin-bottom: 15px;">
+                        <div style="font-weight: bold; color: #333; margin-bottom: 8px;">⚽ 금토동 다목적운동장</div>
+                        <div style="font-size: 14px; color: #666;">경기도 성남시 분당구 금토동 494번지</div>
+                    </div>
+                    <a href="https://map.naver.com/p/search/%EA%B8%88%ED%86%A0%EB%8F%99%20%EB%8B%A4%EB%AA%A9%EC%A0%81%EC%9A%B4%EB%8F%99%EC%9E%A5" target="_blank" style="display: inline-block; background: #03C75A; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold;">
+                        🗺️ 네이버 지도에서 보기
+                    </a>
                 </div>
             </div>
             
-            <!-- ========== 구분선 ========== -->
+            <!-- 이번 주 경기 결과 -->
+            <div class="news-card" id="matchCard">
+                <div class="news-card-header match">⚽ 이번 주 경기 결과</div>
+                <div class="news-card-body" id="matchContent"></div>
+            </div>
+            
+            <!-- 득점 TOP 3 -->
+            <div class="news-card" id="topScorersCard">
+                <div class="news-card-header match">🏆 득점 TOP 3</div>
+                <div class="news-card-body" id="topScorersContent"></div>
+            </div>
+            
+            <!-- 구분선 -->
             <div class="section-divider">
                 <span>📰 실시간 뉴스</span>
             </div>
             
-            <!-- ========== 실시간 뉴스 (자동) ========== -->
             <button class="refresh-btn" id="refreshBtn" onclick="loadAllNews()">
                 🔄 새로고침 - 최신 뉴스 불러오기
             </button>
@@ -308,6 +374,56 @@
             </div>
         </div>
         
+        <!-- 회원 명단 탭 -->
+        <div id="member-tab" class="tab-content">
+            <!-- 회장단 -->
+            <div class="news-card">
+                <div class="news-card-header match">👑 회장단</div>
+                <div class="news-card-body">
+                    <div id="executivesList"></div>
+                </div>
+            </div>
+            
+            <!-- 회원 명단 -->
+            <div class="news-card">
+                <div class="news-card-header member">👥 미령FC 회원 명단</div>
+                <div class="news-card-body">
+                    <div class="member-grid" id="memberGrid"></div>
+                    <div class="member-count" id="memberCount"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 회비 현황 탭 -->
+        <div id="fee-tab" class="tab-content">
+            <div class="news-card">
+                <div class="news-card-header fee">💰 2026년 회비 납부 현황</div>
+                <div class="news-card-body">
+                    <div class="fee-summary">
+                        <div>현재 납부 인원</div>
+                        <div class="fee-total" id="feeTotalCount">27명</div>
+                        <div>총 납부 금액: <strong id="feeTotalAmount">4,800,000원</strong></div>
+                    </div>
+                    <div class="fee-list" id="feeList"></div>
+                    <div class="fee-info">
+                        <strong>📌 2026년도 회비 안내</strong><br><br>
+                        【회비 결정사항】<br>
+                        현 집행부회의에서 회비 20만원 동결<br><br>
+                        【납부 방법】<br>
+                        • 일시불 200,000원<br>
+                        • 분납 가능 (상반기/하반기 각 100,000원)<br><br>
+                        【납부 기한】<br>
+                        2025년 1월 31일까지
+                    </div>
+                    <div class="fee-account">
+                        <strong>💳 회비 계좌</strong><br>
+                        국민은행 163201-04-475528<br>
+                        예금주: 황성웅(미령FC)
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- 지난 경기 탭 -->
         <div id="history-tab" class="tab-content">
             <div id="matchHistory"></div>
@@ -316,76 +432,113 @@
     
     <footer class="footer">
         <p>⚽ 미령FC 운영위원회</p>
-        <p style="margin-top: 5px; font-size: 11px;">축구회 소식 + 실시간 뉴스</p>
+        <p style="margin-top: 5px; font-size: 11px;">실시간 뉴스 자동 검색</p>
     </footer>
     
     <script>
         // ============================================
-        // 미령FC 데이터 (수동 관리 - 주 1회 업데이트)
+        // 미령FC 데이터
         // ============================================
         const CLUB_DATA = {
-            // 공지사항
             notices: [
-                { date: '2025-01-18', text: '1월 25일(토) 정기운동 오후 2시 익산종합운동장' },
-                { date: '2025-01-15', text: '2025년 연회비 납부 안내 - 회비: 10만원' }
+                { date: '2025-01-18', text: '📌 2026년 회비 납부 마감: 1월 31일까지' },
+                { date: '2025-01-18', text: '⚽ 매주 토요일 오전 7시~10시 정기운동 (금토동풋살장)' },
+                { date: '2025-01-18', text: '💐 경조사, 졸업, 축하, 신규사업, 생일자 정보는 사무총장(황성웅)에게 개인카톡으로 부탁드립니다.' }
             ],
             
-            // 이번 주 경기 결과
             latestMatch: {
                 date: '2025년 1월 18일 (토)',
-                location: '익산종합운동장',
+                location: '금토동풋살장',
                 blueScore: 3,
                 whiteScore: 2,
                 blueGoals: [
-                    { name: '김철수', goals: 2 },
-                    { name: '박영호', goals: 1 }
+                    { name: '이수일', goals: 2 },
+                    { name: '박윤호', goals: 1 }
                 ],
                 whiteGoals: [
-                    { name: '이정민', goals: 1 },
-                    { name: '홍길동', goals: 1 }
+                    { name: '신준관', goals: 1 },
+                    { name: '황성웅', goals: 1 }
                 ],
-                mom: '김철수'
+                mom: '이수일'
             },
             
-            // 시즌 순위
             seasonRanking: [
-                { rank: 1, name: '김철수', goals: 12, medal: '🥇' },
-                { rank: 2, name: '박영호', goals: 9, medal: '🥈' },
-                { rank: 3, name: '이정민', goals: 7, medal: '🥉' },
-                { rank: 4, name: '홍길동', goals: 5 },
-                { rank: 5, name: '최민수', goals: 4 },
-                { rank: 6, name: '정대만', goals: 3 },
-                { rank: 7, name: '송태섭', goals: 3 },
-                { rank: 8, name: '강백호', goals: 2 }
+                { rank: 1, name: '이수일', goals: 12, medal: '🥇' },
+                { rank: 2, name: '박윤호', goals: 9, medal: '🥈' },
+                { rank: 3, name: '신준관', goals: 7, medal: '🥉' },
+                { rank: 4, name: '황성웅', goals: 5 },
+                { rank: 5, name: '이범호', goals: 4 },
+                { rank: 6, name: '정병삼', goals: 3 },
+                { rank: 7, name: '이동욱', goals: 3 },
+                { rank: 8, name: '정윤', goals: 2 }
             ],
             
-            // 지난 경기 기록
             matchHistory: [
                 {
                     date: '2025년 1월 18일 (토)',
                     blueScore: 3, whiteScore: 2,
-                    blueGoals: [{ name: '김철수', goals: 2 }, { name: '박영호', goals: 1 }],
-                    whiteGoals: [{ name: '이정민', goals: 1 }, { name: '홍길동', goals: 1 }],
-                    mom: '김철수'
+                    blueGoals: [{ name: '이수일', goals: 2 }, { name: '박윤호', goals: 1 }],
+                    whiteGoals: [{ name: '신준관', goals: 1 }, { name: '황성웅', goals: 1 }],
+                    mom: '이수일'
                 },
                 {
                     date: '2025년 1월 11일 (토)',
                     blueScore: 2, whiteScore: 2,
-                    blueGoals: [{ name: '박영호', goals: 1 }, { name: '최민수', goals: 1 }],
-                    whiteGoals: [{ name: '김철수', goals: 1 }, { name: '정대만', goals: 1 }],
-                    mom: '박영호'
-                },
-                {
-                    date: '2025년 1월 4일 (토)',
-                    blueScore: 4, whiteScore: 1,
-                    blueGoals: [{ name: '김철수', goals: 3 }, { name: '이정민', goals: 1 }],
-                    whiteGoals: [{ name: '홍길동', goals: 1 }],
-                    mom: '김철수'
+                    blueGoals: [{ name: '박윤호', goals: 1 }, { name: '이범호', goals: 1 }],
+                    whiteGoals: [{ name: '이수일', goals: 1 }, { name: '정병삼', goals: 1 }],
+                    mom: '박윤호'
                 }
+            ],
+            
+            // 회장단
+            executives: [
+                { position: '회장', name: '박윤호', icon: '👑' },
+                { position: '부회장', name: '신준관', icon: '⭐' },
+                { position: '경기운영위원장', name: '이수일', icon: '🏃' },
+                { position: '경기운영위원장', name: '이범호', icon: '🏃' },
+                { position: '사무총장', name: '황성웅', icon: '📋' }
+            ],
+            
+            // 회원 명단
+            members: [
+                '이수일', '이노일', '정병삼', '유성호', '정병인', '정윤', '이동욱',
+                '이종휘', '윤남엽', '정철', '이범호', '박윤호', '정진관', '심상욱',
+                '송승남', '이주동', '신준관', '박광수', '정무용', '박철', '국제문',
+                '황성웅', '박정열', '류재희', '한승환', '윤교상', '김진신'
+            ],
+            
+            // 회비 납부 현황
+            feePayments: [
+                { name: '이수일', amount: 200000 },
+                { name: '이노일', amount: 200000 },
+                { name: '정병삼', amount: 200000 },
+                { name: '유성호', amount: 200000 },
+                { name: '정병인', amount: 100000 },
+                { name: '정윤', amount: 200000 },
+                { name: '이동욱', amount: 200000 },
+                { name: '이종휘', amount: 200000 },
+                { name: '윤남엽', amount: 200000 },
+                { name: '정철', amount: 100000 },
+                { name: '이범호', amount: 200000 },
+                { name: '박윤호', amount: 200000 },
+                { name: '정진관', amount: 200000 },
+                { name: '심상욱', amount: 200000 },
+                { name: '송승남', amount: 200000 },
+                { name: '이주동', amount: 100000 },
+                { name: '신준관', amount: 200000 },
+                { name: '박광수', amount: 200000 },
+                { name: '정무용', amount: 200000 },
+                { name: '박철', amount: 200000 },
+                { name: '국제문', amount: 200000 },
+                { name: '황성웅', amount: 200000 },
+                { name: '박정열', amount: 200000 },
+                { name: '류재희', amount: 100000 },
+                { name: '한승환', amount: 100000 },
+                { name: '윤교상(25회)', amount: 100000 },
+                { name: '김진신', amount: 200000 }
             ]
         };
         
-        // 명언
         const quotes = [
             { text: "승리는 가장 끈기 있는 자에게 돌아간다.", author: "나폴레옹 보나파르트" },
             { text: "함께하면 더 멀리 갈 수 있다.", author: "아프리카 속담" },
@@ -393,15 +546,14 @@
             { text: "축구는 단순한 게임이 아니라 인생이다.", author: "빌 생클리" },
             { text: "팀워크가 꿈을 이루게 한다.", author: "무명" },
             { text: "노력은 배신하지 않는다.", author: "무명" },
-            { text: "오늘의 땀이 내일의 영광을 만든다.", author: "무명" },
-            { text: "즐기면 이기고, 두려워하면 진다.", author: "무명" }
+            { text: "오늘의 땀이 내일의 영광을 만든다.", author: "무명" }
         ];
         
-        const CONFIG = {
-            city: '익산',
-            latitude: 35.9483,
-            longitude: 126.9576
-        };
+        // 날씨 설정 (익산 + 성남)
+        const WEATHER_LOCATIONS = [
+            { name: '익산', lat: 35.9483, lon: 126.9576 },
+            { name: '성남 (금토동)', lat: 37.4138, lon: 127.1267 }
+        ];
         
         // ============================================
         // 탭 전환
@@ -414,93 +566,124 @@
             
             if (tabName === 'ranking') loadFullRanking();
             if (tabName === 'history') loadMatchHistory();
+            if (tabName === 'member') loadMembers();
+            if (tabName === 'fee') loadFeePayments();
         }
         
         // ============================================
-        // 미령FC 소식 로드 (수동 데이터)
+        // 클럽 데이터 로드
         // ============================================
         function loadClubData() {
             // 공지사항
-            if (CLUB_DATA.notices && CLUB_DATA.notices.length > 0) {
-                document.getElementById('noticeCard').style.display = 'block';
-                document.getElementById('noticeContent').innerHTML = CLUB_DATA.notices.map(n => `
-                    <div class="notice-item">
-                        <div class="notice-date">${n.date}</div>
-                        <div class="notice-text">${n.text}</div>
-                    </div>
-                `).join('');
-            }
+            document.getElementById('noticeContent').innerHTML = CLUB_DATA.notices.map(n => `
+                <div class="notice-item">
+                    <div class="notice-date">${n.date}</div>
+                    <div class="notice-text">${n.text}</div>
+                </div>
+            `).join('');
             
-            // 이번 주 경기 결과
-            if (CLUB_DATA.latestMatch) {
-                const m = CLUB_DATA.latestMatch;
-                document.getElementById('matchCard').style.display = 'block';
-                
-                const blueGoalsHtml = m.blueGoals.map(g => 
-                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
-                ).join('');
-                const whiteGoalsHtml = m.whiteGoals.map(g => 
-                    `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
-                ).join('');
-                
-                document.getElementById('matchContent').innerHTML = `
-                    <div class="match-result">
-                        <div class="match-date">${m.date}</div>
-                        <div class="match-score">
-                            <span class="team-blue">🔵 ${m.blueScore}</span>
-                            <span style="color:#999; margin:0 15px;">:</span>
-                            <span class="team-white">${m.whiteScore} ⚪</span>
-                        </div>
-                        <div class="goals-grid">
-                            <div class="goals-team">
-                                <h4 style="color:#2196F3;">🔵 청팀</h4>
-                                ${blueGoalsHtml}
-                            </div>
-                            <div class="goals-team">
-                                <h4 style="color:#757575;">⚪ 백팀</h4>
-                                ${whiteGoalsHtml}
-                            </div>
-                        </div>
-                        <div class="mom-badge">🏆 MOM: ${m.mom}</div>
-                    </div>
-                `;
-            }
+            // 경기 결과
+            const m = CLUB_DATA.latestMatch;
+            const blueGoalsHtml = m.blueGoals.map(g => 
+                `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+            ).join('');
+            const whiteGoalsHtml = m.whiteGoals.map(g => 
+                `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
+            ).join('');
             
-            // TOP 3 득점자
-            if (CLUB_DATA.seasonRanking && CLUB_DATA.seasonRanking.length > 0) {
-                document.getElementById('topScorersCard').style.display = 'block';
-                const top3 = CLUB_DATA.seasonRanking.slice(0, 3);
-                document.getElementById('topScorersContent').innerHTML = `
-                    <ul class="ranking-list">
-                        ${top3.map((p, i) => `
-                            <li class="ranking-item top3">
-                                <span><span class="rank-medal">${p.medal}</span> ${p.name}</span>
-                                <span class="rank-goals">${p.goals}골</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                `;
-            }
+            document.getElementById('matchContent').innerHTML = `
+                <div class="match-result">
+                    <div class="match-date">${m.date} @ ${m.location}</div>
+                    <div class="match-score">
+                        <span class="team-blue">🔵 ${m.blueScore}</span>
+                        <span style="color:#999; margin:0 15px;">:</span>
+                        <span class="team-white">${m.whiteScore} ⚪</span>
+                    </div>
+                    <div class="goals-grid">
+                        <div class="goals-team">
+                            <h4 style="color:#2196F3;">🔵 청팀</h4>
+                            ${blueGoalsHtml}
+                        </div>
+                        <div class="goals-team">
+                            <h4 style="color:#757575;">⚪ 백팀</h4>
+                            ${whiteGoalsHtml}
+                        </div>
+                    </div>
+                    <div class="mom-badge">🏆 MOM: ${m.mom}</div>
+                </div>
+            `;
+            
+            // TOP 3
+            const top3 = CLUB_DATA.seasonRanking.slice(0, 3);
+            document.getElementById('topScorersContent').innerHTML = `
+                <ul class="ranking-list">
+                    ${top3.map(p => `
+                        <li class="ranking-item top3">
+                            <span><span class="rank-medal">${p.medal}</span> ${p.name}</span>
+                            <span class="rank-goals">${p.goals}골</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
         }
         
         // ============================================
-        // 전체 순위
+        // 순위
         // ============================================
         function loadFullRanking() {
-            const html = CLUB_DATA.seasonRanking.map((p, i) => `
+            document.getElementById('rankingList').innerHTML = CLUB_DATA.seasonRanking.map((p, i) => `
                 <li class="ranking-item ${i < 3 ? 'top3' : ''}">
                     <span><span class="rank-medal">${p.medal || (i+1)+'.'}</span> ${p.name}</span>
                     <span class="rank-goals">${p.goals}골</span>
                 </li>
             `).join('');
-            document.getElementById('rankingList').innerHTML = html;
         }
         
         // ============================================
-        // 지난 경기 기록
+        // 회원 명단 + 회장단
+        // ============================================
+        function loadMembers() {
+            // 회장단
+            document.getElementById('executivesList').innerHTML = CLUB_DATA.executives.map(e => `
+                <div class="executive-item">
+                    <span class="executive-icon">${e.icon}</span>
+                    <div class="executive-info">
+                        <div class="executive-position">${e.position}</div>
+                        <div class="executive-name">${e.name}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // 회원 명단
+            document.getElementById('memberGrid').innerHTML = CLUB_DATA.members.map(name => `
+                <div class="member-item">${name}</div>
+            `).join('');
+            document.getElementById('memberCount').textContent = `총 ${CLUB_DATA.members.length}명`;
+        }
+        
+        // ============================================
+        // 회비 현황
+        // ============================================
+        function loadFeePayments() {
+            const totalAmount = CLUB_DATA.feePayments.reduce((sum, p) => sum + p.amount, 0);
+            const totalCount = CLUB_DATA.feePayments.length;
+            
+            document.getElementById('feeTotalCount').textContent = `${totalCount}명`;
+            document.getElementById('feeTotalAmount').textContent = totalAmount.toLocaleString() + '원';
+            
+            document.getElementById('feeList').innerHTML = CLUB_DATA.feePayments.map((p, i) => `
+                <div class="fee-item">
+                    <span>${i + 1}. ${p.name}</span>
+                    <span class="fee-amount">${p.amount.toLocaleString()}원</span>
+                </div>
+            `).join('');
+        }
+        
+        // ============================================
+        // 지난 경기
         // ============================================
         function loadMatchHistory() {
-            const html = CLUB_DATA.matchHistory.map(m => {
+            document.getElementById('matchHistory').innerHTML = CLUB_DATA.matchHistory.map(m => {
                 const blueGoalsHtml = m.blueGoals.map(g => 
                     `<div class="goal-scorer">⚽ ${g.name} ${g.goals > 1 ? '(' + g.goals + '골)' : ''}</div>`
                 ).join('');
@@ -519,14 +702,8 @@
                                     <span class="team-white">${m.whiteScore} ⚪</span>
                                 </div>
                                 <div class="goals-grid">
-                                    <div class="goals-team">
-                                        <h4 style="color:#2196F3;">🔵 청팀</h4>
-                                        ${blueGoalsHtml}
-                                    </div>
-                                    <div class="goals-team">
-                                        <h4 style="color:#757575;">⚪ 백팀</h4>
-                                        ${whiteGoalsHtml}
-                                    </div>
+                                    <div class="goals-team"><h4 style="color:#2196F3;">🔵 청팀</h4>${blueGoalsHtml}</div>
+                                    <div class="goals-team"><h4 style="color:#757575;">⚪ 백팀</h4>${whiteGoalsHtml}</div>
                                 </div>
                                 <div class="mom-badge">🏆 MOM: ${m.mom}</div>
                             </div>
@@ -534,47 +711,98 @@
                     </div>
                 `;
             }).join('');
-            
-            document.getElementById('matchHistory').innerHTML = html;
         }
         
         // ============================================
-        // 날씨 API
+        // 날씨 (익산 + 성남)
         // ============================================
         async function loadWeather() {
-            try {
-                const url = `https://api.open-meteo.com/v1/forecast?latitude=${CONFIG.latitude}&longitude=${CONFIG.longitude}&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Seoul`;
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                const weatherCodes = {
-                    0: '맑음 ☀️', 1: '대체로 맑음 🌤️', 2: '약간 흐림 ⛅', 3: '흐림 ☁️',
-                    45: '안개 🌫️', 51: '이슬비 🌧️', 61: '비 🌧️', 71: '눈 🌨️'
-                };
-                
-                const current = Math.round(data.current.temperature_2m);
-                const tempMax = Math.round(data.daily.temperature_2m_max[0]);
-                const tempMin = Math.round(data.daily.temperature_2m_min[0]);
-                const desc = weatherCodes[data.current.weathercode] || '맑음 ☀️';
-                
-                return `
-                    <div class="news-card">
-                        <div class="news-card-header weather">🌤️ ${CONFIG.city} 날씨</div>
-                        <div class="news-card-body">
-                            <div class="weather-content">
-                                <div class="weather-temp">${current}°</div>
-                                <div class="weather-desc">${desc}</div>
-                                <div class="weather-detail">
-                                    <span>🔼 최고 ${tempMax}°</span>
-                                    <span>🔽 최저 ${tempMin}°</span>
+            const weatherCodes = {
+                0: '맑음 ☀️', 1: '맑음 🌤️', 2: '흐림 ⛅', 3: '흐림 ☁️',
+                45: '안개 🌫️', 51: '이슬비 🌧️', 61: '비 🌧️', 71: '눈 🌨️'
+            };
+            
+            let weatherHtml = '<div class="weather-grid">';
+            
+            for (const loc of WEATHER_LOCATIONS) {
+                try {
+                    const url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Seoul`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+                    
+                    const current = Math.round(data.current.temperature_2m);
+                    const tempMax = Math.round(data.daily.temperature_2m_max[0]);
+                    const tempMin = Math.round(data.daily.temperature_2m_min[0]);
+                    const desc = weatherCodes[data.current.weathercode] || '맑음 ☀️';
+                    
+                    weatherHtml += `
+                        <div class="weather-item">
+                            <div class="weather-city">📍 ${loc.name}</div>
+                            <div class="weather-temp">${current}°</div>
+                            <div class="weather-desc">${desc}</div>
+                            <div class="weather-range">최저 ${tempMin}° / 최고 ${tempMax}°</div>
+                        </div>
+                    `;
+                } catch (e) {
+                    weatherHtml += `
+                        <div class="weather-item">
+                            <div class="weather-city">📍 ${loc.name}</div>
+                            <div class="weather-temp">-</div>
+                            <div class="weather-desc">로딩 실패</div>
+                        </div>
+                    `;
+                }
+            }
+            
+            weatherHtml += '</div>';
+            
+            return `
+                <div class="news-card">
+                    <div class="news-card-header weather">🌤️ 오늘의 날씨</div>
+                    <div class="news-card-body">${weatherHtml}</div>
+                </div>
+            `;
+        }
+        
+        // ============================================
+        // 주식/환율 (네이버 금융 기준 - 수동 갱신 또는 표시)
+        // ============================================
+        function getStockCard() {
+            // API 호출 대신 안내 메시지 표시
+            return `
+                <div class="news-card">
+                    <div class="news-card-header economy">📈 오늘의 경제</div>
+                    <div class="news-card-body">
+                        <div class="stock-grid">
+                            <div class="stock-item">
+                                <div class="stock-label">코스피</div>
+                                <div class="stock-value">
+                                    <a href="https://finance.naver.com/sise/sise_index.naver?code=KOSPI" target="_blank" style="color:#333;text-decoration:none;">
+                                        조회하기 →
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-label">코스닥</div>
+                                <div class="stock-value">
+                                    <a href="https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ" target="_blank" style="color:#333;text-decoration:none;">
+                                        조회하기 →
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="stock-item">
+                                <div class="stock-label">환율</div>
+                                <div class="stock-value">
+                                    <a href="https://finance.naver.com/marketindex/exchangeDetail.naver?marketindexCd=FX_USDKRW" target="_blank" style="color:#333;text-decoration:none;">
+                                        조회하기 →
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                        <div class="stock-time">* 클릭하면 네이버 금융에서 실시간 확인</div>
                     </div>
-                `;
-            } catch (e) {
-                return '';
-            }
+                </div>
+            `;
         }
         
         // ============================================
@@ -601,120 +829,26 @@
             }
         }
         
-        // ============================================
-        // 주식 API (CORS 프록시 사용)
-        // ============================================
-        async function loadStocks() {
-            const stocks = {
-                kospi: { value: '-', change: '-', up: true },
-                kosdaq: { value: '-', change: '-', up: true },
-                usdkrw: { value: '-', change: '-', up: false }
-            };
-            
-            try {
-                // AllOrigins 프록시 사용
-                const symbols = [
-                    { symbol: '^KS11', name: 'kospi' },
-                    { symbol: '^KQ11', name: 'kosdaq' },
-                    { symbol: 'KRW=X', name: 'usdkrw' }
-                ];
-                
-                for (const s of symbols) {
-                    try {
-                        const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${s.symbol}?interval=1d&range=2d`;
-                        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(yahooUrl)}`;
-                        
-                        const response = await fetch(proxyUrl);
-                        const proxyData = await response.json();
-                        
-                        if (proxyData.contents) {
-                            const data = JSON.parse(proxyData.contents);
-                            
-                            if (data.chart?.result?.[0]) {
-                                const meta = data.chart.result[0].meta;
-                                const price = meta.regularMarketPrice;
-                                const prevClose = meta.previousClose || meta.chartPreviousClose;
-                                
-                                if (price && prevClose) {
-                                    const change = ((price - prevClose) / prevClose * 100).toFixed(2);
-                                    const isUp = price >= prevClose;
-                                    
-                                    if (s.name === 'usdkrw') {
-                                        stocks[s.name] = {
-                                            value: Math.round(price).toLocaleString(),
-                                            change: (isUp ? '+' : '') + change + '%',
-                                            up: isUp
-                                        };
-                                    } else {
-                                        stocks[s.name] = {
-                                            value: Math.round(price).toLocaleString(),
-                                            change: (isUp ? '+' : '') + change + '%',
-                                            up: isUp
-                                        };
-                                    }
-                                }
-                            }
-                        }
-                    } catch (e) {
-                        console.log('주식 데이터 로드 실패:', s.symbol);
-                    }
-                }
-            } catch (e) {
-                console.log('주식 API 오류');
-            }
-            
-            return `
-                <div class="news-card">
-                    <div class="news-card-header economy">📈 오늘의 경제</div>
-                    <div class="news-card-body">
-                        <div class="stock-grid">
-                            <div class="stock-item">
-                                <div class="stock-label">코스피</div>
-                                <div class="stock-value">${stocks.kospi.value}</div>
-                                <div class="stock-change ${stocks.kospi.up ? 'up' : 'down'}">${stocks.kospi.change}</div>
-                            </div>
-                            <div class="stock-item">
-                                <div class="stock-label">코스닥</div>
-                                <div class="stock-value">${stocks.kosdaq.value}</div>
-                                <div class="stock-change ${stocks.kosdaq.up ? 'up' : 'down'}">${stocks.kosdaq.change}</div>
-                            </div>
-                            <div class="stock-item">
-                                <div class="stock-label">환율</div>
-                                <div class="stock-value">${stocks.usdkrw.value}원</div>
-                                <div class="stock-change ${stocks.usdkrw.up ? 'up' : 'down'}">${stocks.usdkrw.change}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // ============================================
-        // 뉴스 카드 생성
-        // ============================================
         function generateNewsCard(type, title, news) {
             if (!news || news.length === 0) return '';
-            
-            const items = news.map(n => `
-                <div class="news-item">
-                    <span class="news-category">${n.category}</span>
-                    <div class="news-title">
-                        <a href="${n.link}" target="_blank">${n.title}</a>
-                    </div>
-                </div>
-            `).join('');
             
             return `
                 <div class="news-card">
                     <div class="news-card-header ${type}">${title}</div>
-                    <div class="news-card-body">${items}</div>
+                    <div class="news-card-body">
+                        ${news.map(n => `
+                            <div class="news-item">
+                                <span class="news-category">${n.category}</span>
+                                <div class="news-title">
+                                    <a href="${n.link}" target="_blank">${n.title}</a>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             `;
         }
         
-        // ============================================
-        // 명언
-        // ============================================
         function getQuoteCard() {
             const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
             const quote = quotes[dayOfYear % quotes.length];
@@ -742,12 +876,7 @@
             btn.disabled = true;
             btn.textContent = '🔄 뉴스 불러오는 중...';
             
-            container.innerHTML = `
-                <div class="loading">
-                    <div class="loading-spinner"></div>
-                    <p>최신 뉴스를 검색하고 있습니다...</p>
-                </div>
-            `;
+            container.innerHTML = `<div class="loading"><div class="loading-spinner"></div><p>최신 뉴스를 검색하고 있습니다...</p></div>`;
             
             try {
                 let html = '';
@@ -768,13 +897,12 @@
                 const sportsNews = [];
                 const s1 = await loadNews('MLB 오타니 김하성', 'MLB', 2);
                 const s2 = await loadNews('NBA 농구', 'NBA', 2);
-                const s3 = await loadNews('골프 PGA', '골프', 2);
-                sportsNews.push(...s1, ...s2, ...s3);
+                sportsNews.push(...s1, ...s2);
                 html += generateNewsCard('sports', '🏀 스포츠 소식', sportsNews);
                 
                 // 세계 뉴스
                 const worldNews = [];
-                const w1 = await loadNews('미국 트럼프 바이든', '🇺🇸 미국', 2);
+                const w1 = await loadNews('미국 트럼프', '🇺🇸 미국', 2);
                 const w2 = await loadNews('중국 시진핑', '🇨🇳 중국', 2);
                 const w3 = await loadNews('일본 도쿄', '🇯🇵 일본', 2);
                 worldNews.push(...w1, ...w2, ...w3);
@@ -783,7 +911,7 @@
                 // 국내 뉴스
                 const koreaNews = [];
                 const k1 = await loadNews('국회 대통령', '정치', 2);
-                const k2 = await loadNews('경제 물가 금리', '경제', 2);
+                const k2 = await loadNews('경제 물가', '경제', 2);
                 koreaNews.push(...k1, ...k2);
                 html += generateNewsCard('korea', '🇰🇷 국내 뉴스', koreaNews);
                 
@@ -791,21 +919,20 @@
                 const localNews = await loadNews('익산 전북 전주', '익산/전북', 4);
                 html += generateNewsCard('local', '🏠 익산/전북 소식', localNews);
                 
-                // 경제
-                html += await loadStocks();
+                // 경제 (링크)
+                html += getStockCard();
                 
                 // 명언
                 html += getQuoteCard();
                 
                 container.innerHTML = html;
                 
-                // 업데이트 시간
                 const now = new Date();
                 document.getElementById('updateTime').textContent = 
                     `뉴스 업데이트: ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
                 
             } catch (e) {
-                container.innerHTML = `<div class="news-card"><div class="news-card-body" style="text-align:center;padding:30px;color:#666;">뉴스를 불러오는 중 오류가 발생했습니다.</div></div>`;
+                container.innerHTML = `<div class="news-card"><div class="news-card-body" style="text-align:center;padding:30px;">오류가 발생했습니다.</div></div>`;
             }
             
             btn.disabled = false;
@@ -816,9 +943,11 @@
         // 초기화
         // ============================================
         document.addEventListener('DOMContentLoaded', function() {
-            loadClubData();      // 미령FC 소식 (수동)
-            loadAllNews();       // 실시간 뉴스 (자동)
+            loadClubData();
+            loadAllNews();
             loadFullRanking();
+            loadMembers();
+            loadFeePayments();
         });
     </script>
 </body>
