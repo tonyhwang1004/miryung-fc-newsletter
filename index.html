@@ -602,7 +602,7 @@
         }
         
         // ============================================
-        // 주식 API
+        // 주식 API (CORS 프록시 사용)
         // ============================================
         async function loadStocks() {
             const stocks = {
@@ -612,42 +612,56 @@
             };
             
             try {
-                const symbols = ['^KS11', '^KQ11', 'KRW=X'];
-                const names = ['kospi', 'kosdaq', 'usdkrw'];
+                // AllOrigins 프록시 사용
+                const symbols = [
+                    { symbol: '^KS11', name: 'kospi' },
+                    { symbol: '^KQ11', name: 'kosdaq' },
+                    { symbol: 'KRW=X', name: 'usdkrw' }
+                ];
                 
-                for (let i = 0; i < symbols.length; i++) {
+                for (const s of symbols) {
                     try {
-                        const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbols[i]}?interval=1d&range=2d`;
-                        const response = await fetch(url);
-                        const data = await response.json();
+                        const yahooUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${s.symbol}?interval=1d&range=2d`;
+                        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(yahooUrl)}`;
                         
-                        if (data.chart?.result?.[0]) {
-                            const meta = data.chart.result[0].meta;
-                            const price = meta.regularMarketPrice;
-                            const prevClose = meta.previousClose || meta.chartPreviousClose;
+                        const response = await fetch(proxyUrl);
+                        const proxyData = await response.json();
+                        
+                        if (proxyData.contents) {
+                            const data = JSON.parse(proxyData.contents);
                             
-                            if (price && prevClose) {
-                                const change = ((price - prevClose) / prevClose * 100).toFixed(2);
-                                const isUp = price >= prevClose;
+                            if (data.chart?.result?.[0]) {
+                                const meta = data.chart.result[0].meta;
+                                const price = meta.regularMarketPrice;
+                                const prevClose = meta.previousClose || meta.chartPreviousClose;
                                 
-                                if (names[i] === 'usdkrw') {
-                                    stocks[names[i]] = {
-                                        value: Math.round(price).toLocaleString(),
-                                        change: (isUp ? '+' : '') + change + '%',
-                                        up: isUp
-                                    };
-                                } else {
-                                    stocks[names[i]] = {
-                                        value: price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-                                        change: (isUp ? '+' : '') + change + '%',
-                                        up: isUp
-                                    };
+                                if (price && prevClose) {
+                                    const change = ((price - prevClose) / prevClose * 100).toFixed(2);
+                                    const isUp = price >= prevClose;
+                                    
+                                    if (s.name === 'usdkrw') {
+                                        stocks[s.name] = {
+                                            value: Math.round(price).toLocaleString(),
+                                            change: (isUp ? '+' : '') + change + '%',
+                                            up: isUp
+                                        };
+                                    } else {
+                                        stocks[s.name] = {
+                                            value: Math.round(price).toLocaleString(),
+                                            change: (isUp ? '+' : '') + change + '%',
+                                            up: isUp
+                                        };
+                                    }
                                 }
                             }
                         }
-                    } catch (e) {}
+                    } catch (e) {
+                        console.log('주식 데이터 로드 실패:', s.symbol);
+                    }
                 }
-            } catch (e) {}
+            } catch (e) {
+                console.log('주식 API 오류');
+            }
             
             return `
                 <div class="news-card">
