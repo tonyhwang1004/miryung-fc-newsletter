@@ -1308,11 +1308,9 @@
             try{
                 let h=await loadWeather();
                 
-                // 이리고 동문 & 익산시장 & 시의원 뉴스 (우선 표시)
+                // 이리고 동문 뉴스 (우선 표시)
                 const pride=[];
                 pride.push(...await loadNews('이리고등학교','이리고 동문',3));
-                pride.push(...await loadNews('최병관 익산시장','익산시장',2));
-                pride.push(...await loadNews('정윤전 시의원','시의원',2));
                 if(pride.length>0) h+=newsCard('🎓','자랑스러운 소식',pride);
                 
                 const f=[];f.push(...await loadNews('손흥민 토트넘','해외축구',2),...await loadNews('이강인','해외축구',2),...await loadNews('K리그','K리그',2));
