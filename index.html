@@ -14,7 +14,7 @@
         .header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
             position: sticky;
             top: 0;
@@ -23,6 +23,11 @@
         }
         .header h1 { font-size: 28px; margin-bottom: 5px; }
         .header p { opacity: 0.9; font-size: 14px; }
+        .header .update-time {
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
         .nav {
             display: flex;
             justify-content: center;
@@ -47,36 +52,29 @@
         .container {
             max-width: 800px;
             margin: 20px auto;
-            padding: 0 15px;
+            padding: 0 15px 30px;
         }
-        .date-selector {
-            background: white;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .date-nav {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .date-nav button {
-            background: #667eea;
+        .refresh-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 16px;
             cursor: pointer;
-            font-size: 18px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
         }
-        .current-date { font-size: 20px; font-weight: bold; color: #333; }
-        .date-input { padding: 10px 15px; border: 2px solid #eee; border-radius: 10px; font-size: 16px; }
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .refresh-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
         .news-card {
             background: white;
             border-radius: 16px;
@@ -85,12 +83,15 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .news-card-header {
-            padding: 20px;
+            padding: 18px 20px;
             color: white;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            font-size: 17px;
+            font-weight: bold;
         }
+        .news-card-header.weather { background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); }
         .news-card-header.football { background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%); }
         .news-card-header.sports { background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%); }
         .news-card-header.world { background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%); }
@@ -98,14 +99,11 @@
         .news-card-header.local { background: linear-gradient(135deg, #9C27B0 0%, #7B1FA2 100%); }
         .news-card-header.economy { background: linear-gradient(135deg, #607D8B 0%, #455A64 100%); }
         .news-card-header.match { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .news-card-header h2 { font-size: 18px; margin: 0; }
+        .news-card-header.quote { background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%); }
         .news-card-body { padding: 20px; }
         .news-item {
-            padding: 15px 0;
+            padding: 14px 0;
             border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
         .news-item:last-child { border-bottom: none; }
         .news-category {
@@ -115,74 +113,90 @@
             font-size: 11px;
             padding: 3px 10px;
             border-radius: 15px;
-            width: fit-content;
+            margin-bottom: 6px;
         }
-        .news-title { font-size: 15px; color: #333; line-height: 1.5; }
-        .news-title a { color: #333; text-decoration: none; }
-        .news-title a:hover { color: #667eea; text-decoration: underline; }
-        .match-result { text-align: center; padding: 20px; }
-        .match-score { font-size: 42px; font-weight: bold; margin: 20px 0; }
-        .team-blue { color: #2196F3; }
-        .team-white { color: #757575; }
-        .goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
-        .goals-team { background: #f8f9fa; padding: 15px; border-radius: 12px; text-align: left; }
-        .goals-team h4 { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #eee; }
-        .goal-scorer { padding: 5px 0; font-size: 14px; }
-        .mom-badge {
-            background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
-            padding: 12px 25px;
-            border-radius: 25px;
-            display: inline-block;
-            margin-top: 20px;
+        .news-title {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+        .news-title a {
+            color: #333;
+            text-decoration: none;
+        }
+        .news-title a:hover {
+            color: #667eea;
+        }
+        .weather-content {
+            text-align: center;
+            padding: 10px;
+        }
+        .weather-temp {
+            font-size: 48px;
             font-weight: bold;
+            color: #333;
+            margin: 10px 0;
         }
-        .stock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .stock-item { background: #f8f9fa; padding: 20px; border-radius: 12px; text-align: center; }
+        .weather-desc {
+            font-size: 18px;
+            color: #666;
+        }
+        .weather-detail {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            color: #888;
+        }
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .stock-item {
+            background: #f8f9fa;
+            padding: 20px 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
         .stock-label { font-size: 13px; color: #666; margin-bottom: 8px; }
-        .stock-value { font-size: 22px; font-weight: bold; color: #333; }
+        .stock-value { font-size: 20px; font-weight: bold; color: #333; }
         .stock-change { font-size: 14px; margin-top: 5px; font-weight: 600; }
         .stock-change.up { color: #f44336; }
         .stock-change.down { color: #2196F3; }
-        .quote-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 16px;
+        .quote-content {
             text-align: center;
+            padding: 10px;
         }
-        .quote-text { font-size: 18px; font-style: italic; line-height: 1.6; margin-bottom: 15px; }
-        .quote-author { font-size: 14px; opacity: 0.9; }
-        .weather-box {
-            background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            margin-bottom: 20px;
+        .quote-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
-        .weather-temp { font-size: 36px; font-weight: bold; margin: 10px 0; }
-        .archive-list { background: white; border-radius: 16px; overflow: hidden; }
-        .archive-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
-            border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
-            transition: all 0.3s;
+        .quote-author {
+            color: #888;
+            font-size: 14px;
         }
-        .archive-item:hover { background: #f8f9fa; }
-        .archive-date { font-weight: bold; color: #333; }
-        .archive-summary { font-size: 13px; color: #888; }
-        .archive-arrow { color: #ccc; font-size: 20px; }
-        .footer {
+        .loading {
             text-align: center;
             padding: 30px;
-            color: rgba(255,255,255,0.6);
-            font-size: 13px;
+            color: #888;
         }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .loading-spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f0f0f0;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
         .ranking-list { list-style: none; }
         .ranking-item {
             display: flex;
@@ -193,13 +207,30 @@
             background: #f8f9fa;
             border-radius: 12px;
         }
-        .ranking-item.top3 { background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%); }
+        .ranking-item.top3 {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+        }
         .rank-medal { font-size: 22px; margin-right: 10px; }
         .rank-goals { font-weight: bold; color: #667eea; font-size: 18px; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+        }
+        .error-msg {
+            background: #fff3cd;
+            color: #856404;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
         @media (max-width: 600px) {
-            .stock-grid, .goals-grid { grid-template-columns: 1fr; }
-            .date-selector { flex-direction: column; }
-            .match-score { font-size: 32px; }
+            .stock-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 24px; }
+            .weather-temp { font-size: 36px; }
         }
     </style>
 </head>
@@ -207,40 +238,29 @@
     <header class="header">
         <h1>⚽ 미령FC</h1>
         <p>이리고등학교 동문 축구 모임</p>
+        <div class="update-time" id="updateTime">업데이트: -</div>
         <nav class="nav">
-            <button class="nav-btn active" onclick="showTab('today', this)">📰 오늘의 소식</button>
-            <button class="nav-btn" onclick="showTab('archive', this)">📅 지난 소식</button>
+            <button class="nav-btn active" onclick="showTab('news', this)">📰 오늘의 소식</button>
             <button class="nav-btn" onclick="showTab('ranking', this)">🏆 시즌 순위</button>
         </nav>
     </header>
     
     <div class="container">
-        <div id="today-tab" class="tab-content active">
-            <div class="date-selector">
-                <div class="date-nav">
-                    <button onclick="changeDate(-1)">◀</button>
-                    <span class="current-date" id="currentDate">로딩중...</span>
-                    <button onclick="changeDate(1)">▶</button>
-                </div>
-                <input type="date" class="date-input" id="datePicker" onchange="loadDateNews(this.value)">
+        <!-- 오늘의 소식 탭 -->
+        <div id="news-tab" class="tab-content active">
+            <button class="refresh-btn" id="refreshBtn" onclick="loadAllNews()">
+                🔄 새로고침 - 최신 뉴스 불러오기
+            </button>
+            
+            <div id="newsContainer">
+                <!-- 뉴스가 여기에 로드됩니다 -->
             </div>
-            <div class="weather-box" id="weatherBox">
-                <div>🌤️ 익산 날씨</div>
-                <div class="weather-temp" id="weatherTemp">-</div>
-                <div id="weatherDesc">로딩중...</div>
-            </div>
-            <div id="newsContent"></div>
         </div>
         
-        <div id="archive-tab" class="tab-content">
-            <div class="archive-list" id="archiveList"></div>
-        </div>
-        
+        <!-- 시즌 순위 탭 -->
         <div id="ranking-tab" class="tab-content">
             <div class="news-card">
-                <div class="news-card-header match">
-                    <h2>🏆 2025 시즌 득점 순위</h2>
-                </div>
+                <div class="news-card-header match">🏆 2025 시즌 득점 순위</div>
                 <div class="news-card-body">
                     <ul class="ranking-list" id="rankingList"></ul>
                 </div>
@@ -250,16 +270,20 @@
     
     <footer class="footer">
         <p>⚽ 미령FC 운영위원회</p>
+        <p style="margin-top: 5px; font-size: 11px;">실시간 뉴스 자동 검색</p>
     </footer>
     
     <script>
-        let currentDate = new Date();
+        // ============================================
+        // 설정
+        // ============================================
+        const CONFIG = {
+            city: '익산',
+            latitude: 35.9483,
+            longitude: 126.9576
+        };
         
-        // 뉴스 데이터 - data/news 폴더의 JSON 파일에서 로드
-        // 파일명: 2025-01-19.json
-        const NEWS_BASE_URL = 'data/news/';
-        
-        // 시즌 순위
+        // 시즌 순위 (수동 관리)
         const seasonRanking = [
             { rank: 1, name: '김철수', goals: 12, medal: '🥇' },
             { rank: 2, name: '박영호', goals: 9, medal: '🥈' },
@@ -268,193 +292,337 @@
             { rank: 5, name: '최민수', goals: 4 }
         ];
         
+        // 오늘의 명언
+        const quotes = [
+            { text: "승리는 가장 끈기 있는 자에게 돌아간다.", author: "나폴레옹 보나파르트" },
+            { text: "교육은 미래를 위한 가장 강력한 무기다.", author: "넬슨 만델라" },
+            { text: "천 리 길도 한 걸음부터 시작된다.", author: "노자" },
+            { text: "오늘 할 수 있는 일을 내일로 미루지 마라.", author: "벤자민 프랭클린" },
+            { text: "실패는 성공의 어머니다.", author: "토마스 에디슨" },
+            { text: "꿈을 크게 가져라. 큰 꿈만이 사람의 가슴을 뛰게 한다.", author: "괴테" },
+            { text: "함께하면 더 멀리 갈 수 있다.", author: "아프리카 속담" },
+            { text: "포기하지 않는 한 실패는 없다.", author: "마이클 조던" },
+            { text: "축구는 단순한 게임이 아니라 인생이다.", author: "빌 생클리" },
+            { text: "팀워크가 꿈을 이루게 한다.", author: "무명" },
+            { text: "노력은 배신하지 않는다.", author: "무명" },
+            { text: "오늘의 땀이 내일의 영광을 만든다.", author: "무명" }
+        ];
+        
+        // ============================================
+        // 탭 전환
+        // ============================================
         function showTab(tabName, btn) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(tabName + '-tab').classList.add('active');
             btn.classList.add('active');
-            if (tabName === 'archive') loadArchiveList();
+            
             if (tabName === 'ranking') loadRanking();
         }
         
-        function changeDate(days) {
-            currentDate.setDate(currentDate.getDate() + days);
-            updateDateDisplay();
-            loadDayNews();
-        }
-        
-        function updateDateDisplay() {
-            const days = ['일', '월', '화', '수', '목', '금', '토'];
-            const y = currentDate.getFullYear();
-            const m = currentDate.getMonth() + 1;
-            const d = currentDate.getDate();
-            document.getElementById('currentDate').textContent = `${y}년 ${m}월 ${d}일 (${days[currentDate.getDay()]})`;
-            document.getElementById('datePicker').value = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-        }
-        
-        function loadDateNews(dateStr) {
-            currentDate = new Date(dateStr);
-            updateDateDisplay();
-            loadDayNews();
-        }
-        
-        async function loadDayNews() {
-            const dateKey = currentDate.toISOString().split('T')[0];
-            
+        // ============================================
+        // 날씨 API (Open-Meteo - 무료)
+        // ============================================
+        async function loadWeather() {
             try {
-                const response = await fetch(`${NEWS_BASE_URL}${dateKey}.json`);
-                if (!response.ok) throw new Error('No data');
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${CONFIG.latitude}&longitude=${CONFIG.longitude}&current=temperature_2m,weathercode&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Seoul`;
+                const response = await fetch(url);
                 const data = await response.json();
-                renderNews(data);
-            } catch (e) {
-                document.getElementById('newsContent').innerHTML = `
+                
+                const weatherCodes = {
+                    0: '맑음 ☀️', 1: '대체로 맑음 🌤️', 2: '약간 흐림 ⛅', 3: '흐림 ☁️',
+                    45: '안개 🌫️', 48: '안개 🌫️', 51: '이슬비 🌧️', 53: '이슬비 🌧️',
+                    61: '비 🌧️', 63: '비 🌧️', 65: '폭우 ⛈️', 71: '눈 🌨️', 73: '눈 🌨️', 75: '폭설 ❄️'
+                };
+                
+                const current = Math.round(data.current.temperature_2m);
+                const tempMax = Math.round(data.daily.temperature_2m_max[0]);
+                const tempMin = Math.round(data.daily.temperature_2m_min[0]);
+                const desc = weatherCodes[data.current.weathercode] || '맑음 ☀️';
+                
+                return `
                     <div class="news-card">
-                        <div class="news-card-body" style="text-align: center; padding: 60px;">
-                            <div style="font-size: 48px; margin-bottom: 20px;">📭</div>
-                            <h3 style="color: #666;">이 날의 소식이 없습니다</h3>
-                        </div>
-                    </div>`;
-            }
-        }
-        
-        function renderNews(data) {
-            if (data.weather) {
-                document.getElementById('weatherTemp').textContent = `${data.weather.tempMin}° / ${data.weather.tempMax}°`;
-                document.getElementById('weatherDesc').textContent = data.weather.desc;
-            }
-            
-            let html = '';
-            
-            if (data.match) html += renderMatch(data.match);
-            if (data.football?.length) html += renderNewsCard('football', '⚽ 축구 뉴스', data.football);
-            if (data.sports?.length) html += renderNewsCard('sports', '🏀 스포츠 소식', data.sports);
-            if (data.world?.length) html += renderNewsCard('world', '🌍 세계 뉴스', data.world);
-            if (data.korea?.length) html += renderNewsCard('korea', '🇰🇷 국내 뉴스', data.korea);
-            if (data.local?.length) html += renderNewsCard('local', '🏠 익산/전북', data.local);
-            if (data.stocks) html += renderStocks(data.stocks);
-            if (data.quote) html += renderQuote(data.quote);
-            
-            document.getElementById('newsContent').innerHTML = html;
-        }
-        
-        function renderMatch(m) {
-            const blueGoals = m.blueGoals.map(g => `<div class="goal-scorer">⚽ ${g.name} (${g.goals}골)</div>`).join('');
-            const whiteGoals = m.whiteGoals.map(g => `<div class="goal-scorer">⚽ ${g.name} (${g.goals}골)</div>`).join('');
-            return `
-                <div class="news-card">
-                    <div class="news-card-header match"><h2>⚽ 미령FC 경기 결과</h2></div>
-                    <div class="news-card-body">
-                        <div class="match-result">
-                            <div style="color:#666;">${m.date}</div>
-                            <div class="match-score">
-                                <span class="team-blue">🔵 ${m.blueScore}</span>
-                                <span style="color:#999;margin:0 15px;">:</span>
-                                <span class="team-white">${m.whiteScore} ⚪</span>
+                        <div class="news-card-header weather">🌤️ ${CONFIG.city} 날씨</div>
+                        <div class="news-card-body">
+                            <div class="weather-content">
+                                <div class="weather-temp">${current}°</div>
+                                <div class="weather-desc">${desc}</div>
+                                <div class="weather-detail">
+                                    <span>🔼 최고 ${tempMax}°</span>
+                                    <span>🔽 최저 ${tempMin}°</span>
+                                </div>
                             </div>
-                            <div class="goals-grid">
-                                <div class="goals-team"><h4 style="color:#2196F3;">🔵 청팀</h4>${blueGoals}</div>
-                                <div class="goals-team"><h4 style="color:#757575;">⚪ 백팀</h4>${whiteGoals}</div>
-                            </div>
-                            <div class="mom-badge">🏆 MOM: ${m.mom}</div>
                         </div>
                     </div>
-                </div>`;
+                `;
+            } catch (e) {
+                console.error('날씨 로드 실패:', e);
+                return '';
+            }
         }
         
-        function renderNewsCard(type, title, news) {
-            const items = news.map(n => `
-                <div class="news-item">
-                    <span class="news-category">${n.category}</span>
-                    <div class="news-title">${n.link ? `<a href="${n.link}" target="_blank">${n.title}</a>` : n.title}</div>
-                </div>`).join('');
-            return `
-                <div class="news-card">
-                    <div class="news-card-header ${type}"><h2>${title}</h2></div>
-                    <div class="news-card-body">${items}</div>
-                </div>`;
+        // ============================================
+        // 뉴스 API (Google News RSS via RSS2JSON - 무료)
+        // ============================================
+        async function loadNews(query, category, maxItems = 5) {
+            try {
+                const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=ko&gl=KR&ceid=KR:ko`;
+                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                if (data.status === 'ok' && data.items?.length > 0) {
+                    return data.items.slice(0, maxItems).map(item => {
+                        let title = item.title.replace(/ - .*$/, '');
+                        if (title.length > 60) title = title.substring(0, 60) + '...';
+                        return { category, title, link: item.link };
+                    });
+                }
+                return [];
+            } catch (e) {
+                console.error('뉴스 로드 실패:', query, e);
+                return [];
+            }
         }
         
-        function renderStocks(s) {
+        // ============================================
+        // 주식/환율 (Yahoo Finance - 무료)
+        // ============================================
+        async function loadStocks() {
+            const stocks = {
+                kospi: { value: '-', change: '-', up: true },
+                kosdaq: { value: '-', change: '-', up: true },
+                usdkrw: { value: '-', change: '-', up: false }
+            };
+            
+            try {
+                // 코스피
+                const kospiData = await fetchYahooQuote('^KS11');
+                if (kospiData) stocks.kospi = kospiData;
+                
+                // 코스닥
+                const kosdaqData = await fetchYahooQuote('^KQ11');
+                if (kosdaqData) stocks.kosdaq = kosdaqData;
+                
+                // 환율
+                const usdData = await fetchYahooQuote('KRW=X');
+                if (usdData) {
+                    stocks.usdkrw = {
+                        value: Math.round(parseFloat(usdData.value)).toLocaleString(),
+                        change: usdData.change,
+                        up: usdData.up
+                    };
+                }
+            } catch (e) {
+                console.error('주식 로드 실패:', e);
+            }
+            
             return `
                 <div class="news-card">
-                    <div class="news-card-header economy"><h2>📈 오늘의 경제</h2></div>
+                    <div class="news-card-header economy">📈 오늘의 경제</div>
                     <div class="news-card-body">
                         <div class="stock-grid">
                             <div class="stock-item">
                                 <div class="stock-label">코스피</div>
-                                <div class="stock-value">${s.kospi.value}</div>
-                                <div class="stock-change ${s.kospi.up?'up':'down'}">${s.kospi.change}</div>
+                                <div class="stock-value">${stocks.kospi.value}</div>
+                                <div class="stock-change ${stocks.kospi.up ? 'up' : 'down'}">${stocks.kospi.change}</div>
                             </div>
                             <div class="stock-item">
                                 <div class="stock-label">코스닥</div>
-                                <div class="stock-value">${s.kosdaq.value}</div>
-                                <div class="stock-change ${s.kosdaq.up?'up':'down'}">${s.kosdaq.change}</div>
+                                <div class="stock-value">${stocks.kosdaq.value}</div>
+                                <div class="stock-change ${stocks.kosdaq.up ? 'up' : 'down'}">${stocks.kosdaq.change}</div>
                             </div>
                             <div class="stock-item">
                                 <div class="stock-label">환율</div>
-                                <div class="stock-value">${s.usdkrw.value}원</div>
-                                <div class="stock-change ${s.usdkrw.up?'up':'down'}">${s.usdkrw.change}</div>
+                                <div class="stock-value">${stocks.usdkrw.value}원</div>
+                                <div class="stock-change ${stocks.usdkrw.up ? 'up' : 'down'}">${stocks.usdkrw.change}</div>
                             </div>
                         </div>
                     </div>
-                </div>`;
+                </div>
+            `;
         }
         
-        function renderQuote(q) {
+        async function fetchYahooQuote(symbol) {
+            try {
+                // CORS 우회를 위한 프록시 사용
+                const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?interval=1d&range=2d`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.chart?.result?.[0]) {
+                    const meta = data.chart.result[0].meta;
+                    const price = meta.regularMarketPrice;
+                    const prevClose = meta.previousClose || meta.chartPreviousClose;
+                    
+                    if (price && prevClose) {
+                        const change = ((price - prevClose) / prevClose * 100).toFixed(2);
+                        const isUp = price >= prevClose;
+                        return {
+                            value: price.toLocaleString(undefined, {maximumFractionDigits: 2}),
+                            change: (isUp ? '+' : '') + change + '%',
+                            up: isUp
+                        };
+                    }
+                }
+            } catch (e) {
+                console.error('Yahoo 데이터 실패:', symbol);
+            }
+            return null;
+        }
+        
+        // ============================================
+        // 뉴스 카드 생성
+        // ============================================
+        function generateNewsCard(type, title, news) {
+            if (!news || news.length === 0) return '';
+            
+            const items = news.map(n => `
+                <div class="news-item">
+                    <span class="news-category">${n.category}</span>
+                    <div class="news-title">
+                        <a href="${n.link}" target="_blank">${n.title}</a>
+                    </div>
+                </div>
+            `).join('');
+            
             return `
                 <div class="news-card">
-                    <div class="news-card-body" style="padding:0;">
-                        <div class="quote-box">
-                            <div style="font-size:14px;margin-bottom:15px;">💬 오늘의 명언</div>
-                            <div class="quote-text">"${q.text}"</div>
-                            <div class="quote-author">- ${q.author}</div>
+                    <div class="news-card-header ${type}">${title}</div>
+                    <div class="news-card-body">${items}</div>
+                </div>
+            `;
+        }
+        
+        // ============================================
+        // 명언
+        // ============================================
+        function getQuoteCard() {
+            const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            const quote = quotes[dayOfYear % quotes.length];
+            
+            return `
+                <div class="news-card">
+                    <div class="news-card-header quote">💬 오늘의 명언</div>
+                    <div class="news-card-body">
+                        <div class="quote-content">
+                            <div class="quote-text">"${quote.text}"</div>
+                            <div class="quote-author">- ${quote.author}</div>
                         </div>
                     </div>
-                </div>`;
+                </div>
+            `;
         }
         
-        async function loadArchiveList() {
+        // ============================================
+        // 전체 뉴스 로드
+        // ============================================
+        async function loadAllNews() {
+            const btn = document.getElementById('refreshBtn');
+            const container = document.getElementById('newsContainer');
+            
+            btn.disabled = true;
+            btn.textContent = '🔄 뉴스 불러오는 중...';
+            
+            container.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <p>최신 뉴스를 검색하고 있습니다...</p>
+                </div>
+            `;
+            
             try {
-                const response = await fetch('data/archive-list.json');
-                const dates = await response.json();
+                let html = '';
                 
-                const html = dates.map(d => `
-                    <div class="archive-item" onclick="goToDate('${d.date}')">
-                        <div>
-                            <div class="archive-date">${d.display}</div>
-                            <div class="archive-summary">${d.summary}</div>
-                        </div>
-                        <span class="archive-arrow">›</span>
-                    </div>`).join('');
-                document.getElementById('archiveList').innerHTML = html || '<div style="padding:40px;text-align:center;color:#666;">저장된 소식이 없습니다</div>';
+                // 1. 날씨
+                html += await loadWeather();
+                
+                // 2. 축구 뉴스
+                const footballNews = [];
+                const football1 = await loadNews('손흥민 토트넘', '해외축구', 2);
+                const football2 = await loadNews('이강인 김민재', '해외축구', 2);
+                const football3 = await loadNews('K리그 전북현대 울산', 'K리그', 3);
+                const football4 = await loadNews('프리미어리그 라리가', '유럽축구', 2);
+                footballNews.push(...football1, ...football2, ...football3, ...football4);
+                html += generateNewsCard('football', '⚽ 축구 뉴스', footballNews);
+                
+                // 3. 스포츠 뉴스
+                const sportsNews = [];
+                const sports1 = await loadNews('MLB 오타니 김하성', 'MLB', 3);
+                const sports2 = await loadNews('NBA 농구', 'NBA', 2);
+                const sports3 = await loadNews('골프 PGA LPGA', '골프', 2);
+                sportsNews.push(...sports1, ...sports2, ...sports3);
+                html += generateNewsCard('sports', '🏀 스포츠 소식', sportsNews);
+                
+                // 4. 세계 뉴스
+                const worldNews = [];
+                const world1 = await loadNews('미국 바이든 트럼프', '🇺🇸 미국', 2);
+                const world2 = await loadNews('중국 시진핑', '🇨🇳 중국', 2);
+                const world3 = await loadNews('일본 도쿄', '🇯🇵 일본', 2);
+                const world4 = await loadNews('유럽 EU', '🇪🇺 유럽', 2);
+                worldNews.push(...world1, ...world2, ...world3, ...world4);
+                html += generateNewsCard('world', '🌍 세계 뉴스', worldNews);
+                
+                // 5. 국내 뉴스
+                const koreaNews = [];
+                const korea1 = await loadNews('국회 대통령 정치', '정치', 2);
+                const korea2 = await loadNews('경제 물가 금리', '경제', 2);
+                const korea3 = await loadNews('사회 서울', '사회', 2);
+                koreaNews.push(...korea1, ...korea2, ...korea3);
+                html += generateNewsCard('korea', '🇰🇷 국내 뉴스', koreaNews);
+                
+                // 6. 지역 뉴스
+                const localNews = await loadNews('익산 전북 전주', '익산/전북', 4);
+                html += generateNewsCard('local', '🏠 익산/전북 소식', localNews);
+                
+                // 7. 경제
+                html += await loadStocks();
+                
+                // 8. 명언
+                html += getQuoteCard();
+                
+                container.innerHTML = html;
+                
+                // 업데이트 시간
+                const now = new Date();
+                document.getElementById('updateTime').textContent = 
+                    `업데이트: ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
+                
             } catch (e) {
-                document.getElementById('archiveList').innerHTML = '<div style="padding:40px;text-align:center;color:#666;">저장된 소식이 없습니다</div>';
+                console.error('뉴스 로드 실패:', e);
+                container.innerHTML = `
+                    <div class="error-msg">
+                        뉴스를 불러오는 중 오류가 발생했습니다.<br>
+                        잠시 후 다시 시도해주세요.
+                    </div>
+                `;
             }
+            
+            btn.disabled = false;
+            btn.textContent = '🔄 새로고침 - 최신 뉴스 불러오기';
         }
         
-        function goToDate(dateStr) {
-            currentDate = new Date(dateStr);
-            updateDateDisplay();
-            loadDayNews();
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById('today-tab').classList.add('active');
-            document.querySelector('.nav-btn').classList.add('active');
-        }
-        
+        // ============================================
+        // 순위
+        // ============================================
         function loadRanking() {
             const html = seasonRanking.map((p, i) => `
                 <li class="ranking-item ${i < 3 ? 'top3' : ''}">
                     <span><span class="rank-medal">${p.medal || (i+1)+'.'}</span> ${p.name}</span>
                     <span class="rank-goals">${p.goals}골</span>
-                </li>`).join('');
+                </li>
+            `).join('');
             document.getElementById('rankingList').innerHTML = html;
         }
         
+        // ============================================
         // 초기화
-        updateDateDisplay();
-        loadDayNews();
-        loadRanking();
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllNews();
+            loadRanking();
+        });
     </script>
 </body>
 </html>
