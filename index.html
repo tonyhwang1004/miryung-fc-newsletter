@@ -1321,8 +1321,6 @@
                 h+=newsCard('🌍','세계 뉴스',w);
                 const k=[];k.push(...await loadNews('국회 대통령','정치',2),...await loadNews('경제 물가','경제',2));
                 h+=newsCard('🇰🇷','국내 뉴스',k);
-                const l=await loadNews('익산 전북','지역',3);
-                h+=newsCard('🏠','지역 소식',l);
                 h+=stockCard()+quoteCard();
                 con.innerHTML=h;
                 document.getElementById('updateTime').textContent=`업데이트 ${new Date().getHours()}:${String(new Date().getMinutes()).padStart(2,'0')}`;
