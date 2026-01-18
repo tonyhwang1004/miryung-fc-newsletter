@@ -926,6 +926,7 @@
             <div class="update-time" id="updateTime">업데이트 --:--</div>
             <nav class="nav">
                 <button class="nav-btn active" onclick="showTab('home', this)">홈</button>
+                <button class="nav-btn" onclick="showTab('briefing', this)">브리핑</button>
                 <button class="nav-btn" onclick="showTab('calendar', this)">캘린더</button>
                 <button class="nav-btn" onclick="showTab('ranking', this)">순위</button>
                 <button class="nav-btn" onclick="showTab('member', this)">회원</button>
@@ -938,6 +939,33 @@
     <div class="container">
         <!-- 홈 -->
         <div id="home-tab" class="tab-content active">
+        
+        <!-- 브리핑 -->
+        <div id="briefing-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon green">📋</div>
+                    오늘의 브리핑
+                </div>
+                <div class="card-body" style="text-align:center;">
+                    <div style="font-size:13px; color:#888; margin-bottom:16px;">아래 버튼을 누르면 복사됩니다.<br>카카오톡에 바로 붙여넣기 하세요!</div>
+                    <button onclick="copyBriefing()" id="copyBtn" style="background:var(--accent); color:white; border:none; padding:16px 40px; border-radius:10px; font-size:16px; font-weight:600; cursor:pointer; font-family:inherit;">
+                        복사하기
+                    </button>
+                    <div id="copyStatus" style="margin-top:12px; font-size:13px; color:var(--accent); display:none;">✓ 복사되었습니다!</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon warm">👀</div>
+                    미리보기
+                </div>
+                <div class="card-body">
+                    <div id="briefingPreview" style="background:var(--bg-soft); padding:16px; border-radius:10px; font-size:13px; line-height:1.8; white-space:pre-wrap;"></div>
+                </div>
+            </div>
+        </div>
             <div class="card">
                 <div class="exercise-banner">
                     <div class="exercise-time">매주 토요일</div>
@@ -1125,6 +1153,7 @@
             if(t==='member')loadMembers();
             if(t==='fee')loadFees();
             if(t==='calendar')loadCalendar();
+            if(t==='briefing')loadBriefing();
         }
         
         function loadClub(){
@@ -1291,6 +1320,93 @@
         }
         
         document.addEventListener('DOMContentLoaded',()=>{loadClub();loadAllNews();loadRanking();loadMembers();loadFees();});
+        
+        // ========================================
+        // 브리핑
+        // ========================================
+        let briefingText = '';
+        
+        function loadBriefing() {
+            const today = new Date();
+            const days = ['일','월','화','수','목','금','토'];
+            const dayName = days[today.getDay()];
+            
+            // 이번 주 토요일
+            const sat = new Date(today);
+            const daysUntilSat = (6 - today.getDay() + 7) % 7;
+            sat.setDate(today.getDate() + (daysUntilSat === 0 && today.getDay() !== 6 ? 7 : daysUntilSat));
+            const satStr = `${sat.getMonth()+1}/${sat.getDate()}(토)`;
+            
+            // D-day
+            const deadline = new Date('2025-01-31');
+            const dDay = Math.ceil((deadline - today) / (1000*60*60*24));
+            const dDayStr = dDay > 0 ? `D-${dDay}` : (dDay === 0 ? 'D-Day!' : '마감');
+            
+            // 몇 주차
+            const weekNum = Math.ceil(today.getDate() / 7);
+            const mealWeek = (weekNum === 3 || weekNum === 4) ? ' (이번 주!)' : '';
+            
+            // 브리핑 텍스트 생성
+            let text = `[미령FC 오늘의 브리핑]\n`;
+            text += `${today.getFullYear()}년 ${today.getMonth()+1}월 ${today.getDate()}일 (${dayName})\n\n`;
+            text += `■ 이번 주 안내\n`;
+            text += `- 정기운동: ${satStr} 오전 7시~10시\n`;
+            text += `- 정기식사: 3주차${mealWeek}\n`;
+            text += `- 회비마감: 1/31까지 (${dDayStr})\n\n`;
+            text += `■ 지난 경기 결과\n`;
+            text += `청팀 ${DATA.match.blue} : ${DATA.match.white} 백팀 | MOM: ${DATA.match.mom}\n\n`;
+            text += `■ 득점순위\n`;
+            text += `1위 ${DATA.ranking[0].name} ${DATA.ranking[0].goals}골\n`;
+            text += `2위 ${DATA.ranking[1].name} ${DATA.ranking[1].goals}골\n`;
+            text += `3위 ${DATA.ranking[2].name} ${DATA.ranking[2].goals}골\n\n`;
+            text += `■ 회비 현황\n`;
+            text += `${DATA.fees.length}명 / ${DATA.fees.reduce((s,f)=>s+f.amt,0).toLocaleString()}원\n\n`;
+            text += `▶ 자세히 보기\n`;
+            text += `https://tonyhwang1004.github.io/miryung-fc-newsletter\n\n`;
+            text += `좋은 하루 되세요!`;
+            
+            briefingText = text;
+            document.getElementById('briefingPreview').textContent = text;
+            document.getElementById('copyStatus').style.display = 'none';
+            document.getElementById('copyBtn').textContent = '복사하기';
+            document.getElementById('copyBtn').style.background = 'var(--accent)';
+        }
+        
+        function copyBriefing() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(briefingText).then(function() {
+                    showCopySuccess();
+                }).catch(function() {
+                    fallbackCopy();
+                });
+            } else {
+                fallbackCopy();
+            }
+        }
+        
+        function fallbackCopy() {
+            const ta = document.createElement('textarea');
+            ta.value = briefingText;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            ta.style.top = '0';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (e) {
+                alert('복사 실패. 미리보기 텍스트를 직접 선택해서 복사해주세요.');
+            }
+            document.body.removeChild(ta);
+        }
+        
+        function showCopySuccess() {
+            document.getElementById('copyBtn').textContent = '복사완료!';
+            document.getElementById('copyBtn').style.background = '#2E7D32';
+            document.getElementById('copyStatus').style.display = 'block';
+        }
     </script>
 </body>
 </html>
