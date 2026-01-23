@@ -1583,10 +1583,14 @@
                 {name:'이수일',goals:12,medal:'🥇'},{name:'박윤호',goals:9,medal:'🥈'},{name:'신준관',goals:7,medal:'🥉'},
                 {name:'황성웅',goals:5},{name:'이범호',goals:4},{name:'정병삼',goals:3},{name:'이동욱',goals:3},{name:'정윤',goals:2}
             ],
-            history: [
-                {date:'2025년 1월 18일 (토)',blue:3,white:2,blueGoals:[{name:'이수일',g:2},{name:'박윤호',g:1}],whiteGoals:[{name:'신준관',g:1},{name:'황성웅',g:1}],mom:'이수일'},
-                {date:'2025년 1월 11일 (토)',blue:2,white:2,blueGoals:[{name:'박윤호',g:1},{name:'이범호',g:1}],whiteGoals:[{name:'이수일',g:1},{name:'정병삼',g:1}],mom:'박윤호'}
-            ],
+            history: [],
+            // 1월 24일 출전선수 명단
+            lineup: {
+                date: '2026년 1월 24일 (금)',
+                teamA: ['황성웅', '이종휘', '정병삼', '국제문', '윤남엽', '정윤', '심상욱'],
+                teamB: ['박윤호', '박광수', '이범호', '이노일', '신준관', '유성호', '김진신'],
+                referee: '이범호'
+            },
             execs: [
                 {pos:'회장',name:'박윤호',icon:'👑'},{pos:'부회장',name:'신준관',icon:'⭐'},
                 {pos:'경기운영위원장',name:'이수일',icon:'🏃'},{pos:'경기운영위원장',name:'이범호',icon:'🏃'},
@@ -1831,23 +1835,29 @@
         }
         
         function loadHistory(){
-            document.getElementById('history-tab').innerHTML=DATA.history.map(m=>`
+            const lineup = DATA.lineup;
+            document.getElementById('history-tab').innerHTML=`
                 <div class="card">
-                    <div class="card-header"><div class="card-icon green">⚽</div>${m.date}</div>
+                    <div class="card-header"><div class="card-icon green">⚽</div>${lineup.date} 출전선수 명단</div>
                     <div class="card-body">
-                        <div class="match-score-area">
-                            <div class="team-box"><div class="team-badge blue">🔵</div><div class="team-name">청팀</div><div class="team-score">${m.blue}</div></div>
-                            <div class="vs-text">VS</div>
-                            <div class="team-box"><div class="team-badge white">⚪</div><div class="team-name">백팀</div><div class="team-score">${m.white}</div></div>
-                        </div>
                         <div class="goals-row">
-                            <div class="goals-box"><div class="goals-title">청팀</div>${m.blueGoals.map(g=>`<div class="goal-item">⚽ ${g.name}${g.g>1?' ('+g.g+'골)':''}</div>`).join('')}</div>
-                            <div class="goals-box"><div class="goals-title">백팀</div>${m.whiteGoals.map(g=>`<div class="goal-item">⚽ ${g.name}${g.g>1?' ('+g.g+'골)':''}</div>`).join('')}</div>
+                            <div class="goals-box" style="background:linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);">
+                                <div class="goals-title" style="color:#1565C0;">🔵 A팀 (${lineup.teamA.length}명)</div>
+                                ${lineup.teamA.map(n=>`<div class="goal-item" style="padding:6px 0;">• ${n}</div>`).join('')}
+                            </div>
+                            <div class="goals-box" style="background:linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);">
+                                <div class="goals-title" style="color:#616161;">⚪ B팀 (${lineup.teamB.length}명)</div>
+                                ${lineup.teamB.map(n=>`<div class="goal-item" style="padding:6px 0;">• ${n}</div>`).join('')}
+                            </div>
                         </div>
-                        <div style="text-align:center;"><div class="mom-badge">🏆 MOM ${m.mom}</div></div>
+                        <div style="text-align:center; margin-top:16px;">
+                            <div class="mom-badge" style="background:#FFF3E0; color:#E65100;">
+                                🎯 경기위원(심판): ${lineup.referee}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            `).join('');
+            `;
         }
         
         let calDate=new Date();
