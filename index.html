@@ -902,12 +902,425 @@
             font-size: 12px;
         }
         
+        /* ========================================
+           사진첩 스타일 (인터랙티브)
+           ======================================== */
+        
+        .gallery-hero {
+            background: linear-gradient(135deg, var(--accent) 0%, #3d6b4a 100%);
+            color: white;
+            padding: 40px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: heroGlow 8s ease-in-out infinite;
+        }
+        
+        @keyframes heroGlow {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30%, 30%); }
+        }
+        
+        .gallery-hero h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        
+        .gallery-hero p {
+            font-size: 14px;
+            opacity: 0.9;
+            position: relative;
+        }
+        
+        .gallery-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 24px;
+            position: relative;
+        }
+        
+        .gallery-stat {
+            text-align: center;
+        }
+        
+        .gallery-stat-num {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .gallery-stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        /* 필터 탭 */
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+            flex-wrap: wrap;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .filter-btn {
+            background: var(--bg-soft);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .filter-btn.active {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* 갤러리 그리드 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 24px;
+            perspective: 1000px;
+        }
+        
+        /* 3D 카드 */
+        .photo-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            background: var(--bg-card);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .photo-card:hover {
+            box-shadow: 0 20px 40px rgba(91, 140, 107, 0.25);
+        }
+        
+        .photo-card.entering {
+            animation: cardEnter 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: translateY(60px) rotateX(15deg) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0) scale(1);
+            }
+        }
+        
+        .photo-card-inner {
+            position: relative;
+        }
+        
+        .photo-card img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo-card:hover img {
+            transform: scale(1.08);
+        }
+        
+        .photo-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 16px 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .photo-card:hover .photo-card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .photo-card-date {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+        
+        .photo-card-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .photo-card-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+        
+        .photo-card-category.event { background: #E91E63; }
+        .photo-card-category.daily { background: #FF9800; }
+        .photo-card-category.award { background: #9C27B0; }
+        
+        /* 좋아요 버튼 */
+        .photo-card-like {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            z-index: 2;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        
+        .photo-card:hover .photo-card-like {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .photo-card-like:hover {
+            transform: scale(1.2) !important;
+            background: #ff4757;
+            color: white;
+        }
+        
+        .photo-card-like.liked {
+            background: #ff4757;
+            color: white;
+            animation: heartBeat 0.5s ease;
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(0.9); }
+            75% { transform: scale(1.2); }
+        }
+        
+        /* 라이트박스 */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: lightboxIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes lightboxIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotateY(-15deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateY(0);
+            }
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        
+        .lightbox-info {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+        
+        .lightbox-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .lightbox-date {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        
+        /* 파티클 효과 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFly 1s ease-out forwards;
+        }
+        
+        @keyframes particleFly {
+            0% {
+                opacity: 1;
+                transform: scale(1) translate(0, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translate(var(--tx), var(--ty));
+            }
+        }
+        
+        /* 업로드 FAB */
+        .upload-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, #3d6b4a 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(91, 140, 107, 0.4);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .upload-fab:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 10px 30px rgba(91, 140, 107, 0.5);
+        }
+        
         /* 반응형 */
         @media (max-width: 600px) {
             .member-grid { grid-template-columns: repeat(3, 1fr); }
             .stock-row { grid-template-columns: 1fr; }
             .weather-row { grid-template-columns: 1fr; }
             .goals-row { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px; }
+            .gallery-stats { gap: 20px; }
+            .gallery-stat-num { font-size: 24px; }
+            .lightbox-nav { display: none; }
         }
     </style>
 </head>
@@ -926,6 +1339,7 @@
             <div class="update-time" id="updateTime">업데이트 --:--</div>
             <nav class="nav">
                 <button class="nav-btn active" onclick="showTab('home', this)">홈</button>
+                <button class="nav-btn" onclick="showTab('gallery', this)">📸 사진첩</button>
                 <button class="nav-btn" onclick="showTab('briefing', this)">브리핑</button>
                 <button class="nav-btn" onclick="showTab('calendar', this)">캘린더</button>
                 <button class="nav-btn" onclick="showTab('ranking', this)">순위</button>
@@ -1016,6 +1430,42 @@
             </div>
         </div>
         
+        <!-- 사진첩 -->
+        <div id="gallery-tab" class="tab-content">
+            <div class="card" style="overflow:hidden; padding:0;">
+                <div class="gallery-hero">
+                    <h2>📸 미령FC 추억 앨범</h2>
+                    <p>소중한 순간들을 함께 기록합니다</p>
+                    <div class="gallery-stats">
+                        <div class="gallery-stat">
+                            <div class="gallery-stat-num" id="photoCount">12</div>
+                            <div class="gallery-stat-label">사진</div>
+                        </div>
+                        <div class="gallery-stat">
+                            <div class="gallery-stat-num" id="albumCount">4</div>
+                            <div class="gallery-stat-label">앨범</div>
+                        </div>
+                        <div class="gallery-stat">
+                            <div class="gallery-stat-num">2026</div>
+                            <div class="gallery-stat-label">시즌</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">전체</button>
+                    <button class="filter-btn" data-filter="match">⚽ 경기</button>
+                    <button class="filter-btn" data-filter="event">🎉 단합대회</button>
+                    <button class="filter-btn" data-filter="daily">☕ 일상</button>
+                    <button class="filter-btn" data-filter="award">🏆 시상</button>
+                </div>
+                
+                <div class="gallery-grid" id="galleryGrid"></div>
+            </div>
+            
+            <button class="upload-fab" onclick="alert('📤 사진 업로드 기능은 준비 중입니다!')">+</button>
+        </div>
+        
         <!-- 캘린더 -->
         <div id="calendar-tab" class="tab-content">
             <div class="card" style="overflow:hidden;">
@@ -1092,6 +1542,23 @@
         <div id="history-tab" class="tab-content"></div>
     </div>
     
+    <!-- 라이트박스 -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevPhoto()">❮</button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-info">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-date" id="lightboxDate"></div>
+            </div>
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextPhoto()">❯</button>
+    </div>
+    
+    <!-- 파티클 컨테이너 -->
+    <div class="particles" id="particles"></div>
+    
     <footer class="footer">
         <p>⚽ 미령FC 운영위원회</p>
     </footer>
@@ -1130,6 +1597,20 @@
             events: [{date:'2025-01-31',title:'회비 납부 마감',type:'event'}],
             fees: [
                 {name:'이수일',amt:200000},{name:'이노일',amt:200000},{name:'정병삼',amt:200000},{name:'유성호',amt:200000},{name:'정병인',amt:100000},{name:'정윤',amt:200000},{name:'이동욱',amt:200000},{name:'이종휘',amt:200000},{name:'윤남엽',amt:200000},{name:'정철',amt:100000},{name:'이범호',amt:200000},{name:'박윤호',amt:200000},{name:'정진관',amt:200000},{name:'심상욱',amt:200000},{name:'송승남',amt:200000},{name:'이주동',amt:100000},{name:'신준관',amt:200000},{name:'박광수',amt:200000},{name:'정무용',amt:200000},{name:'박철',amt:200000},{name:'국제문',amt:200000},{name:'황성웅',amt:200000},{name:'박정열',amt:200000},{name:'류재희',amt:100000},{name:'한승환',amt:100000},{name:'윤교상(25회)',amt:100000},{name:'김진신',amt:200000}
+            ],
+            photos: [
+                { id: 1, src: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600", title: "2026년 신년 친선경기", date: "2026-01-12", category: "match", desc: "vs 동문FC 3:2 승리!" },
+                { id: 2, src: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600", title: "정기 리그전 2R", date: "2026-01-19", category: "match", desc: "열정적인 경기 모습" },
+                { id: 3, src: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600", title: "신년 단합대회", date: "2026-01-05", category: "event", desc: "2026년 화이팅!" },
+                { id: 4, src: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600", title: "MVP 시상식", date: "2025-12-28", category: "award", desc: "이수일 선수 MVP 수상" },
+                { id: 5, src: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=600", title: "연습 경기", date: "2026-01-08", category: "match", desc: "체력 훈련 중" },
+                { id: 6, src: "https://images.unsplash.com/photo-1528164344705-47542687000d?w=600", title: "경기 후 뒤풀이", date: "2026-01-12", category: "daily", desc: "승리 자축!" },
+                { id: 7, src: "https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600", title: "팀 단체사진", date: "2026-01-01", category: "event", desc: "새해 첫 모임" },
+                { id: 8, src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600", title: "트레이닝", date: "2025-12-15", category: "match", desc: "기초 체력 훈련" },
+                { id: 9, src: "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600", title: "송년회", date: "2025-12-21", category: "event", desc: "2025년 마무리 모임" },
+                { id: 10, src: "https://images.unsplash.com/photo-1516475429286-465d815a0df7?w=600", title: "득점왕 시상", date: "2025-12-28", category: "award", desc: "정병삼 선수 득점왕" },
+                { id: 11, src: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600", title: "리그전 4R", date: "2025-11-24", category: "match", desc: "4:1 대승!" },
+                { id: 12, src: "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600", title: "커피 타임", date: "2026-01-15", category: "daily", desc: "경기 전 작전회의" }
             ]
         };
         
@@ -1143,6 +1624,155 @@
         
         const WEATHER = [{name:'익산',lat:35.9483,lon:126.9576},{name:'성남(금토동)',lat:37.4138,lon:127.1267}];
         
+        // ========================================
+        // 사진첩 관련 변수 및 함수
+        // ========================================
+        let currentPhotoIndex = 0;
+        let filteredPhotos = [...DATA.photos];
+        let likedPhotos = new Set();
+        
+        function getCategoryName(cat) {
+            const names = { match: '⚽ 경기', event: '🎉 단합대회', daily: '☕ 일상', award: '🏆 시상' };
+            return names[cat] || cat;
+        }
+        
+        function formatDate(dateStr) {
+            const d = new Date(dateStr);
+            return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+        }
+        
+        function renderGallery(photos) {
+            const grid = document.getElementById('galleryGrid');
+            if (!photos.length) {
+                grid.innerHTML = '<div class="no-data" style="grid-column:1/-1;">이 카테고리에 사진이 없습니다.</div>';
+                return;
+            }
+            
+            grid.innerHTML = photos.map((p, i) => `
+                <div class="photo-card entering" style="animation-delay:${i * 0.08}s" data-index="${i}" 
+                     onmousemove="handleTilt(event, this)" 
+                     onmouseleave="resetTilt(this)"
+                     onclick="openLightbox(${i})">
+                    <div class="photo-card-inner">
+                        <span class="photo-card-category ${p.category}">${getCategoryName(p.category)}</span>
+                        <button class="photo-card-like ${likedPhotos.has(p.id) ? 'liked' : ''}" 
+                                onclick="event.stopPropagation(); toggleLike(${p.id}, this)">
+                            ${likedPhotos.has(p.id) ? '❤️' : '🤍'}
+                        </button>
+                        <img src="${p.src}" alt="${p.title}" loading="lazy">
+                        <div class="photo-card-overlay">
+                            <div class="photo-card-date">${formatDate(p.date)}</div>
+                            <div class="photo-card-title">${p.title}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('photoCount').textContent = photos.length;
+        }
+        
+        // 3D 틸트 효과
+        function handleTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        }
+        
+        function resetTilt(card) {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        }
+        
+        // 좋아요 + 파티클 효과
+        function toggleLike(id, btn) {
+            if (likedPhotos.has(id)) {
+                likedPhotos.delete(id);
+                btn.classList.remove('liked');
+                btn.textContent = '🤍';
+            } else {
+                likedPhotos.add(id);
+                btn.classList.add('liked');
+                btn.textContent = '❤️';
+                createParticles(btn);
+            }
+        }
+        
+        function createParticles(el) {
+            const rect = el.getBoundingClientRect();
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = rect.left + rect.width/2 + 'px';
+                particle.style.top = rect.top + rect.height/2 + 'px';
+                particle.style.setProperty('--tx', (Math.random() - 0.5) * 150 + 'px');
+                particle.style.setProperty('--ty', (Math.random() - 0.5) * 150 + 'px');
+                particle.style.background = ['#ff4757', '#ff6b81', '#ffa502', '#5B8C6B'][Math.floor(Math.random() * 4)];
+                particle.style.width = (Math.random() * 8 + 4) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+                
+                setTimeout(() => particle.remove(), 1000);
+            }
+        }
+        
+        // 라이트박스
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            const photo = filteredPhotos[index];
+            document.getElementById('lightboxImg').src = photo.src;
+            document.getElementById('lightboxTitle').textContent = photo.title;
+            document.getElementById('lightboxDate').textContent = formatDate(photo.date) + ' • ' + photo.desc;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % filteredPhotos.length;
+            openLightbox(currentPhotoIndex);
+        }
+        
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + filteredPhotos.length) % filteredPhotos.length;
+            openLightbox(currentPhotoIndex);
+        }
+        
+        // 필터
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                filteredPhotos = filter === 'all' ? [...DATA.photos] : DATA.photos.filter(p => p.category === filter);
+                renderGallery(filteredPhotos);
+            });
+        });
+        
+        // 키보드 이벤트
+        document.addEventListener('keydown', e => {
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextPhoto();
+                if (e.key === 'ArrowLeft') prevPhoto();
+            }
+        });
+        
+        // ========================================
+        // 기존 함수들
+        // ========================================
+        
         function showTab(t,btn){
             document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(e=>e.classList.remove('active'));
@@ -1154,6 +1784,7 @@
             if(t==='fee')loadFees();
             if(t==='calendar')loadCalendar();
             if(t==='briefing')loadBriefing();
+            if(t==='gallery')renderGallery(filteredPhotos);
         }
         
         function loadClub(){
@@ -1175,7 +1806,6 @@
             `;
             
             const top=DATA.ranking.slice(0,3);
-            // 순서: 2등(왼쪽), 1등(가운데), 3등(오른쪽)
             document.getElementById('top3Content').innerHTML=`<div class="top3-area">
                 <div class="top3-item second"><div class="top3-medal">${top[1].medal}</div><div class="top3-name">${top[1].name}</div><div class="top3-goals">${top[1].goals}골</div></div>
                 <div class="top3-item first"><div class="top3-medal">${top[0].medal}</div><div class="top3-name">${top[0].name}</div><div class="top3-goals">${top[0].goals}골</div></div>
@@ -1308,7 +1938,6 @@
             try{
                 let h=await loadWeather();
                 
-                // 이리고 동문 뉴스 (우선 표시)
                 const pride=[];
                 pride.push(...await loadNews('이리고등학교','이리고 동문',3));
                 if(pride.length>0) h+=newsCard('🎓','자랑스러운 소식',pride);
@@ -1340,22 +1969,18 @@
             const days = ['일','월','화','수','목','금','토'];
             const dayName = days[today.getDay()];
             
-            // 이번 주 토요일
             const sat = new Date(today);
             const daysUntilSat = (6 - today.getDay() + 7) % 7;
             sat.setDate(today.getDate() + (daysUntilSat === 0 && today.getDay() !== 6 ? 7 : daysUntilSat));
             const satStr = `${sat.getMonth()+1}/${sat.getDate()}(토)`;
             
-            // D-day
             const deadline = new Date('2025-01-31');
             const dDay = Math.ceil((deadline - today) / (1000*60*60*24));
             const dDayStr = dDay > 0 ? `D-${dDay}` : (dDay === 0 ? 'D-Day!' : '마감');
             
-            // 몇 주차
             const weekNum = Math.ceil(today.getDate() / 7);
             const mealWeek = (weekNum === 3 || weekNum === 4) ? ' (이번 주!)' : '';
             
-            // 브리핑 텍스트 생성
             let text = `[미령FC 오늘의 브리핑]\n`;
             text += `${today.getFullYear()}년 ${today.getMonth()+1}월 ${today.getDate()}일 (${dayName})\n\n`;
             text += `■ 이번 주 안내\n`;
