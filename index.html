@@ -391,6 +391,139 @@
         .upload-fab { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent) 0%, #3d6b4a 100%); border: none; border-radius: 50%; color: white; font-size: 28px; cursor: pointer; box-shadow: 0 6px 20px rgba(91, 140, 107, 0.4); transition: all 0.3s ease; z-index: 100; }
         .upload-fab:hover { transform: scale(1.1) rotate(90deg); box-shadow: 0 10px 30px rgba(91, 140, 107, 0.5); }
         
+        /* 슬라이드쇼 스타일 */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .slideshow-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            background: #000;
+        }
+        
+        .slideshow-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
+        }
+        
+        .slide-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .slideshow-info {
+            position: absolute;
+            bottom: 60px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .slide-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .slide-counter {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        .dot:hover {
+            background: rgba(255,255,255,0.8);
+        }
+        
+        .slideshow-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .slideshow-toggle:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 600px) {
+            .slide img { height: 280px; }
+            .slide-btn { width: 40px; height: 40px; font-size: 16px; }
+            .slideshow-toggle { width: 35px; height: 35px; font-size: 14px; }
+        }
+        
         @media (max-width: 600px) {
             .member-grid { grid-template-columns: repeat(3, 1fr); }
             .stock-row { grid-template-columns: 1fr; }
@@ -481,10 +614,25 @@
                     <h2>📸 미령FC 추억 앨범</h2>
                     <p>소중한 순간들을 함께 기록합니다</p>
                     <div class="gallery-stats">
-                        <div class="gallery-stat"><div class="gallery-stat-num" id="photoCount">12</div><div class="gallery-stat-label">사진</div></div>
-                        <div class="gallery-stat"><div class="gallery-stat-num" id="albumCount">4</div><div class="gallery-stat-label">앨범</div></div>
+                        <div class="gallery-stat"><div class="gallery-stat-num" id="photoCount">17</div><div class="gallery-stat-label">사진</div></div>
+                        <div class="gallery-stat"><div class="gallery-stat-num" id="albumCount">1</div><div class="gallery-stat-label">앨범</div></div>
                         <div class="gallery-stat"><div class="gallery-stat-num">2026</div><div class="gallery-stat-label">시즌</div></div>
                     </div>
+                </div>
+                
+                <!-- 자동 슬라이드쇼 -->
+                <div class="slideshow-container">
+                    <div class="slideshow-wrapper" id="slideshowWrapper"></div>
+                    <div class="slideshow-controls">
+                        <button class="slide-btn prev-btn" onclick="changeSlide(-1)">❮</button>
+                        <button class="slide-btn next-btn" onclick="changeSlide(1)">❯</button>
+                    </div>
+                    <div class="slideshow-info">
+                        <div class="slide-title" id="slideTitle">1/24 경기 모습</div>
+                        <div class="slide-counter" id="slideCounter">1 / 17</div>
+                    </div>
+                    <div class="slideshow-dots" id="slideshowDots"></div>
+                    <button class="slideshow-toggle" id="playPauseBtn" onclick="toggleSlideshow()">⏸️</button>
                 </div>
                 <div class="gallery-filters">
                     <button class="filter-btn active" data-filter="all">전체</button>
@@ -585,18 +733,23 @@
                 {name:'이수일',amt:200000},{name:'이노일',amt:200000},{name:'정병삼',amt:200000},{name:'유성호',amt:200000},{name:'정병인',amt:100000},{name:'정윤',amt:200000},{name:'이동욱',amt:200000},{name:'이종휘',amt:200000},{name:'윤남엽',amt:200000},{name:'정철',amt:100000},{name:'이범호',amt:200000},{name:'박윤호',amt:200000},{name:'정진관',amt:200000},{name:'심상욱',amt:200000},{name:'송승남',amt:200000},{name:'이주동',amt:100000},{name:'신준관',amt:200000},{name:'박광수',amt:200000},{name:'정무용',amt:200000},{name:'박철',amt:200000},{name:'국제문',amt:200000},{name:'황성웅',amt:200000},{name:'박정열',amt:200000},{name:'류재희',amt:100000},{name:'한승환',amt:100000},{name:'윤교상(25회)',amt:100000},{name:'김진신',amt:200000}
             ],
             photos: [
-                { id: 1, src: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600", title: "2026년 신년 친선경기", date: "2026-01-12", category: "match", desc: "vs 동문FC 3:2 승리!" },
-                { id: 2, src: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600", title: "정기 리그전 2R", date: "2026-01-19", category: "match", desc: "열정적인 경기 모습" },
-                { id: 3, src: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600", title: "신년 단합대회", date: "2026-01-05", category: "event", desc: "2026년 화이팅!" },
-                { id: 4, src: "https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600", title: "MVP 시상식", date: "2025-12-28", category: "award", desc: "이수일 선수 MVP 수상" },
-                { id: 5, src: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=600", title: "연습 경기", date: "2026-01-08", category: "match", desc: "체력 훈련 중" },
-                { id: 6, src: "https://images.unsplash.com/photo-1528164344705-47542687000d?w=600", title: "경기 후 뒤풀이", date: "2026-01-12", category: "daily", desc: "승리 자축!" },
-                { id: 7, src: "https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=600", title: "팀 단체사진", date: "2026-01-01", category: "event", desc: "새해 첫 모임" },
-                { id: 8, src: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=600", title: "트레이닝", date: "2025-12-15", category: "match", desc: "기초 체력 훈련" },
-                { id: 9, src: "https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?w=600", title: "송년회", date: "2025-12-21", category: "event", desc: "2025년 마무리 모임" },
-                { id: 10, src: "https://images.unsplash.com/photo-1516475429286-465d815a0df7?w=600", title: "득점왕 시상", date: "2025-12-28", category: "award", desc: "정병삼 선수 득점왕" },
-                { id: 11, src: "https://images.unsplash.com/photo-1551958219-acbc608c6377?w=600", title: "리그전 4R", date: "2025-11-24", category: "match", desc: "4:1 대승!" },
-                { id: 12, src: "https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600", title: "커피 타임", date: "2026-01-15", category: "daily", desc: "경기 전 작전회의" }
+                { id: 1, src: "photos/IMG_0708.jpg", title: "1/24 경기 모습 1", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 2, src: "photos/IMG_0709.jpg", title: "1/24 경기 모습 2", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 3, src: "photos/IMG_0713.jpg", title: "1/24 경기 모습 3", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 4, src: "photos/IMG_0714.jpg", title: "1/24 경기 모습 4", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 5, src: "photos/IMG_0717.jpg", title: "1/24 경기 모습 5", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 6, src: "photos/IMG_0722.jpg", title: "1/24 경기 모습 6", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 7, src: "photos/IMG_0728.jpg", title: "1/24 경기 모습 7", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 8, src: "photos/IMG_0729.jpg", title: "1/24 경기 모습 8", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 9, src: "photos/IMG_0731.jpg", title: "1/24 경기 모습 9", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 10, src: "photos/IMG_0733.jpg", title: "1/24 경기 모습 10", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 11, src: "photos/IMG_0734.jpg", title: "1/24 경기 모습 11", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 12, src: "photos/IMG_0735.jpg", title: "1/24 경기 모습 12", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 13, src: "photos/IMG_0736.jpg", title: "1/24 경기 모습 13", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 14, src: "photos/IMG_0737.jpg", title: "1/24 경기 모습 14", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 15, src: "photos/IMG_0739.jpg", title: "1/24 경기 모습 15", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 16, src: "photos/IMG_0741.jpg", title: "1/24 경기 모습 16", date: "2026-01-24", category: "match", desc: "금토동 풋살장" },
+                { id: 17, src: "photos/IMG_0742.jpg", title: "1/24 경기 모습 17", date: "2026-01-24", category: "match", desc: "금토동 풋살장" }
             ]
         };
         
@@ -611,6 +764,74 @@
         let currentPhotoIndex = 0;
         let filteredPhotos = [...DATA.photos];
         let likedPhotos = new Set();
+        
+        // 슬라이드쇼 변수
+        let currentSlide = 0;
+        let slideshowInterval = null;
+        let isPlaying = true;
+        
+        // 슬라이드쇼 초기화
+        function initSlideshow() {
+            const wrapper = document.getElementById('slideshowWrapper');
+            const dots = document.getElementById('slideshowDots');
+            
+            // 슬라이드 생성
+            wrapper.innerHTML = DATA.photos.map((p, i) => `
+                <div class="slide">
+                    <img src="${p.src}" alt="${p.title}" loading="lazy">
+                </div>
+            `).join('');
+            
+            // 닷 생성
+            dots.innerHTML = DATA.photos.map((_, i) => `
+                <span class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></span>
+            `).join('');
+            
+            updateSlideInfo();
+            startSlideshow();
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= DATA.photos.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = DATA.photos.length - 1;
+            updateSlide();
+        }
+        
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+        
+        function updateSlide() {
+            const wrapper = document.getElementById('slideshowWrapper');
+            wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // 닷 업데이트
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentSlide);
+            });
+            
+            updateSlideInfo();
+        }
+        
+        function updateSlideInfo() {
+            const photo = DATA.photos[currentSlide];
+            document.getElementById('slideTitle').textContent = photo.title;
+            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${DATA.photos.length}`;
+        }
+        
+        function startSlideshow() {
+            if (slideshowInterval) clearInterval(slideshowInterval);
+            slideshowInterval = setInterval(() => {
+                if (isPlaying) changeSlide(1);
+            }, 3000); // 3초마다 자동 전환
+        }
+        
+        function toggleSlideshow() {
+            isPlaying = !isPlaying;
+            document.getElementById('playPauseBtn').textContent = isPlaying ? '⏸️' : '▶️';
+        }
         
         function getCategoryName(cat) {
             const names = { match: '⚽ 경기', event: '🎉 단합대회', daily: '☕ 일상', award: '🏆 시상' };
@@ -713,7 +934,7 @@
             if(t==='fee')loadFees();
             if(t==='calendar')loadCalendar();
             if(t==='briefing')loadBriefing();
-            if(t==='gallery')renderGallery(filteredPhotos);
+            if(t==='gallery'){ initSlideshow(); renderGallery(filteredPhotos); }
         }
         
         function loadClub(){
