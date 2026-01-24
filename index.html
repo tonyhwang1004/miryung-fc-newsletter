@@ -571,8 +571,8 @@
             ],
             lineup: {
                 date: '2026년 1월 24일 (금)',
-                teamA: ['황성웅', '이종휘', '정병삼', '국제문', '윤남엽', '정윤', '심상욱', '한승환', '박승철', '강명수'],
-                teamB: ['박윤호', '박광수', '이범호', '이노일', '신준관', '유성호', '김진신'],
+                teamA: ['황성웅', '이종휘', '정병삼', '국제문', '윤남엽', '정윤', '심상욱', '박승철'],
+                teamB: ['박윤호', '박광수', '이범호', '이노일', '신준관', '유성호', '김진신', '강명수'],
                 referee: '이범호'
             },
             execs: [
@@ -860,8 +860,8 @@ ${quartersText}
         function loadAllNews(){
             const q = quotes[Math.floor(Math.random()*quotes.length)];
             document.getElementById('newsContainer').innerHTML=`
-                <div class="card"><div class="card-header"><div class="card-icon green">📰</div>축구 뉴스</div><div class="card-body"><div class="news-item"><div class="news-tag">K리그</div><div class="news-title"><a href="#">2026 시즌 일정 발표</a></div></div><div class="news-item"><div class="news-tag">해외축구</div><div class="news-title"><a href="#">손흥민 시즌 10호골</a></div></div></div></div>
-                <div class="card"><div class="card-header"><div class="card-icon warm">💹</div>경제</div><div class="card-body"><div class="stock-row"><div class="stock-box"><div class="stock-label">코스피</div><div class="stock-value"><a href="#">2,850</a></div></div><div class="stock-box"><div class="stock-label">코스닥</div><div class="stock-value"><a href="#">920</a></div></div><div class="stock-box"><div class="stock-label">환율</div><div class="stock-value"><a href="#">1,380</a></div></div></div></div></div>
+                <div class="card"><div class="card-header"><div class="card-icon green">📰</div>축구 뉴스</div><div class="card-body"><div class="news-item"><div class="news-tag">K리그</div><div class="news-title"><a href="#">2026 K리그1 2월 28일 개막…경인더비로 시작</a></div></div><div class="news-item"><div class="news-tag">해외축구</div><div class="news-title"><a href="#">손흥민, LAFC서 2026 풀시즌 첫 도전…"엄청난 사건"</a></div></div><div class="news-item"><div class="news-tag">K리그</div><div class="news-title"><a href="#">외국인 선수 보유 한도 폐지…27년 만에 외국인 GK 허용</a></div></div></div></div>
+                <div class="card"><div class="card-header"><div class="card-icon warm">💹</div>경제 (1/24 기준)</div><div class="card-body"><div class="stock-row"><div class="stock-box"><div class="stock-label">코스피</div><div class="stock-value"><a href="#">4,990</a></div></div><div class="stock-box"><div class="stock-label">코스닥</div><div class="stock-value"><a href="#">935</a></div></div><div class="stock-box"><div class="stock-label">환율</div><div class="stock-value"><a href="#">1,443</a></div></div></div></div></div>
                 <div class="card"><div class="card-header"><div class="card-icon green">🌤️</div>날씨</div><div class="card-body"><div class="weather-row"><div class="weather-box"><div class="weather-city">익산</div><div class="weather-temp">-2°</div><div class="weather-desc">맑음</div></div><div class="weather-box"><div class="weather-city">성남(금토동)</div><div class="weather-temp">-4°</div><div class="weather-desc">맑음</div></div></div></div></div>
                 <div class="card"><div class="card-header"><div class="card-icon warm">💬</div>오늘의 명언</div><div class="card-body"><div class="quote-box"><div class="quote-text">"${q.text}"</div><div class="quote-author">- ${q.author}</div></div></div></div>`;
         }
