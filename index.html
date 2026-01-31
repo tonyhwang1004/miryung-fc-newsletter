@@ -180,6 +180,9 @@
         .goal-record { padding: 6px 0; display: flex; align-items: center; gap: 8px; }
         .goal-record .scorer { font-weight: 600; color: var(--text-primary); }
         .goal-record .assist { font-size: 12px; color: var(--text-muted); background: var(--bg-card); padding: 2px 8px; border-radius: 10px; }
+        .goal-record .team-badge { font-size: 11px; padding: 2px 6px; border-radius: 8px; font-weight: 600; margin-right: 4px; }
+        .goal-record .team-a { background: #E3F2FD; color: #1565C0; }
+        .goal-record .team-b { background: #FCE4EC; color: #C2185B; }
         
         .final-score {
             background: linear-gradient(135deg, var(--accent) 0%, #4A7A5A 100%);
@@ -247,15 +250,6 @@
         .news-title a { color: var(--text-primary); text-decoration: none; }
         .news-title a:hover { color: var(--accent); }
         .news-date { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-        
-        .stock-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .stock-box { background: var(--bg-soft); padding: 16px 12px; border-radius: 10px; text-align: center; }
-        .stock-label { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
-        .stock-value { font-size: 18px; font-weight: 700; color: var(--text-primary); }
-        .stock-change { font-size: 12px; margin-top: 4px; }
-        .stock-change.up { color: #E53935; }
-        .stock-change.down { color: #1E88E5; }
-        .stock-change.flat { color: var(--text-muted); }
         
         .quote-box { background: var(--warm-light); padding: 24px; border-radius: 12px; text-align: center; }
         .quote-text { font-size: 16px; font-weight: 500; color: var(--text-primary); line-height: 1.7; margin-bottom: 12px; }
@@ -343,7 +337,6 @@
         .goals-title { font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         .goal-item { font-size: 13px; padding: 4px 0; color: var(--text-primary); }
         
-        /* 예정 경기 스타일 */
         .upcoming-match {
             background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
             color: white;
@@ -356,7 +349,6 @@
         .upcoming-date { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
         .upcoming-time { font-size: 14px; opacity: 0.9; }
         
-        /* 실시간 배지 */
         .live-badge { 
             display: inline-flex; 
             align-items: center; 
@@ -447,147 +439,34 @@
         .upload-fab:hover { transform: scale(1.1) rotate(90deg); box-shadow: 0 10px 30px rgba(91, 140, 107, 0.5); }
         
         /* 슬라이드쇼 스타일 */
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            background: #000;
-            overflow: hidden;
-        }
-        
-        .slideshow-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        
-        .slide {
-            min-width: 100%;
-            position: relative;
-        }
-        
-        .slide img {
-            width: 100%;
-            height: 400px;
-            object-fit: contain;
-            background: #000;
-        }
-        
-        .slideshow-controls {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-            pointer-events: none;
-        }
-        
-        .slide-btn {
-            width: 50px;
-            height: 50px;
-            background: rgba(255,255,255,0.8);
-            border: none;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            pointer-events: auto;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .slide-btn:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-        
-        .slideshow-info {
-            position: absolute;
-            bottom: 60px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .slide-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .slide-counter {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .slideshow-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            padding: 0 20px;
-        }
-        
-        .dot {
-            width: 10px;
-            height: 10px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .dot.active {
-            background: white;
-            transform: scale(1.2);
-        }
-        
-        .dot:hover {
-            background: rgba(255,255,255,0.8);
-        }
-        
-        .slideshow-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.8);
-            border: none;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .slideshow-toggle:hover {
-            background: white;
-            transform: scale(1.1);
-        }
-        
-        @media (max-width: 600px) {
-            .slide img { height: 280px; }
-            .slide-btn { width: 40px; height: 40px; font-size: 16px; }
-            .slideshow-toggle { width: 35px; height: 35px; font-size: 14px; }
-        }
+        .slideshow-container { position: relative; width: 100%; background: #000; overflow: hidden; }
+        .slideshow-wrapper { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; position: relative; }
+        .slide img { width: 100%; height: 400px; object-fit: contain; background: #000; }
+        .slideshow-controls { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; padding: 0 10px; pointer-events: none; }
+        .slide-btn { width: 50px; height: 50px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; font-size: 20px; cursor: pointer; pointer-events: auto; transition: all 0.3s; display: flex; align-items: center; justify-content: center; }
+        .slide-btn:hover { background: white; transform: scale(1.1); }
+        .slideshow-info { position: absolute; bottom: 60px; left: 0; right: 0; text-align: center; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        .slide-title { font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+        .slide-counter { font-size: 14px; opacity: 0.9; }
+        .slideshow-dots { position: absolute; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; padding: 0 20px; }
+        .dot { width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; transition: all 0.3s; }
+        .dot.active { background: white; transform: scale(1.2); }
+        .dot:hover { background: rgba(255,255,255,0.8); }
+        .slideshow-toggle { position: absolute; top: 15px; right: 15px; width: 40px; height: 40px; background: rgba(255,255,255,0.8); border: none; border-radius: 50%; font-size: 18px; cursor: pointer; transition: all 0.3s; }
+        .slideshow-toggle:hover { background: white; transform: scale(1.1); }
         
         @media (max-width: 600px) {
             .member-grid { grid-template-columns: repeat(3, 1fr); }
-            .stock-row { grid-template-columns: 1fr 1fr; }
             .weather-row { grid-template-columns: 1fr; }
             .goals-row { grid-template-columns: 1fr; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 12px; }
             .gallery-stats { gap: 20px; }
             .gallery-stat-num { font-size: 24px; }
             .lightbox-nav { display: none; }
+            .slide img { height: 280px; }
+            .slide-btn { width: 40px; height: 40px; font-size: 16px; }
+            .slideshow-toggle { width: 35px; height: 35px; font-size: 14px; }
         }
     </style>
 </head>
@@ -647,13 +526,12 @@
                 </div>
             </div>
             
-            <!-- 다음 경기 예정 -->
             <div class="card">
                 <div class="card-header"><div class="card-icon warm">📅</div>다음 경기 예정</div>
                 <div class="card-body">
                     <div class="upcoming-match">
                         <div class="upcoming-label">🔜 UPCOMING</div>
-                        <div class="upcoming-date">1월 31일 (금)</div>
+                        <div class="upcoming-date">2월 7일 (토)</div>
                         <div class="upcoming-time">07:00 - 10:00 | 금토동 다목적운동장</div>
                     </div>
                 </div>
@@ -664,7 +542,7 @@
                 <div class="card-body" id="noticeContent"></div>
             </div>
             <div class="card">
-                <div class="card-header"><div class="card-icon green">⚽</div>지난 경기 결과 (1/24)</div>
+                <div class="card-header"><div class="card-icon green">⚽</div>지난 경기 결과 (1/31)</div>
                 <div class="card-body" id="matchContent"></div>
             </div>
             <div class="card">
@@ -675,7 +553,6 @@
             <div class="section-label"><span>실시간 정보</span></div>
             <button class="refresh-btn" id="refreshBtn" onclick="refreshAllLiveData()">🔄 새로고침</button>
             
-            <!-- 실시간 날씨 -->
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon green">🌤️</div>실시간 날씨
@@ -700,40 +577,6 @@
                 </div>
             </div>
             
-            <!-- 실시간 주식/환율 -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-icon warm">💹</div>실시간 시장 정보
-                    <span class="live-badge">LIVE</span>
-                </div>
-                <div class="card-body">
-                    <div class="stock-row" id="stockContainer">
-                        <div class="stock-box">
-                            <div class="stock-label">코스피 (KOSPI)</div>
-                            <div class="stock-value">--</div>
-                            <div class="stock-change flat">--</div>
-                        </div>
-                        <div class="stock-box">
-                            <div class="stock-label">코스닥 (KOSDAQ)</div>
-                            <div class="stock-value">--</div>
-                            <div class="stock-change flat">--</div>
-                        </div>
-                        <div class="stock-box">
-                            <div class="stock-label">나스닥 (NASDAQ)</div>
-                            <div class="stock-value">--</div>
-                            <div class="stock-change flat">--</div>
-                        </div>
-                        <div class="stock-box">
-                            <div class="stock-label">USD/KRW 환율</div>
-                            <div class="stock-value">--</div>
-                            <div class="stock-change flat">--</div>
-                        </div>
-                    </div>
-                    <div class="last-update" id="stockUpdate"></div>
-                </div>
-            </div>
-            
-            <!-- 실시간 축구 뉴스 -->
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon green">⚽</div>실시간 축구 뉴스
@@ -744,7 +587,6 @@
                 </div>
             </div>
             
-            <!-- 실시간 경제 뉴스 -->
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon warm">📰</div>실시간 경제 뉴스
@@ -755,7 +597,6 @@
                 </div>
             </div>
             
-            <!-- 오늘의 명언 -->
             <div class="card">
                 <div class="card-header"><div class="card-icon warm">💬</div>오늘의 명언</div>
                 <div class="card-body" id="quoteContainer"></div>
@@ -774,7 +615,6 @@
                     </div>
                 </div>
                 
-                <!-- 자동 슬라이드쇼 -->
                 <div class="slideshow-container">
                     <div class="slideshow-wrapper" id="slideshowWrapper"></div>
                     <div class="slideshow-controls">
@@ -857,56 +697,57 @@
             ],
             
             // ========================================
-            // 🔽🔽🔽 경기 기록은 여기를 수정하세요 🔽🔽🔽
+            // 🔽 1월 31일 경기 결과 (수정됨)
             // ========================================
             match: {
-                date: '2026년 1월 24일 (금)',
+                date: '2026년 1월 31일 (토)',
                 location: '금토동풋살장',
                 quarters: [
                     { 
-                        title: '1쿼터', 
+                        title: '1쿼터',
+                        score: '1:1',
                         records: [
-                            { scorer: '박윤호', assist: '' },
-                            { scorer: '이범호', assist: '' },
-                            { scorer: '정병삼', assist: '' },
-                            { scorer: '유성호', assist: '' },
-                            { scorer: '박승철', assist: '' },
-                            { scorer: '박승철', assist: '' },
+                            { team: 'B', scorer: '정윤', assist: '송승남' },
+                            { team: 'A', scorer: '박윤호', assist: '이수일' },
                         ]
                     },
                     { 
-                        title: '2쿼터', 
+                        title: '2쿼터',
+                        score: '1:1',
                         records: [
-                            { scorer: '정병삼', assist: '' },
-                            { scorer: '박승철', assist: '' },
+                            { team: 'A', scorer: '정진관', assist: '박승철' },
+                            { team: 'B', scorer: '정윤', assist: '강명수' },
                         ]
                     },
                     { 
-                        title: '3쿼터', 
+                        title: '3쿼터',
+                        score: '1:0',
                         records: [
-                            { scorer: '정병삼', assist: '' },
-                            { scorer: '박승철', assist: '' },
-                            { scorer: '강명수', assist: '' },
-                            { scorer: '정윤', assist: '' },
-                            { scorer: '윤남엽', assist: '' },
+                            { team: 'A', scorer: '이수일', assist: '이범호' },
                         ]
                     },
                     { 
-                        title: '4쿼터', 
-                        records: []
+                        title: '4쿼터',
+                        score: '1:3',
+                        records: [
+                            { team: 'B', scorer: '정윤', assist: '이종휘' },
+                            { team: 'B', scorer: '이종휘', assist: '정윤' },
+                            { team: 'B', scorer: '명수', assist: '박광수' },
+                            { team: 'A', scorer: '이범호', assist: '정진관' },
+                        ]
                     }
                 ],
-                finalScore: { blue: 8, white: 5 },
-                mom: '정병삼',
-                momNote: '3골'
+                finalScore: { a: 4, b: 5 },
+                mom: '정윤',
+                momNote: '해트트릭 🎩'
             },
             // ========================================
             
             lineup: {
-                date: '2026년 1월 24일 (금)',
-                teamA: ['황성웅', '이종휘', '정병삼', '국제문', '윤남엽', '정윤', '심상욱', '박승철'],
-                teamB: ['박윤호', '박광수', '이범호', '이노일', '신준관', '유성호', '김진신', '강명수'],
-                referee: '이범호'
+                date: '2026년 1월 31일 (토)',
+                teamA: ['이동욱', '박윤호', '이범호', '이노일', '김진신', '이수일', '정진관', '윤남엽', '강명수'],
+                teamB: ['송승남', '황성웅', '정병삼', '국제문', '정윤', '류재희', '이종휘', '심상욱', '박승철'],
+                referee: ''
             },
             execs: [
                 {pos:'회장',name:'박윤호',icon:'👑'},{pos:'부회장',name:'신준관',icon:'⭐'},
@@ -952,17 +793,10 @@
         let currentPhotoIndex = 0;
         let filteredPhotos = [...DATA.photos];
         let likedPhotos = new Set();
-        
-        // 슬라이드쇼 변수
         let currentSlide = 0;
         let slideshowInterval = null;
         let isPlaying = true;
         
-        // ========================================
-        // 실시간 데이터 로드 함수들
-        // ========================================
-        
-        // 날씨 아이콘 매핑
         function getWeatherIcon(condition) {
             const icons = {
                 'Clear': '☀️', 'Sunny': '☀️',
@@ -978,7 +812,6 @@
             return '🌤️';
         }
         
-        // 실시간 날씨 로드 (wttr.in API 사용 - 무료, API 키 불필요)
         async function loadWeather() {
             const cities = [
                 { name: '익산', query: 'Iksan' },
@@ -987,7 +820,7 @@
             
             try {
                 const weatherPromises = cities.map(city => 
-                    fetch(`https://wttr.in/${city.query}?format=j1`)
+                    fetch('https://wttr.in/' + city.query + '?format=j1')
                         .then(res => res.json())
                         .catch(() => null)
                 );
@@ -1004,115 +837,25 @@
                         const feelsLike = current.FeelsLikeC;
                         const icon = getWeatherIcon(desc);
                         
-                        html += `
-                            <div class="weather-box">
-                                <div class="weather-city">${cities[i].name}</div>
-                                <div class="weather-icon">${icon}</div>
-                                <div class="weather-temp">${temp}°</div>
-                                <div class="weather-desc">${desc}</div>
-                                <div class="weather-detail">체감 ${feelsLike}° | 습도 ${humidity}%</div>
-                            </div>`;
+                        html += '<div class="weather-box"><div class="weather-city">' + cities[i].name + '</div><div class="weather-icon">' + icon + '</div><div class="weather-temp">' + temp + '°</div><div class="weather-desc">' + desc + '</div><div class="weather-detail">체감 ' + feelsLike + '° | 습도 ' + humidity + '%</div></div>';
                     } else {
-                        html += `
-                            <div class="weather-box">
-                                <div class="weather-city">${cities[i].name}</div>
-                                <div class="weather-icon">❓</div>
-                                <div class="weather-temp">--°</div>
-                                <div class="weather-desc">데이터 없음</div>
-                            </div>`;
+                        html += '<div class="weather-box"><div class="weather-city">' + cities[i].name + '</div><div class="weather-icon">❓</div><div class="weather-temp">--°</div><div class="weather-desc">데이터 없음</div></div>';
                     }
                 });
                 
                 document.getElementById('weatherContainer').innerHTML = html;
-                document.getElementById('weatherUpdate').textContent = `마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}`;
+                document.getElementById('weatherUpdate').textContent = '마지막 업데이트: ' + new Date().toLocaleTimeString('ko-KR');
             } catch (error) {
                 console.error('날씨 로드 실패:', error);
             }
         }
         
-        // 실시간 주식/환율 정보 (여러 소스에서 시도)
-        async function loadStockData() {
-            const container = document.getElementById('stockContainer');
-            
-            // 기본 데이터 (API 실패 시 표시)
-            let stockData = {
-                kospi: { value: '--', change: '--', changeClass: 'flat' },
-                kosdaq: { value: '--', change: '--', changeClass: 'flat' },
-                nasdaq: { value: '--', change: '--', changeClass: 'flat' },
-                usdkrw: { value: '--', change: '--', changeClass: 'flat' }
-            };
-            
-            try {
-                // 환율 정보 (exchangerate-api.com 무료 API)
-                const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-                if (exchangeRes.ok) {
-                    const exchangeData = await exchangeRes.json();
-                    if (exchangeData.rates && exchangeData.rates.KRW) {
-                        stockData.usdkrw.value = Math.round(exchangeData.rates.KRW).toLocaleString();
-                        stockData.usdkrw.change = '실시간';
-                        stockData.usdkrw.changeClass = 'flat';
-                    }
-                }
-            } catch (e) {
-                console.log('환율 데이터 로드 실패');
-            }
-            
-            // 주식 데이터는 무료 API 제한으로 대략적인 값 표시
-            // 실제 서비스에서는 유료 API 또는 백엔드 서버 필요
-            try {
-                // Yahoo Finance 비공식 API 시도 (CORS 문제 있을 수 있음)
-                const corsProxy = 'https://api.allorigins.win/raw?url=';
-                
-                // 간단한 시세 조회 시도
-                const symbols = [
-                    { symbol: '^KS11', name: 'kospi' },
-                    { symbol: '^KQ11', name: 'kosdaq' },
-                    { symbol: '^IXIC', name: 'nasdaq' }
-                ];
-                
-                // 참고: 실제로는 CORS 문제로 브라우저에서 직접 호출 어려움
-                // 아래는 대체 데이터 표시
-                stockData.kospi = { value: '2,500~', change: '시장 확인 필요', changeClass: 'flat' };
-                stockData.kosdaq = { value: '750~', change: '시장 확인 필요', changeClass: 'flat' };
-                stockData.nasdaq = { value: '17,000~', change: '시장 확인 필요', changeClass: 'flat' };
-                
-            } catch (e) {
-                console.log('주식 데이터 로드 실패');
-            }
-            
-            container.innerHTML = `
-                <div class="stock-box">
-                    <div class="stock-label">코스피 (KOSPI)</div>
-                    <div class="stock-value">${stockData.kospi.value}</div>
-                    <div class="stock-change ${stockData.kospi.changeClass}">${stockData.kospi.change}</div>
-                </div>
-                <div class="stock-box">
-                    <div class="stock-label">코스닥 (KOSDAQ)</div>
-                    <div class="stock-value">${stockData.kosdaq.value}</div>
-                    <div class="stock-change ${stockData.kosdaq.changeClass}">${stockData.kosdaq.change}</div>
-                </div>
-                <div class="stock-box">
-                    <div class="stock-label">나스닥 (NASDAQ)</div>
-                    <div class="stock-value">${stockData.nasdaq.value}</div>
-                    <div class="stock-change ${stockData.nasdaq.changeClass}">${stockData.nasdaq.change}</div>
-                </div>
-                <div class="stock-box">
-                    <div class="stock-label">USD/KRW 환율</div>
-                    <div class="stock-value">${stockData.usdkrw.value}원</div>
-                    <div class="stock-change ${stockData.usdkrw.changeClass}">${stockData.usdkrw.change}</div>
-                </div>
-            `;
-            document.getElementById('stockUpdate').textContent = `마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}`;
-        }
-        
-        // 실시간 축구 뉴스 로드 (RSS to JSON 서비스 사용)
         async function loadFootballNews() {
             const container = document.getElementById('footballNewsContainer');
             
             try {
-                // 네이버 스포츠 축구 RSS (rss2json.com 통해 JSON 변환)
                 const rssUrl = 'https://sports.news.naver.com/rss/wfootball.xml';
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+                const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
                 
                 const response = await fetch(apiUrl);
                 const data = await response.json();
@@ -1120,23 +863,17 @@
                 if (data.status === 'ok' && data.items && data.items.length > 0) {
                     const newsHtml = data.items.slice(0, 5).map(item => {
                         const pubDate = new Date(item.pubDate);
-                        const dateStr = `${pubDate.getMonth()+1}/${pubDate.getDate()} ${pubDate.getHours()}:${String(pubDate.getMinutes()).padStart(2,'0')}`;
-                        return `
-                            <div class="news-item">
-                                <div class="news-tag">해외축구</div>
-                                <div class="news-title"><a href="${item.link}" target="_blank">${item.title}</a></div>
-                                <div class="news-date">${dateStr}</div>
-                            </div>`;
+                        const dateStr = (pubDate.getMonth()+1) + '/' + pubDate.getDate() + ' ' + pubDate.getHours() + ':' + String(pubDate.getMinutes()).padStart(2,'0');
+                        return '<div class="news-item"><div class="news-tag">해외축구</div><div class="news-title"><a href="' + item.link + '" target="_blank">' + item.title + '</a></div><div class="news-date">' + dateStr + '</div></div>';
                     }).join('');
-                    container.innerHTML = newsHtml + `<div class="last-update">마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}</div>`;
+                    container.innerHTML = newsHtml + '<div class="last-update">마지막 업데이트: ' + new Date().toLocaleTimeString('ko-KR') + '</div>';
                 } else {
                     throw new Error('No data');
                 }
             } catch (error) {
-                // 대체 뉴스 (K리그 RSS 시도)
                 try {
                     const rssUrl2 = 'https://sports.news.naver.com/rss/kfootball.xml';
-                    const apiUrl2 = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl2)}`;
+                    const apiUrl2 = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl2);
                     
                     const response2 = await fetch(apiUrl2);
                     const data2 = await response2.json();
@@ -1144,41 +881,25 @@
                     if (data2.status === 'ok' && data2.items) {
                         const newsHtml = data2.items.slice(0, 5).map(item => {
                             const pubDate = new Date(item.pubDate);
-                            const dateStr = `${pubDate.getMonth()+1}/${pubDate.getDate()} ${pubDate.getHours()}:${String(pubDate.getMinutes()).padStart(2,'0')}`;
-                            return `
-                                <div class="news-item">
-                                    <div class="news-tag">K리그</div>
-                                    <div class="news-title"><a href="${item.link}" target="_blank">${item.title}</a></div>
-                                    <div class="news-date">${dateStr}</div>
-                                </div>`;
+                            const dateStr = (pubDate.getMonth()+1) + '/' + pubDate.getDate() + ' ' + pubDate.getHours() + ':' + String(pubDate.getMinutes()).padStart(2,'0');
+                            return '<div class="news-item"><div class="news-tag">K리그</div><div class="news-title"><a href="' + item.link + '" target="_blank">' + item.title + '</a></div><div class="news-date">' + dateStr + '</div></div>';
                         }).join('');
                         container.innerHTML = newsHtml;
                     } else {
                         throw new Error('No data');
                     }
                 } catch (e) {
-                    container.innerHTML = `
-                        <div class="news-item">
-                            <div class="news-tag">K리그</div>
-                            <div class="news-title"><a href="https://sports.news.naver.com/kfootball/index" target="_blank">2026 K리그1 시즌 준비 중</a></div>
-                        </div>
-                        <div class="news-item">
-                            <div class="news-tag">해외축구</div>
-                            <div class="news-title"><a href="https://sports.news.naver.com/wfootball/index" target="_blank">해외축구 최신 뉴스 보기 →</a></div>
-                        </div>
-                        <div class="last-update" style="color:#E53935;">⚠️ 실시간 뉴스 로드 실패 - 링크를 클릭해 확인하세요</div>`;
+                    container.innerHTML = '<div class="news-item"><div class="news-tag">K리그</div><div class="news-title"><a href="https://sports.news.naver.com/kfootball/index" target="_blank">2026 K리그1 시즌 준비 중</a></div></div><div class="news-item"><div class="news-tag">해외축구</div><div class="news-title"><a href="https://sports.news.naver.com/wfootball/index" target="_blank">해외축구 최신 뉴스 보기 →</a></div></div><div class="last-update" style="color:#E53935;">⚠️ 실시간 뉴스 로드 실패 - 링크를 클릭해 확인하세요</div>';
                 }
             }
         }
         
-        // 실시간 경제 뉴스 로드
         async function loadEconomyNews() {
             const container = document.getElementById('economyNewsContainer');
             
             try {
-                // 네이버 경제 RSS
                 const rssUrl = 'https://news.google.com/rss/search?q=경제+미국&hl=ko&gl=KR&ceid=KR:ko';
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+                const apiUrl = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(rssUrl);
                 
                 const response = await fetch(apiUrl);
                 const data = await response.json();
@@ -1186,47 +907,26 @@
                 if (data.status === 'ok' && data.items && data.items.length > 0) {
                     const newsHtml = data.items.slice(0, 5).map(item => {
                         const pubDate = new Date(item.pubDate);
-                        const dateStr = `${pubDate.getMonth()+1}/${pubDate.getDate()} ${pubDate.getHours()}:${String(pubDate.getMinutes()).padStart(2,'0')}`;
-                        // 제목에서 소스 분리
+                        const dateStr = (pubDate.getMonth()+1) + '/' + pubDate.getDate() + ' ' + pubDate.getHours() + ':' + String(pubDate.getMinutes()).padStart(2,'0');
                         const titleParts = item.title.split(' - ');
                         const title = titleParts[0];
                         const source = titleParts[1] || '뉴스';
-                        return `
-                            <div class="news-item">
-                                <div class="news-tag">${source.substring(0,10)}</div>
-                                <div class="news-title"><a href="${item.link}" target="_blank">${title}</a></div>
-                                <div class="news-date">${dateStr}</div>
-                            </div>`;
+                        return '<div class="news-item"><div class="news-tag">' + source.substring(0,10) + '</div><div class="news-title"><a href="' + item.link + '" target="_blank">' + title + '</a></div><div class="news-date">' + dateStr + '</div></div>';
                     }).join('');
-                    container.innerHTML = newsHtml + `<div class="last-update">마지막 업데이트: ${new Date().toLocaleTimeString('ko-KR')}</div>`;
+                    container.innerHTML = newsHtml + '<div class="last-update">마지막 업데이트: ' + new Date().toLocaleTimeString('ko-KR') + '</div>';
                 } else {
                     throw new Error('No data');
                 }
             } catch (error) {
-                container.innerHTML = `
-                    <div class="news-item">
-                        <div class="news-tag">경제</div>
-                        <div class="news-title"><a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtdHZHZ0pMVWlnQVAB?hl=ko&gl=KR&ceid=KR:ko" target="_blank">Google 경제 뉴스 보기 →</a></div>
-                    </div>
-                    <div class="news-item">
-                        <div class="news-tag">미국</div>
-                        <div class="news-title"><a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtdHZHZ0pMVWlnQVAB?hl=ko&gl=KR&ceid=KR:ko" target="_blank">미국 뉴스 보기 →</a></div>
-                    </div>
-                    <div class="last-update" style="color:#E53935;">⚠️ 실시간 뉴스 로드 실패 - 링크를 클릭해 확인하세요</div>`;
+                container.innerHTML = '<div class="news-item"><div class="news-tag">경제</div><div class="news-title"><a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtdHZHZ0pMVWlnQVAB?hl=ko&gl=KR&ceid=KR:ko" target="_blank">Google 경제 뉴스 보기 →</a></div></div><div class="news-item"><div class="news-tag">미국</div><div class="news-title"><a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx1YlY4U0FtdHZHZ0pMVWlnQVAB?hl=ko&gl=KR&ceid=KR:ko" target="_blank">미국 뉴스 보기 →</a></div></div><div class="last-update" style="color:#E53935;">⚠️ 실시간 뉴스 로드 실패 - 링크를 클릭해 확인하세요</div>';
             }
         }
         
-        // 명언 로드
         function loadQuote() {
             const q = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById('quoteContainer').innerHTML = `
-                <div class="quote-box">
-                    <div class="quote-text">"${q.text}"</div>
-                    <div class="quote-author">- ${q.author}</div>
-                </div>`;
+            document.getElementById('quoteContainer').innerHTML = '<div class="quote-box"><div class="quote-text">"' + q.text + '"</div><div class="quote-author">- ' + q.author + '</div></div>';
         }
         
-        // 모든 실시간 데이터 새로고침
         async function refreshAllLiveData() {
             const btn = document.getElementById('refreshBtn');
             btn.disabled = true;
@@ -1234,7 +934,6 @@
             
             await Promise.all([
                 loadWeather(),
-                loadStockData(),
                 loadFootballNews(),
                 loadEconomyNews()
             ]);
@@ -1244,29 +943,17 @@
             btn.disabled = false;
             btn.innerHTML = '🔄 새로고침';
             
-            // 업데이트 시간 표시
             const now = new Date();
-            document.getElementById('updateTime').textContent = `업데이트 ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+            document.getElementById('updateTime').textContent = '업데이트 ' + now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
         }
         
-        // ========================================
-        // 기존 함수들
-        // ========================================
-        
-        // 슬라이드쇼 초기화
+        // 슬라이드쇼 함수들
         function initSlideshow() {
             const wrapper = document.getElementById('slideshowWrapper');
             const dots = document.getElementById('slideshowDots');
             
-            wrapper.innerHTML = DATA.photos.map((p, i) => `
-                <div class="slide">
-                    <img src="${p.src}" alt="${p.title}" loading="lazy">
-                </div>
-            `).join('');
-            
-            dots.innerHTML = DATA.photos.map((_, i) => `
-                <span class="dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></span>
-            `).join('');
+            wrapper.innerHTML = DATA.photos.map((p, i) => '<div class="slide"><img src="' + p.src + '" alt="' + p.title + '" loading="lazy"></div>').join('');
+            dots.innerHTML = DATA.photos.map((_, i) => '<span class="dot ' + (i === 0 ? 'active' : '') + '" onclick="goToSlide(' + i + ')"></span>').join('');
             
             updateSlideInfo();
             startSlideshow();
@@ -1286,7 +973,7 @@
         
         function updateSlide() {
             const wrapper = document.getElementById('slideshowWrapper');
-            wrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            wrapper.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
             document.querySelectorAll('.dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === currentSlide);
             });
@@ -1296,7 +983,7 @@
         function updateSlideInfo() {
             const photo = DATA.photos[currentSlide];
             document.getElementById('slideTitle').textContent = photo.title;
-            document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${DATA.photos.length}`;
+            document.getElementById('slideCounter').textContent = (currentSlide + 1) + ' / ' + DATA.photos.length;
         }
         
         function startSlideshow() {
@@ -1318,22 +1005,13 @@
         
         function formatDate(dateStr) {
             const d = new Date(dateStr);
-            return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+            return d.getFullYear() + '년 ' + (d.getMonth()+1) + '월 ' + d.getDate() + '일';
         }
         
         function renderGallery(photos) {
             const grid = document.getElementById('galleryGrid');
             if (!photos.length) { grid.innerHTML = '<div class="no-data" style="grid-column:1/-1;">이 카테고리에 사진이 없습니다.</div>'; return; }
-            grid.innerHTML = photos.map((p, i) => `
-                <div class="photo-card entering" style="animation-delay:${i * 0.08}s" data-index="${i}" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)" onclick="openLightbox(${i})">
-                    <div class="photo-card-inner">
-                        <span class="photo-card-category ${p.category}">${getCategoryName(p.category)}</span>
-                        <button class="photo-card-like ${likedPhotos.has(p.id) ? 'liked' : ''}" onclick="event.stopPropagation(); toggleLike(${p.id}, this)">${likedPhotos.has(p.id) ? '❤️' : '🤍'}</button>
-                        <img src="${p.src}" alt="${p.title}" loading="lazy">
-                        <div class="photo-card-overlay"><div class="photo-card-date">${formatDate(p.date)}</div><div class="photo-card-title">${p.title}</div></div>
-                    </div>
-                </div>
-            `).join('');
+            grid.innerHTML = photos.map((p, i) => '<div class="photo-card entering" style="animation-delay:' + (i * 0.08) + 's" data-index="' + i + '" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)" onclick="openLightbox(' + i + ')"><div class="photo-card-inner"><span class="photo-card-category ' + p.category + '">' + getCategoryName(p.category) + '</span><button class="photo-card-like ' + (likedPhotos.has(p.id) ? 'liked' : '') + '" onclick="event.stopPropagation(); toggleLike(' + p.id + ', this)">' + (likedPhotos.has(p.id) ? '❤️' : '🤍') + '</button><img src="' + p.src + '" alt="' + p.title + '" loading="lazy"><div class="photo-card-overlay"><div class="photo-card-date">' + formatDate(p.date) + '</div><div class="photo-card-title">' + p.title + '</div></div></div></div>').join('');
             document.getElementById('photoCount').textContent = photos.length;
         }
         
@@ -1342,7 +1020,7 @@
             const x = e.clientX - rect.left, y = e.clientY - rect.top;
             const centerX = rect.width / 2, centerY = rect.height / 2;
             const rotateX = (y - centerY) / 10, rotateY = (centerX - x) / 10;
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            card.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.02)';
         }
         
         function resetTilt(card) { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)'; }
@@ -1418,12 +1096,14 @@
         function renderQuartersHtml(quarters) {
             return quarters.map(q => {
                 let recordsHtml = q.records.filter(r => r.scorer).map(r => {
-                    let text = `⚽ <span class="scorer">${r.scorer}</span>`;
-                    if (r.assist) text += ` <span class="assist">어시 ${r.assist}</span>`;
-                    return `<div class="goal-record">${text}</div>`;
+                    let teamBadge = r.team === 'A' ? '<span class="team-badge team-a">A</span>' : '<span class="team-badge team-b">B</span>';
+                    let text = teamBadge + ' ⚽ <span class="scorer">' + r.scorer + '</span>';
+                    if (r.assist) text += ' <span class="assist">어시 ' + r.assist + '</span>';
+                    return '<div class="goal-record">' + text + '</div>';
                 }).join('');
                 if (!recordsHtml) recordsHtml = '<div style="color:#999; font-size:12px;">기록 없음</div>';
-                return `<div class="quarter-box"><div class="quarter-title"><span class="badge">${q.title}</span></div><div class="quarter-goals">${recordsHtml}</div></div>`;
+                let scoreHtml = q.score ? ' <span style="font-size:12px; color:#666;">(' + q.score + ')</span>' : '';
+                return '<div class="quarter-box"><div class="quarter-title"><span class="badge">' + q.title + '</span>' + scoreHtml + '</div><div class="quarter-goals">' + recordsHtml + '</div></div>';
             }).join('');
         }
         
@@ -1452,21 +1132,12 @@
         }
         
         function loadClub(){
-            document.getElementById('noticeContent').innerHTML=DATA.notices.map(n=>`<div class="notice-item"><div class="notice-dot"></div><div class="notice-text">${n.text}</div></div>`).join('');
+            document.getElementById('noticeContent').innerHTML=DATA.notices.map(n=>'<div class="notice-item"><div class="notice-dot"></div><div class="notice-text">'+n.text+'</div></div>').join('');
             
             const m = DATA.match;
             let quartersHtml = renderQuartersHtml(m.quarters);
             
-            document.getElementById('matchContent').innerHTML=`
-                <div class="match-header"><div class="match-date">${m.date}</div></div>
-                ${quartersHtml}
-                <div class="final-score">
-                    <div class="final-score-title">최종 스코어</div>
-                    <div class="final-score-num">청팀 ${m.finalScore.blue} : ${m.finalScore.white} 백팀</div>
-                </div>
-                <div style="text-align:center;">
-                    <div class="mom-badge">🏆 MOM ${m.mom} (${m.momNote})</div>
-                </div>`;
+            document.getElementById('matchContent').innerHTML='<div class="match-header"><div class="match-date">'+m.date+'</div></div>'+quartersHtml+'<div class="final-score"><div class="final-score-title">최종 스코어</div><div class="final-score-num">A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀</div></div><div style="text-align:center;"><div class="mom-badge">🏆 MVP '+m.mom+' ('+m.momNote+')</div></div>';
             
             const goalStats = calculateGoalStats(m.quarters);
             let top3Html = '';
@@ -1490,13 +1161,11 @@
                                    rank === 2 ? 'linear-gradient(145deg, #E0E0E0, #BDBDBD)' : 
                                    'linear-gradient(145deg, #FFCC80, #FF9800)';
                     
-                    top3Html += `
-                        <div style="margin-bottom:16px;">
-                            <div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">${medal} ${names.length > 1 ? '공동 ' : ''}${rank}위 (${goals}골)</div>
-                            <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
-                                ${names.map(n => `<span style="background:${bgColor}; padding:${rank === 1 ? '8px 16px' : '6px 14px'}; border-radius:${rank === 1 ? '20px' : '16px'}; font-weight:600; font-size:${rank === 1 ? '14px' : '13px'};">${n}</span>`).join('')}
-                            </div>
-                        </div>`;
+                    top3Html += '<div style="margin-bottom:16px;"><div style="font-size:13px; color:var(--text-muted); margin-bottom:8px;">' + medal + ' ' + (names.length > 1 ? '공동 ' : '') + rank + '위 (' + goals + '골)</div><div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">';
+                    names.forEach(n => {
+                        top3Html += '<span style="background:' + bgColor + '; padding:' + (rank === 1 ? '8px 16px' : '6px 14px') + '; border-radius:' + (rank === 1 ? '20px' : '16px') + '; font-weight:600; font-size:' + (rank === 1 ? '14px' : '13px') + ';">' + n + '</span>';
+                    });
+                    top3Html += '</div></div>';
                     rank += names.length;
                 });
                 top3Html += '</div>';
@@ -1508,16 +1177,16 @@
         }
         
         function loadMembers(){
-            document.getElementById('execList').innerHTML=DATA.execs.map(e=>`<div class="exec-item"><span class="exec-icon">${e.icon}</span><div><div class="exec-pos">${e.pos}</div><div class="exec-name">${e.name}</div></div></div>`).join('');
-            document.getElementById('memberGrid').innerHTML=DATA.members.map(n=>`<div class="member-item">${n}</div>`).join('');
-            document.getElementById('memberCount').innerHTML=`총 <strong>${DATA.members.length}명</strong>`;
+            document.getElementById('execList').innerHTML=DATA.execs.map(e=>'<div class="exec-item"><span class="exec-icon">'+e.icon+'</span><div><div class="exec-pos">'+e.pos+'</div><div class="exec-name">'+e.name+'</div></div></div>').join('');
+            document.getElementById('memberGrid').innerHTML=DATA.members.map(n=>'<div class="member-item">'+n+'</div>').join('');
+            document.getElementById('memberCount').innerHTML='총 <strong>'+DATA.members.length+'명</strong>';
         }
         
         function loadFees(){
             const total=DATA.fees.reduce((s,f)=>s+f.amt,0);
             document.getElementById('feeCount').textContent=DATA.fees.length+'명';
             document.getElementById('feeTotal').textContent=total.toLocaleString();
-            document.getElementById('feeList').innerHTML=DATA.fees.map((f,i)=>`<div class="fee-item"><span>${i+1}. ${f.name}</span><span class="fee-item-amount">${f.amt.toLocaleString()}원</span></div>`).join('');
+            document.getElementById('feeList').innerHTML=DATA.fees.map((f,i)=>'<div class="fee-item"><span>'+(i+1)+'. '+f.name+'</span><span class="fee-item-amount">'+f.amt.toLocaleString()+'원</span></div>').join('');
         }
         
         function loadHistory(){
@@ -1527,83 +1196,48 @@
             const assistStats = calculateAssistStats(m.quarters);
             let assistHtml = '';
             if (assistStats.length > 0) {
-                assistHtml = `
-                    <div class="card">
-                        <div class="card-header"><div class="card-icon green">🅰️</div>어시스트 기록</div>
-                        <div class="card-body">
-                            ${assistStats.map((s, i) => `
-                                <div class="rank-item ${i < 3 ? 'top' : ''}">
-                                    <div class="rank-left">
-                                        <span class="rank-num">${i + 1}</span>
-                                        <span class="rank-name">${s.name}</span>
-                                    </div>
-                                    <span class="rank-goals">${s.assists}도움</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>`;
+                assistHtml = '<div class="card"><div class="card-header"><div class="card-icon green">🅰️</div>어시스트 기록</div><div class="card-body">' + assistStats.map((s, i) => '<div class="rank-item ' + (i < 3 ? 'top' : '') + '"><div class="rank-left"><span class="rank-num">' + (i + 1) + '</span><span class="rank-name">' + s.name + '</span></div><span class="rank-goals">' + s.assists + '도움</span></div>').join('') + '</div></div>';
             }
             
-            document.getElementById('history-tab').innerHTML=`
-                <div class="card"><div class="card-header"><div class="card-icon green">⚽</div>${lineup.date} 경기 결과</div>
-                <div class="card-body">
-                    <div class="final-score" style="margin-bottom:20px;">
-                        <div class="final-score-title">최종 스코어</div>
-                        <div class="final-score-num">청팀 ${m.finalScore.blue} : ${m.finalScore.white} 백팀</div>
-                    </div>
-                    ${quartersHtml}
-                    <div style="text-align:center; margin-top:16px;">
-                        <div class="mom-badge">🏆 MOM: ${m.mom} (${m.momNote})</div>
-                    </div>
-                </div></div>
-                ${assistHtml}
-                <div class="card"><div class="card-header"><div class="card-icon warm">👥</div>출전선수 명단</div>
-                <div class="card-body"><div class="goals-row">
-                    <div class="goals-box" style="background:linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);"><div class="goals-title" style="color:#1565C0;">🔵 청팀 (A팀) - ${lineup.teamA.length}명</div>${lineup.teamA.map(n=>`<div class="goal-item" style="padding:6px 0;">• ${n}</div>`).join('')}</div>
-                    <div class="goals-box" style="background:linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);"><div class="goals-title" style="color:#616161;">⚪ 백팀 (B팀) - ${lineup.teamB.length}명</div>${lineup.teamB.map(n=>`<div class="goal-item" style="padding:6px 0;">• ${n}</div>`).join('')}</div>
-                </div><div style="text-align:center; margin-top:16px;"><div class="mom-badge" style="background:#FFF3E0; color:#E65100;">🎯 경기위원(심판): ${lineup.referee}</div></div></div></div>`;
+            document.getElementById('history-tab').innerHTML='<div class="card"><div class="card-header"><div class="card-icon green">⚽</div>'+lineup.date+' 경기 결과</div><div class="card-body"><div class="final-score" style="margin-bottom:20px;"><div class="final-score-title">최종 스코어</div><div class="final-score-num">A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀</div></div>'+quartersHtml+'<div style="text-align:center; margin-top:16px;"><div class="mom-badge">🏆 MVP: '+m.mom+' ('+m.momNote+')</div></div></div></div>'+assistHtml+'<div class="card"><div class="card-header"><div class="card-icon warm">👥</div>출전선수 명단</div><div class="card-body"><div class="goals-row"><div class="goals-box" style="background:linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);"><div class="goals-title" style="color:#1565C0;">🔵 A팀 - '+lineup.teamA.length+'명</div>'+lineup.teamA.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div><div class="goals-box" style="background:linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%);"><div class="goals-title" style="color:#C2185B;">🔴 B팀 - '+lineup.teamB.length+'명</div>'+lineup.teamB.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div></div></div></div>';
         }
         
         let currentMonth = new Date();
         
         function loadCalendar(){
             const y=currentMonth.getFullYear(), m=currentMonth.getMonth();
-            document.getElementById('calendarTitle').textContent=`${y}년 ${m+1}월`;
+            document.getElementById('calendarTitle').textContent=y+'년 '+(m+1)+'월';
             const first=new Date(y,m,1), last=new Date(y,m+1,0);
             const startDay=first.getDay(), days=last.getDate();
             const today=new Date();
             let html='<div class="cal-header sun">일</div><div class="cal-header">월</div><div class="cal-header">화</div><div class="cal-header">수</div><div class="cal-header">목</div><div class="cal-header">금</div><div class="cal-header sat">토</div>';
             const prevLast=new Date(y,m,0).getDate();
-            for(let i=startDay-1;i>=0;i--) html+=`<div class="cal-day other">${prevLast-i}</div>`;
+            for(let i=startDay-1;i>=0;i--) html+='<div class="cal-day other">'+(prevLast-i)+'</div>';
             for(let d=1;d<=days;d++){
                 const dow=new Date(y,m,d).getDay();
                 const isToday=y===today.getFullYear()&&m===today.getMonth()&&d===today.getDate();
                 const isSat=dow===6, isSun=dow===0;
                 const hasExercise=dow===6;
-                const hasFridayMatch = (y === 2026 && m === 0 && d === 31);
                 let cls='cal-day';
                 if(isToday)cls+=' today';
                 if(isSun)cls+=' sun';
                 if(isSat)cls+=' sat';
-                if((hasExercise || hasFridayMatch) &&!isToday)cls+=' has-event';
-                html+=`<div class="${cls}">${d}${hasExercise?'<div class="cal-dot exercise"></div>':''}${hasFridayMatch?'<div class="cal-dot event" style="background:#FF9800;"></div>':''}</div>`;
+                if(hasExercise&&!isToday)cls+=' has-event';
+                html+='<div class="'+cls+'">'+d+(hasExercise?'<div class="cal-dot exercise"></div>':'')+'</div>';
             }
             const remain=(7-(startDay+days)%7)%7;
-            for(let i=1;i<=remain;i++) html+=`<div class="cal-day other">${i}</div>`;
+            for(let i=1;i<=remain;i++) html+='<div class="cal-day other">'+i+'</div>';
             document.getElementById('calendarGrid').innerHTML=html;
             
             const events = [];
             for(let d=1;d<=days;d++){ 
                 if(new Date(y,m,d).getDay()===6) {
-                    events.push({ day: d, title: '정기 운동', desc: '07:00 금토동 다목적운동장', type: 'exercise' });
+                    events.push({ day: d, title: '정기 운동', desc: '07:00 금토동 다목적운동장' });
                 }
-            }
-            if (y === 2026 && m === 0) {
-                events.push({ day: 31, title: '🔥 금요일 경기', desc: '07:00 금토동 다목적운동장', type: 'special' });
             }
             events.sort((a, b) => a.day - b.day);
             
-            document.getElementById('monthEvents').innerHTML=events.length?events.map(e=>`<div class="event-item"><div class="event-date ${e.type === 'special' ? 'special' : ''}">${e.day}일</div><div><div class="event-title">${e.title}</div><div class="event-desc">${e.desc}</div></div></div>`).join(''):'<div class="no-data">이번 달 일정이 없습니다.</div>';
+            document.getElementById('monthEvents').innerHTML=events.length?events.map(e=>'<div class="event-item"><div class="event-date">'+e.day+'일</div><div><div class="event-title">'+e.title+'</div><div class="event-desc">'+e.desc+'</div></div></div>').join(''):'<div class="no-data">이번 달 일정이 없습니다.</div>';
             document.getElementById('monthBirthdays').innerHTML='<div class="no-data">이번 달 생일자가 없습니다.</div>';
         }
         
@@ -1613,16 +1247,16 @@
             const m=DATA.match;
             const q=quotes[Math.floor(Math.random()*quotes.length)];
             const today=new Date();
-            const dateStr=`${today.getFullYear()}년 ${today.getMonth()+1}월 ${today.getDate()}일`;
+            const dateStr=today.getFullYear()+'년 '+(today.getMonth()+1)+'월 '+today.getDate()+'일';
             const days=['일','월','화','수','목','금','토'];
             
             let quartersText = m.quarters.map(quarter => {
                 let goals = quarter.records.filter(r => r.scorer).map(r => {
-                    let text = r.scorer;
-                    if (r.assist) text += `(어시 ${r.assist})`;
+                    let text = '[' + r.team + '] ' + r.scorer;
+                    if (r.assist) text += '(어시 ' + r.assist + ')';
                     return text;
                 }).join(', ');
-                return `${quarter.title}: ${goals || '기록 없음'}`;
+                return quarter.title + ' (' + (quarter.score || '-') + '): ' + (goals || '기록 없음');
             }).join('\n');
             
             const goalStats = calculateGoalStats(m.quarters);
@@ -1639,49 +1273,12 @@
                     if (rank > 3) return;
                     const names = grouped[goals];
                     const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
-                    rankText += `${medal} ${names.length > 1 ? '공동 ' : ''}${rank}위 (${goals}골): ${names.join(', ')}\n`;
+                    rankText += medal + ' ' + (names.length > 1 ? '공동 ' : '') + rank + '위 (' + goals + '골): ' + names.join(', ') + '\n';
                     rank += names.length;
                 });
             }
             
-            const briefing=`⚽ 미령FC 브리핑
-📅 ${dateStr} (${days[today.getDay()]})
-
-━━━━━━━━━━━━━━
-📢 공지사항
-━━━━━━━━━━━━━━
-${DATA.notices.map(n=>n.text).join('\n')}
-
-━━━━━━━━━━━━━━
-📅 다음 경기 예정
-━━━━━━━━━━━━━━
-🔜 1월 31일 (금) 07:00
-📍 금토동 다목적운동장
-
-━━━━━━━━━━━━━━
-⚽ 지난 경기 결과 (1/24)
-━━━━━━━━━━━━━━
-${quartersText}
-
-🏆 최종: 청팀 ${m.finalScore.blue} : ${m.finalScore.white} 백팀
-⭐ MOM: ${m.mom} (${m.momNote})
-
-━━━━━━━━━━━━━━
-🏆 득점 순위
-━━━━━━━━━━━━━━
-${rankText}
-━━━━━━━━━━━━━━
-💬 오늘의 명언
-━━━━━━━━━━━━━━
-"${q.text}"
-- ${q.author}
-
-━━━━━━━━━━━━━━
-📍 운동 안내
-━━━━━━━━━━━━━━
-⏰ 매주 토요일 07:00 - 10:00
-📍 금토동 다목적운동장
-🗺️ http://naver.me/xLStJsWh`;
+            const briefing='⚽ 미령FC 브리핑\n📅 '+dateStr+' ('+days[today.getDay()]+')\n\n━━━━━━━━━━━━━━\n📢 공지사항\n━━━━━━━━━━━━━━\n'+DATA.notices.map(n=>n.text).join('\n')+'\n\n━━━━━━━━━━━━━━\n📅 다음 경기 예정\n━━━━━━━━━━━━━━\n🔜 2월 7일 (토) 07:00\n📍 금토동 다목적운동장\n\n━━━━━━━━━━━━━━\n⚽ 지난 경기 결과 (1/31)\n━━━━━━━━━━━━━━\n'+quartersText+'\n\n🏆 최종: A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀\n⭐ MVP: '+m.mom+' ('+m.momNote+')\n\n━━━━━━━━━━━━━━\n🏆 득점 순위\n━━━━━━━━━━━━━━\n'+rankText+'\n━━━━━━━━━━━━━━\n💬 오늘의 명언\n━━━━━━━━━━━━━━\n"'+q.text+'"\n- '+q.author+'\n\n━━━━━━━━━━━━━━\n📍 운동 안내\n━━━━━━━━━━━━━━\n⏰ 매주 토요일 07:00 - 10:00\n📍 금토동 다목적운동장\n🗺️ http://naver.me/xLStJsWh';
             document.getElementById('briefingPreview').textContent=briefing;
             window.currentBriefing=briefing;
         }
@@ -1694,19 +1291,12 @@ ${rankText}
             });
         }
         
-        // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded',()=>{
             const now=new Date();
-            document.getElementById('updateTime').textContent=`업데이트 ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
-            
-            // 기본 데이터 로드
+            document.getElementById('updateTime').textContent='업데이트 '+now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
             loadClub();
             loadQuote();
-            
-            // 실시간 데이터 로드
             refreshAllLiveData();
-            
-            // 5분마다 자동 새로고침
             setInterval(refreshAllLiveData, 5 * 60 * 1000);
         });
     </script>
