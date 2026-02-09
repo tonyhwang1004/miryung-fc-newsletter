@@ -1026,7 +1026,14 @@
         }
         
         function copyBriefing(){navigator.clipboard.writeText(window.currentBriefing).then(()=>{const s=document.getElementById('copyStatus');s.style.display='block';setTimeout(()=>s.style.display='none',2000);});}
-        
+        let heroIndex = 0;
+        function rotateHero() {
+            const slides = document.querySelectorAll('.hero-slide');
+            slides.forEach(s => s.style.opacity = '0');
+            heroIndex = (heroIndex + 1) % slides.length;
+            slides[heroIndex].style.opacity = '1';
+        }
+        setInterval(rotateHero, 3000);
         document.addEventListener('DOMContentLoaded',()=>{
             const now=new Date();
             document.getElementById('updateTime').textContent='업데이트 '+now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
