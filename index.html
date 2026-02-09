@@ -439,8 +439,26 @@
             <!-- ✅ 단체사진 히어로 배너 추가 -->
 <div class="card" style="overflow:hidden; padding:0;">
     <div style="position:relative;">
-        <img src="photos/24437.jpg" alt="미령FC 단체사진" style="width:100%; height:300px; object-fit:cover; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:20px; background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); color:white; text-align:center;">
+        <div id="heroSlideshow" style="position:relative; width:100%; height:300px; overflow:hidden;">
+            <img class="hero-slide active" src="photos/IMG_0914.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:1; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0915.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0920.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0921.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0922.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0923.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0924.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0925.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0926.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0927.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0928.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0929.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0930.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0931.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0932.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0933.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+            <img class="hero-slide" src="photos/IMG_0934.jpg" style="position:absolute; top:0; left:0; width:100%; height:300px; object-fit:cover; opacity:0; transition:opacity 1.5s ease;">
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:20px; background:linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); color:white; text-align:center; z-index:2;">
             <div style="font-size:18px; font-weight:700;">⚽ 미령FC</div>
             <div style="font-size:13px; opacity:0.9;">이리고등학교 동문 축구 모임</div>
         </div>
@@ -709,6 +727,24 @@
                 { id: 30, src: "photos/38592.jpg", title: "1/31 경기 모습 13", date: "2026-01-31", category: "match", desc: "금토동 풋살장" },
                 { id: 31, src: "photos/12248.jpg", title: "1/31 경기 모습 14", date: "2026-01-31", category: "match", desc: "금토동 풋살장" },
                 { id: 32, src: "photos/37523.jpg", title: "1/31 경기 모습 15", date: "2026-01-31", category: "match", desc: "금토동 풋살장" }
+                { id: 33, src: "photos/IMG_0914.jpg", title: "2/7 경기 모습 1", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 34, src: "photos/IMG_0915.jpg", title: "2/7 경기 모습 2", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 35, src: "photos/IMG_0920.jpg", title: "2/7 경기 모습 3", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 36, src: "photos/IMG_0921.jpg", title: "2/7 경기 모습 4", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 37, src: "photos/IMG_0922.jpg", title: "2/7 경기 모습 5", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 38, src: "photos/IMG_0923.jpg", title: "2/7 경기 모습 6", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 39, src: "photos/IMG_0924.jpg", title: "2/7 경기 모습 7", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 40, src: "photos/IMG_0925.jpg", title: "2/7 경기 모습 8", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 41, src: "photos/IMG_0926.jpg", title: "2/7 경기 모습 9", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 42, src: "photos/IMG_0927.jpg", title: "2/7 경기 모습 10", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 43, src: "photos/IMG_0928.jpg", title: "2/7 경기 모습 11", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 44, src: "photos/IMG_0929.jpg", title: "2/7 경기 모습 12", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 45, src: "photos/IMG_0930.jpg", title: "2/7 경기 모습 13", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 46, src: "photos/IMG_0931.jpg", title: "2/7 경기 모습 14", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 47, src: "photos/IMG_0932.jpg", title: "2/7 경기 모습 15", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 48, src: "photos/IMG_0933.jpg", title: "2/7 단체사진 1", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
+{ id: 49, src: "photos/IMG_0934.jpg", title: "2/7 단체사진 2", date: "2026-02-07", category: "match", desc: "금토동 풋살장" }
+                
             ]
         };
         
