@@ -436,7 +436,7 @@
         </div>
         
         <div id="home-tab" class="tab-content active">
-            <!-- ✅ 단체사진 히어로 배너 추가 -->
+            <!-- ✅ 단체사진 히어로 배너 -->
 <div class="card" style="overflow:hidden; padding:0;">
     <div style="position:relative;">
         <div id="heroSlideshow" style="position:relative; width:100%; height:300px; overflow:hidden;">
@@ -481,8 +481,9 @@
                 <div class="card-body">
                     <div class="upcoming-match">
                         <div class="upcoming-label">🔜 UPCOMING</div>
-                        <div class="upcoming-date">2월 14일 (토)</div>
+                        <div class="upcoming-date">2월 21일 (토)</div>
                         <div class="upcoming-time">07:00 - 10:00 | 금토동 다목적운동장</div>
+                        <div style="margin-top:10px; font-size:13px; background:rgba(255,255,255,0.2); display:inline-block; padding:4px 14px; border-radius:12px;">🍽️ 정기식사 예정</div>
                     </div>
                 </div>
             </div>
@@ -492,7 +493,7 @@
                 <div class="card-body" id="noticeContent"></div>
             </div>
             <div class="card">
-                <div class="card-header"><div class="card-icon green">⚽</div>지난 경기 결과 (2/7)</div>
+                <div class="card-header"><div class="card-icon green">⚽</div>지난 경기 결과 (2/14)</div>
                 <div class="card-body" id="matchContent"></div>
             </div>
             <div class="card">
@@ -500,7 +501,7 @@
                 <div class="card-body" id="top3Content"></div>
             </div>
             <div class="card">
-                <div class="card-header"><div class="card-icon warm">🎯</div>2/7 승부예측 결과</div>
+                <div class="card-header"><div class="card-icon warm">🎯</div>2/14 승부예측 결과</div>
                 <div class="card-body" id="predictContent"></div>
             </div>
             <div class="section-label"><span>실시간 정보</span></div>
@@ -539,8 +540,8 @@
                     <h2>📸 미령FC 추억 앨범</h2>
                     <p>소중한 순간들을 함께 기록합니다</p>
                     <div class="gallery-stats">
-                        <div class="gallery-stat"><div class="gallery-stat-num" id="photoCount">17</div><div class="gallery-stat-label">사진</div></div>
-                        <div class="gallery-stat"><div class="gallery-stat-num" id="albumCount">1</div><div class="gallery-stat-label">앨범</div></div>
+                        <div class="gallery-stat"><div class="gallery-stat-num" id="photoCount">49</div><div class="gallery-stat-label">사진</div></div>
+                        <div class="gallery-stat"><div class="gallery-stat-num" id="albumCount">3</div><div class="gallery-stat-label">앨범</div></div>
                         <div class="gallery-stat"><div class="gallery-stat-num">2026</div><div class="gallery-stat-label">시즌</div></div>
                     </div>
                 </div>
@@ -551,8 +552,8 @@
                         <button class="slide-btn" onclick="changeSlide(1)">❯</button>
                     </div>
                     <div class="slideshow-info">
-                        <div class="slide-title" id="slideTitle">1/24 경기 모습</div>
-                        <div class="slide-counter" id="slideCounter">1 / 17</div>
+                        <div class="slide-title" id="slideTitle">2/14 경기 모습</div>
+                        <div class="slide-counter" id="slideCounter">1 / 49</div>
                     </div>
                     <div class="slideshow-dots" id="slideshowDots"></div>
                     <button class="slideshow-toggle" id="playPauseBtn" onclick="toggleSlideshow()">⏸️</button>
@@ -573,7 +574,7 @@
             <div class="card" style="overflow:hidden;">
                 <div class="calendar-header">
                     <button class="calendar-nav-btn" onclick="changeMonth(-1)">◀</button>
-                    <span class="calendar-title" id="calendarTitle">2026년 1월</span>
+                    <span class="calendar-title" id="calendarTitle">2026년 2월</span>
                     <button class="calendar-nav-btn" onclick="changeMonth(1)">▶</button>
                 </div>
                 <div class="calendar-grid" id="calendarGrid"></div>
@@ -617,74 +618,81 @@
     <script>
         const DATA = {
             notices: [
-    { text: '🍽️ 정기식사: 매월 3주차 (사정 시 4주차로 변경)' },
+    { text: '🍽️ 정기식사: 매월 3주차 (사정 시 4주차로 변경) - 2/21 정기식사 예정!' },
     { text: '☕ 독지가 후원 안내: 1,2,3월(1사분기)은 어느 선한 독지가님의 후원으로 생일자 커피쿠폰을 드리게 되었습니다. 개인카톡으로 신청하실때 원하시는 회사"이디야"신청합니다.라고 알려주시면 고맙겠습니다. 나머지 분기에도 독지가님들 보내주시면 유용하게 사용하겠습니다.' },
     { text: '💐 경조사, 졸업, 축하, 신규사업, 회원 생일 정보는 사무총장(황성웅)에게 개인카톡 부탁드립니다.' },
-    { text: '🎯 2/7 승부예측 결과: ✅ B팀 예측자 5명 적중! (박윤호, 심상욱, 이종휘, 정병삼, 황성웅) | 📊 스코어 최근접: 🏆 정병삼(A4:B6) 1점 획득!' }
+    { text: '🎯 2/14 승부예측 결과: ✅ B팀 예측자 적중! (이동욱, 이종휘, 황성웅) | 📊 스코어 정확 적중: 🏆 황성웅(A7:B10) 2점 획득!' }
 ],
             match: {
-                date: '2026년 2월 7일 (토)',
+                date: '2026년 2월 14일 (토)',
                 location: '금토동풋살장',
                 quarters: [
-                    { title: '1쿼터', score: '0:3', records: [
-                        { team: 'B', scorer: '국제문', assist: '' },
-                        { team: 'B', scorer: '박윤호', assist: '국제문' },
-                        { team: 'B', scorer: '이종휘', assist: '' },
+                    { title: '1쿼터', score: '2:1', records: [
+                        { team: 'A', scorer: '박윤호', assist: '신재만' },
+                        { team: 'A', scorer: '정진관', assist: '박승철' },
+                        { team: 'B', scorer: '유성호', assist: '' },
                     ]},
-                    { title: '2쿼터', score: '5:1', records: [
-                        { team: 'A', scorer: '정진관', assist: '신준관' },
-                        { team: 'A', scorer: '이범호', assist: '김태호' },
-                        { team: 'A', scorer: '유성호', assist: '박승철', note: '헤딩골' },
-                        { team: 'A', scorer: '유성호', assist: '박승철', note: '헤딩골' },
-                        { team: 'A', scorer: '이동욱', assist: '박승철' },
-                        { team: 'B', scorer: '심상욱', assist: '강명수' },
+                    { title: '2쿼터', score: '1:2', records: [
+                        { team: 'A', scorer: '이수일', assist: '신재만' },
+                        { team: 'B', scorer: '신준관', assist: '최경도' },
+                        { team: 'B', scorer: '이동욱', assist: '황성웅' },
                     ]},
-                    { title: '3쿼터', score: '0:3', records: [
-                        { team: 'B', scorer: '정병삼', assist: '강명수' },
-                        { team: 'B', scorer: '이종휘', assist: '김태호' },
-                        { team: 'B', scorer: '심상욱', assist: '' },
+                    { title: '3쿼터', score: '1:4', records: [
+                        { team: 'A', scorer: '박승철', assist: '' },
+                        { team: 'B', scorer: '최경도', assist: '이종휘' },
+                        { team: 'B', scorer: '이동욱', assist: '' },
+                        { team: 'B', scorer: '이동욱', assist: '' },
+                        { team: 'B', scorer: '정윤', assist: '이종휘' },
                     ]},
-                    { title: '4쿼터', score: '1:1', records: [
-                        { team: 'A', scorer: '이범호', assist: '' },
-                        { team: 'B', scorer: '이종휘', assist: '' },
+                    { title: '4쿼터', score: '2:3', records: [
+                        { team: 'A', scorer: '정무용', assist: '' },
+                        { team: 'A', scorer: '국제문', assist: '신재만' },
+                        { team: 'B', scorer: '정윤', assist: '유성호' },
+                        { team: 'B', scorer: '이동욱', assist: '' },
+                        { team: 'B', scorer: '유성호', assist: '이종휘' },
                     ]}
                 ],
-                finalScore: { a: 6, b: 8 },
-                mom: '이종휘',
-                momNote: '3골 해트트릭 🎩'
+                finalScore: { a: 7, b: 10 },
+                mom: '이동욱',
+                momNote: '4골 대폭발 🔥'
             },
             lineup: {
-                date: '2026년 2월 7일 (토)',
-                teamA: ['유성호', '정진관', '신준관', '이노일', '이범호', '이수일', '이동욱', '박승철', '김태호'],
-                teamB: ['김진신', '국제문', '박윤호', '정병삼', '이종휘', '심상욱', '황성웅', '송승남', '강명수'],
+                date: '2026년 2월 14일 (토)',
+                teamA: ['국제문', '박윤호', '심상욱', '이노일', '이수일', '정병삼', '정진관', '박승철', '정무용', '신재만', '윤영훈'],
+                teamB: ['김진신', '신준관', '유성호', '이동욱', '이종휘', '정윤', '황성웅', '강명수', '최경도', '박광수'],
                 referee: ''
             },
             prediction: {
-                date: '2026년 2월 7일',
-                result: { a: 6, b: 8, winner: 'B' },
+                date: '2026년 2월 14일',
+                result: { a: 7, b: 10, winner: 'B' },
                 teamPredict: [
-                    { name: '이범호', pick: 'A' },
-                    { name: '신준관', pick: 'A' },
                     { name: '이수일', pick: 'A' },
-                    { name: '류재희', pick: 'A' },
-                    { name: '이동욱', pick: 'A' },
-                    { name: '박윤호', pick: 'B' },
-                    { name: '심상욱', pick: 'B' },
+                    { name: '이노일', pick: 'A' },
+                    { name: '정병삼', pick: 'A' },
+                    { name: '박윤호', pick: 'A' },
+                    { name: '국제문', pick: 'A' },
+                    { name: '이동욱', pick: 'B' },
                     { name: '이종휘', pick: 'B' },
-                    { name: '정병삼', pick: 'B' },
                     { name: '황성웅', pick: 'B' },
                 ],
                 scorePredict: [
-                    { name: '이수일', a: 10, b: 9 },
-                    { name: '국제문', a: 5, b: 7 },
-                    { name: '박윤호', a: 7, b: 10 },
-                    { name: '이노일', a: 8, b: 5 },
-                    { name: '황성웅', a: 4, b: 5 },
-                    { name: '정병삼', a: 4, b: 6 },
+                    { name: '이동욱', a: 5, b: 13 },
+                    { name: '이수일', a: 10, b: 7 },
+                    { name: '이노일', a: 6, b: 3 },
+                    { name: '이종휘', a: 7, b: 11 },
+                    { name: '정병삼', a: 6, b: 5 },
+                    { name: '박윤호', a: 8, b: 6 },
+                    { name: '국제문', a: 11, b: 9 },
+                    { name: '황성웅', a: 7, b: 10 },
                 ],
-                scoreWinner: '정병삼',
-                scoreWinnerNote: 'A4:B6 골득실 적중'
+                scoreWinner: '황성웅',
+                scoreWinnerNote: 'A7:B10 정확 적중! 🎯',
+                scoreWinnerPoints: 2
             },
+            cumulativePoints: [
+                { name: '정병삼', points: 1, detail: '2/7 최근접' },
+                { name: '황성웅', points: 2, detail: '2/14 정확 적중' }
+            ],
             execs: [
                 {pos:'회장',name:'박윤호',icon:'👑'},{pos:'부회장',name:'신준관',icon:'⭐'},
                 {pos:'경기운영위원장',name:'이수일',icon:'🏃'},{pos:'경기운영위원장',name:'이범호',icon:'🏃'},
@@ -744,7 +752,6 @@
 { id: 47, src: "photos/IMG_0932.JPG", title: "2/7 경기 모습 15", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
 { id: 48, src: "photos/IMG_0933.JPG", title: "2/7 단체사진 1", date: "2026-02-07", category: "match", desc: "금토동 풋살장" },
 { id: 49, src: "photos/IMG_0934.JPG", title: "2/7 단체사진 2", date: "2026-02-07", category: "match", desc: "금토동 풋살장" }
-                
             ]
         };
         
@@ -925,19 +932,27 @@
             const p=DATA.prediction;const actual=p.result;let html='';
             html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">🏆 승리팀 예측 (실제: B팀 승)</div>';
             html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
-            html+='<div style="background:#E3F2FD;padding:12px;border-radius:10px;"><div style="font-size:12px;font-weight:600;color:#1565C0;margin-bottom:8px;">🔵 A팀 예측 (5명) ❌</div>';
-            p.teamPredict.filter(t=>t.pick==='A').forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:#666;">'+t.name+'</div>';});
+            const aPicks=p.teamPredict.filter(t=>t.pick==='A');
+            const bPicks=p.teamPredict.filter(t=>t.pick==='B');
+            html+='<div style="background:#E3F2FD;padding:12px;border-radius:10px;"><div style="font-size:12px;font-weight:600;color:#1565C0;margin-bottom:8px;">🔵 A팀 예측 ('+aPicks.length+'명) ❌</div>';
+            aPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:#666;">'+t.name+'</div>';});
             html+='</div>';
-            html+='<div style="background:#E8F5E9;padding:12px;border-radius:10px;border:2px solid var(--accent);"><div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px;">🔴 B팀 예측 (5명) ✅ 적중!</div>';
-            p.teamPredict.filter(t=>t.pick==='B').forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:var(--text-primary);font-weight:500;">'+t.name+'</div>';});
+            html+='<div style="background:#E8F5E9;padding:12px;border-radius:10px;border:2px solid var(--accent);"><div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px;">🔴 B팀 예측 ('+bPicks.length+'명) ✅ 적중!</div>';
+            bPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:var(--text-primary);font-weight:500;">'+t.name+'</div>';});
             html+='</div></div></div>';
             html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">📊 스코어 예측 (실제: A'+actual.a+':B'+actual.b+')</div>';
-            p.scorePredict.forEach(s=>{const isWinner=s.name===p.scoreWinner;const diff=Math.abs(s.a-actual.a)+Math.abs(s.b-actual.b);html+='<div class="predict-row"><span>'+(isWinner?'🏆 ':'')+s.name+'</span><span>A'+s.a+':B'+s.b+'</span><span style="font-size:12px;color:'+(isWinner?'var(--accent)':'#999')+';">'+(isWinner?'최근접! (+1점)':'차이 '+diff)+'</span></div>';});
+            p.scorePredict.forEach(s=>{const isWinner=s.name===p.scoreWinner;const diff=Math.abs(s.a-actual.a)+Math.abs(s.b-actual.b);html+='<div class="predict-row"><span>'+(isWinner?'🏆 ':'')+s.name+'</span><span>A'+s.a+':B'+s.b+'</span><span style="font-size:12px;color:'+(isWinner?'var(--accent)':'#999')+';">'+(isWinner?'🎯 정확 적중! (+2점)':'차이 '+diff)+'</span></div>';});
             html+='</div>';
+            // 누적 포인트
             html+='<div style="background:linear-gradient(135deg,#FF9800,#F57C00);color:white;padding:16px;border-radius:12px;text-align:center;margin-top:12px;">';
-            html+='<div style="font-size:12px;opacity:0.9;">🏆 2월 승부예측 포인트</div>';
-            html+='<div style="font-size:20px;font-weight:700;margin:8px 0;">정병삼 1점</div>';
+            html+='<div style="font-size:12px;opacity:0.9;">🏆 2월 승부예측 누적 포인트</div>';
+            html+='<div style="margin:10px 0;">';
+            DATA.cumulativePoints.sort((a,b)=>b.points-a.points).forEach((cp,i)=>{
+                html+='<div style="font-size:'+(i===0?'20px':'16px')+';font-weight:700;margin:4px 0;">'+(i===0?'🥇':'🥈')+' '+cp.name+' '+cp.points+'점 <span style="font-size:11px;opacity:0.8;">('+cp.detail+')</span></div>';
+            });
+            html+='</div>';
             html+='<div style="font-size:12px;opacity:0.8;">※ 월말 누적 포인트로 "승부예측왕" 선정!</div>';
+            html+='<div style="font-size:11px;opacity:0.7;margin-top:6px;">최근접 1점 | 정확 적중 2점</div>';
             html+='</div>';
             document.getElementById('predictContent').innerHTML=html;
         }
@@ -1018,9 +1033,9 @@
                     rank+=names.length;
                 });
             }
-            const betEvent = '\n🎯 승부예측 결과 (2/7)\n결과: A팀 6 : B팀 8 (B팀 승)\n\n【승리팀 예측】\nA팀 예측(5명): 이범호, 신준관, 이수일, 류재희, 이동욱\nB팀 예측(5명): 박윤호, 심상욱, 이종휘, 정병삼, 황성웅 ✅ 적중!\n\n【스코어 예측】6명 참가\n이수일 A10:B9 ❌ | 국제문 A5:B7 ❌\n박윤호 A7:B10 ❌ | 이노일 A8:B5 ❌\n황성웅 A4:B5 ❌ | 정병삼 A4:B6 🏆 최근접!\n→ 정병삼 1점 획득! (골득실 -2 정확 적중)\n\n📝 다음 경기(2/14)도 참여하세요!\n* 경기 당일 06:50까지 카톡방에 예측을 남겨주세요.\n* 예시) "A팀 승 / 3:2"\n🏆 누적 결과로 월간/분기 "승부예측왕" 선정합니다!';
+            const betEvent = '\n🎯 승부예측 결과 (2/14)\n결과: A팀 7 : B팀 10 (B팀 승)\n\n【승리팀 예측】\nA팀 예측(5명): 이수일, 이노일, 정병삼, 박윤호, 국제문\nB팀 예측(3명): 이동욱, 이종휘, 황성웅 ✅ 적중!\n\n【스코어 예측】8명 참가\n이동욱 A5:B13 ❌ | 이수일 A10:B7 ❌\n이노일 A6:B3 ❌ | 이종휘 A7:B11 ❌\n정병삼 A6:B5 ❌ | 박윤호 A8:B6 ❌\n국제문 A11:B9 ❌ | 황성웅 A7:B10 🎯 정확 적중!\n→ 황성웅 2점 획득! (A7:B10 완벽 적중!)\n\n📊 2월 누적 포인트\n🥇 황성웅 2점 (2/14 정확적중)\n🥈 정병삼 1점 (2/7 최근접)\n\n📝 다음 경기(2/21)도 참여하세요!\n* 경기 당일 06:50까지 카톡방에 예측을 남겨주세요.\n* 예시) "A팀 승 / 3:2"\n🏆 누적 결과로 월간/분기 "승부예측왕" 선정합니다!\n(최근접 1점 | 정확 적중 2점)';
 
-            const briefing='⚽ 미령FC 브리핑\n📅 '+dateStr+' ('+days[today.getDay()]+')\n\n━━━━━━━━━━━━━━\n📢 공지사항\n━━━━━━━━━━━━━━\n'+DATA.notices.map(n=>n.text).join('\n')+'\n'+betEvent+'\n\n━━━━━━━━━━━━━━\n📅 다음 경기 예정\n━━━━━━━━━━━━━━\n🔜 2월 14일 (토) 07:00\n📍 금토동 다목적운동장\n\n━━━━━━━━━━━━━━\n⚽ 지난 경기 결과 (2/7)\n━━━━━━━━━━━━━━\n'+quartersText+'\n\n🏆 최종: A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀\n⭐ MVP: '+m.mom+' ('+m.momNote+')\n\n━━━━━━━━━━━━━━\n🏆 득점 순위\n━━━━━━━━━━━━━━\n'+rankText+'\n━━━━━━━━━━━━━━\n💬 오늘의 명언\n━━━━━━━━━━━━━━\n"'+q.text+'"\n- '+q.author+'\n\n━━━━━━━━━━━━━━\n📍 운동 안내\n━━━━━━━━━━━━━━\n⏰ 매주 토요일 07:00 - 10:00\n📍 금토동 다목적운동장\n🗺️ http://naver.me/xLStJsWh';
+            const briefing='⚽ 미령FC 브리핑\n📅 '+dateStr+' ('+days[today.getDay()]+')\n\n━━━━━━━━━━━━━━\n📢 공지사항\n━━━━━━━━━━━━━━\n'+DATA.notices.map(n=>n.text).join('\n')+'\n'+betEvent+'\n\n━━━━━━━━━━━━━━\n📅 다음 경기 예정\n━━━━━━━━━━━━━━\n🔜 2월 21일 (토) 07:00\n📍 금토동 다목적운동장\n🍽️ 정기식사 예정\n\n━━━━━━━━━━━━━━\n⚽ 지난 경기 결과 (2/14)\n━━━━━━━━━━━━━━\n'+quartersText+'\n\n🏆 최종: A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀\n⭐ MVP: '+m.mom+' ('+m.momNote+')\n\n━━━━━━━━━━━━━━\n🏆 득점 순위\n━━━━━━━━━━━━━━\n'+rankText+'\n━━━━━━━━━━━━━━\n💬 오늘의 명언\n━━━━━━━━━━━━━━\n"'+q.text+'"\n- '+q.author+'\n\n━━━━━━━━━━━━━━\n📍 운동 안내\n━━━━━━━━━━━━━━\n⏰ 매주 토요일 07:00 - 10:00\n📍 금토동 다목적운동장\n🗺️ http://naver.me/xLStJsWh';
             document.getElementById('briefingPreview').textContent=briefing;
             window.currentBriefing=briefing;
         }
