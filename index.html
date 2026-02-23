@@ -591,7 +591,7 @@
     <script>
         const DATA = {
             notices: [
-    { text: '🍽️ 정기식사: 매월 3주차 (사정 시 4주차로 변경) },
+    { text: '🍽️ 정기식사: 매월 3주차 (사정 시 4주차로 변경)' },
     { text: '☕ 독지가 후원 안내: 1,2,3월(1사분기)은 어느 선한 독지가님의 후원으로 생일자 커피쿠폰을 드리게 되었습니다. 개인카톡으로 신청하실때 원하시는 회사"이디야"신청합니다.라고 알려주시면 고맙겠습니다. 나머지 분기에도 독지가님들 보내주시면 유용하게 사용하겠습니다.' },
     { text: '💐 경조사, 졸업, 축하, 신규사업, 회원 생일 정보는 사무총장(황성웅)에게 개인카톡 부탁드립니다.' },
     { text: '🎯 2/21 승부예측 결과: ✅ A팀 예측자 적중! (이수일, 이노일, 국제문, 정병삼) | 📊 스코어 최근접: 🏆 이노일(A6:B5) 1점 획득!' }
@@ -899,14 +899,14 @@
         }
         function loadPrediction(){
             const p=DATA.prediction;const actual=p.result;let html='';
-            html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">🏆 승리팀 예측 (실제: B팀 승)</div>';
+            html+='<div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">🏆 승리팀 예측 (실제: '+actual.winner+'팀 승)</div>';
             html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
             const aPicks=p.teamPredict.filter(t=>t.pick==='A');
             const bPicks=p.teamPredict.filter(t=>t.pick==='B');
-            html+='<div style="background:#E3F2FD;padding:12px;border-radius:10px;"><div style="font-size:12px;font-weight:600;color:#1565C0;margin-bottom:8px;">🔵 A팀 예측 ('+aPicks.length+'명) ❌</div>';
+            html+='<div style="background:'+(actual.winner==='A'?'#E8F5E9':'#E3F2FD')+';padding:12px;border-radius:10px;'+(actual.winner==='A'?'border:2px solid var(--accent);':'')+'"><div style="font-size:12px;font-weight:600;color:'+(actual.winner==='A'?'var(--accent)':'#1565C0')+';margin-bottom:8px;">🔵 A팀 예측 ('+aPicks.length+'명) '+(actual.winner==='A'?'✅ 적중!':'❌')+'</div>';
             aPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:#666;">'+t.name+'</div>';});
             html+='</div>';
-            html+='<div style="background:#E8F5E9;padding:12px;border-radius:10px;border:2px solid var(--accent);"><div style="font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px;">🔴 B팀 예측 ('+bPicks.length+'명) ✅ 적중!</div>';
+            html+='<div style="background:'+(actual.winner==='B'?'#E8F5E9':'#FCE4EC')+';padding:12px;border-radius:10px;'+(actual.winner==='B'?'border:2px solid var(--accent);':'')+'"><div style="font-size:12px;font-weight:600;color:'+(actual.winner==='B'?'var(--accent)':'#C2185B')+';margin-bottom:8px;">🔴 B팀 예측 ('+bPicks.length+'명) '+(actual.winner==='B'?'✅ 적중!':'❌')+'</div>';
             bPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:var(--text-primary);font-weight:500;">'+t.name+'</div>';});
             html+='</div></div></div>';
             html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">📊 스코어 예측 (실제: A'+actual.a+':B'+actual.b+')</div>';
