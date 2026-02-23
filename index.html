@@ -408,7 +408,6 @@
             <nav class="nav">
                 <button class="nav-btn active" onclick="showTab('home', this)">홈</button>
                 <button class="nav-btn" onclick="showTab('gallery', this)">📸 사진첩</button>
-                <button class="nav-btn" onclick="showTab('briefing', this)">브리핑</button>
                 <button class="nav-btn" onclick="showTab('calendar', this)">캘린더</button>
                 <button class="nav-btn" onclick="showTab('member', this)">회원</button>
                 <button class="nav-btn" onclick="showTab('fee', this)">회비</button>
@@ -417,24 +416,7 @@
         </div>
     </header>
     
-    <div class="container">
-        <div id="briefing-tab" class="tab-content">
-            <div class="card">
-                <div class="card-header"><div class="card-icon green">📋</div>오늘의 브리핑</div>
-                <div class="card-body" style="text-align:center;">
-                    <div style="font-size:13px; color:#888; margin-bottom:16px;">아래 버튼을 누르면 복사됩니다.<br>카카오톡에 바로 붙여넣기 하세요!</div>
-                    <button onclick="copyBriefing()" style="background:var(--accent); color:white; border:none; padding:16px 40px; border-radius:10px; font-size:16px; font-weight:600; cursor:pointer; font-family:inherit;">복사하기</button>
-                    <div id="copyStatus" style="margin-top:12px; font-size:13px; color:var(--accent); display:none;">✓ 복사되었습니다!</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header"><div class="card-icon warm">👀</div>미리보기</div>
-                <div class="card-body">
-                    <div id="briefingPreview" style="background:var(--bg-soft); padding:16px; border-radius:10px; font-size:13px; line-height:1.8; white-space:pre-wrap;"></div>
-                </div>
-            </div>
-        </div>
-        
+    <div class="container"> 
         <div id="home-tab" class="tab-content active">
             <!-- ✅ 단체사진 히어로 배너 -->
 <div class="card" style="overflow:hidden; padding:0;">
