@@ -846,7 +846,6 @@
             if(t==='member')loadMembers();
             if(t==='fee')loadFees();
             if(t==='calendar')loadCalendar();
-            if(t==='briefing')loadBriefing();
             if(t==='gallery'){initSlideshow();renderGallery(filteredPhotos);}
         }
         
@@ -899,6 +898,7 @@
         }
         function loadPrediction(){
             const p=DATA.prediction;const actual=p.result;let html='';
+            html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;">';
             html+='<div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">🏆 승리팀 예측 (실제: '+actual.winner+'팀 승)</div>';
             html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">';
             const aPicks=p.teamPredict.filter(t=>t.pick==='A');
@@ -979,37 +979,6 @@
         }
         function changeMonth(d){currentMonth.setMonth(currentMonth.getMonth()+d);loadCalendar();}
         
-        function loadBriefing() {
-            const m=DATA.match,q=quotes[Math.floor(Math.random()*quotes.length)];
-            const today=new Date(),dateStr=today.getFullYear()+'년 '+(today.getMonth()+1)+'월 '+today.getDate()+'일';
-            const days=['일','월','화','수','목','금','토'];
-            let quartersText=m.quarters.map(quarter=>{
-                let goals=quarter.records.filter(r=>r.scorer).map(r=>'['+r.team+'] '+r.scorer+(r.assist?'(어시 '+r.assist+')':'')).join(', ');
-                return quarter.title+' ('+(quarter.score||'-')+'): '+(goals||'기록 없음');
-            }).join('\n');
-            const goalStats=calculateGoalStats(m.quarters);
-            let rankText='';
-            if(goalStats.length){
-                const grouped={};
-                goalStats.forEach(s=>{if(!grouped[s.goals])grouped[s.goals]=[];grouped[s.goals].push(s.name);});
-                const sortedGoals=Object.keys(grouped).map(Number).sort((a,b)=>b-a);
-                let rank=1;
-                sortedGoals.forEach(goals=>{
-                    if(rank>3)return;
-                    const names=grouped[goals];
-                    const medal=rank===1?'🥇':rank===2?'🥈':'🥉';
-                    rankText+=medal+' '+(names.length>1?'공동 ':'')+rank+'위 ('+goals+'골): '+names.join(', ')+'\n';
-                    rank+=names.length;
-                });
-            }
-            const betEvent = '\n🎯 승부예측 결과 (2/14)\n결과: A팀 7 : B팀 10 (B팀 승)\n\n【승리팀 예측】\nA팀 예측(5명): 이수일, 이노일, 정병삼, 박윤호, 국제문\nB팀 예측(3명): 이동욱, 이종휘, 황성웅 ✅ 적중!\n\n【스코어 예측】8명 참가\n이동욱 A5:B13 ❌ | 이수일 A10:B7 ❌\n이노일 A6:B3 ❌ | 이종휘 A7:B11 ❌\n정병삼 A6:B5 ❌ | 박윤호 A8:B6 ❌\n국제문 A11:B9 ❌ | 황성웅 A7:B10 🎯 정확 적중!\n→ 황성웅 2점 획득! (A7:B10 완벽 적중!)\n\n📊 2월 누적 포인트\n🥇 황성웅 2점 (2/14 정확적중)\n🥈 정병삼 1점 (2/7 최근접)\n\n📝 다음 경기(2/21)도 참여하세요!\n* 경기 당일 06:50까지 카톡방에 예측을 남겨주세요.\n* 예시) "A팀 승 / 3:2"\n🏆 누적 결과로 월간/분기 "승부예측왕" 선정합니다!\n(최근접 1점 | 정확 적중 2점)';
-
-            const briefing='⚽ 미령FC 브리핑\n📅 '+dateStr+' ('+days[today.getDay()]+')\n\n━━━━━━━━━━━━━━\n📢 공지사항\n━━━━━━━━━━━━━━\n'+DATA.notices.map(n=>n.text).join('\n')+'\n'+betEvent+'\n\n━━━━━━━━━━━━━━\n📅 다음 경기 예정\n━━━━━━━━━━━━━━\n🔜 2월 21일 (토) 07:00\n📍 금토동 다목적운동장\n🍽️ 정기식사 예정\n\n━━━━━━━━━━━━━━\n⚽ 지난 경기 결과 (2/14)\n━━━━━━━━━━━━━━\n'+quartersText+'\n\n🏆 최종: A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀\n⭐ MVP: '+m.mom+' ('+m.momNote+')\n\n━━━━━━━━━━━━━━\n🏆 득점 순위\n━━━━━━━━━━━━━━\n'+rankText+'\n━━━━━━━━━━━━━━\n💬 오늘의 명언\n━━━━━━━━━━━━━━\n"'+q.text+'"\n- '+q.author+'\n\n━━━━━━━━━━━━━━\n📍 운동 안내\n━━━━━━━━━━━━━━\n⏰ 매주 토요일 07:00 - 10:00\n📍 금토동 다목적운동장\n🗺️ http://naver.me/xLStJsWh';
-            document.getElementById('briefingPreview').textContent=briefing;
-            window.currentBriefing=briefing;
-        }
-        
-        function copyBriefing(){navigator.clipboard.writeText(window.currentBriefing).then(()=>{const s=document.getElementById('copyStatus');s.style.display='block';setTimeout(()=>s.style.display='none',2000);});}
         let heroIndex = 0;
         function rotateHero() {
             const slides = document.querySelectorAll('.hero-slide');
