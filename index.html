@@ -567,7 +567,7 @@
             {text:"꿈을 크게 가져라. 꿈이 크면 길도 넓어진다.",author:"무명"}
         ];
         
-        let currentPhotoIndex = 0, filteredPhotos = [...DATA.photos], currentSlide = 0, slideshowInterval = null, isPlaying = true;
+        let currentPhotoIndex = 0, filteredPhotos = [...DATA.photos].reverse(), currentSlide = 0, slideshowInterval = null, isPlaying = true;
         
         function getWeatherIcon(c) {
             const icons = {'Clear':'☀️','Sunny':'☀️','Partly cloudy':'⛅','Cloudy':'☁️','Overcast':'☁️','Mist':'🌫️','Fog':'🌫️','Rain':'🌧️','Light rain':'🌦️','Heavy rain':'🌧️','Snow':'❄️','Light snow':'🌨️','Thunderstorm':'⛈️'};
@@ -642,14 +642,14 @@
         }
         
         function initSlideshow() {
-            document.getElementById('slideshowWrapper').innerHTML = DATA.photos.map(p=>'<div class="slide"><img src="'+p.src+'" alt="'+p.title+'" loading="lazy"></div>').join('');
-            document.getElementById('slideshowDots').innerHTML = DATA.photos.map((_,i)=>'<span class="dot '+(i===0?'active':'')+'" onclick="goToSlide('+i+')"></span>').join('');
+            const reversedPhotos=[...DATA.photos].reverse(); document.getElementById('slideshowWrapper').innerHTML = reversedPhotos.map(p=>'<div class="slide"><img src="'+p.src+'" alt="'+p.title+'" loading="lazy"></div>').join('');
+            document.getElementById('slideshowDots').innerHTML = reversedPhotos.map((_,i)=>'<span class="dot '+(i===0?'active':'')+'" onclick="goToSlide('+i+')"></span>').join('');
             updateSlideInfo(); startSlideshow();
         }
-        function changeSlide(d) { currentSlide+=d; if(currentSlide>=DATA.photos.length)currentSlide=0; if(currentSlide<0)currentSlide=DATA.photos.length-1; updateSlide(); }
+        function changeSlide(d) { currentSlide+=d; const totalPhotos=DATA.photos.length; if(currentSlide>=totalPhotos)currentSlide=0; if(currentSlide<0)currentSlide=totalPhotos-1; updateSlide(); }
         function goToSlide(i) { currentSlide=i; updateSlide(); }
         function updateSlide() { document.getElementById('slideshowWrapper').style.transform='translateX(-'+(currentSlide*100)+'%)'; document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===currentSlide)); updateSlideInfo(); }
-        function updateSlideInfo() { const p=DATA.photos[currentSlide]; document.getElementById('slideTitle').textContent=p.title; document.getElementById('slideCounter').textContent=(currentSlide+1)+' / '+DATA.photos.length; }
+        function updateSlideInfo() { const reversedP=[...DATA.photos].reverse(); const p=reversedP[currentSlide]; document.getElementById('slideTitle').textContent=p.title; document.getElementById('slideCounter').textContent=(currentSlide+1)+' / '+reversedP.length; }
         function startSlideshow() { if(slideshowInterval)clearInterval(slideshowInterval); slideshowInterval=setInterval(()=>{if(isPlaying)changeSlide(1);},3000); }
         function toggleSlideshow() { isPlaying=!isPlaying; document.getElementById('playPauseBtn').textContent=isPlaying?'⏸️':'▶️'; }
         
@@ -666,7 +666,7 @@
         function nextPhoto() { currentPhotoIndex=(currentPhotoIndex+1)%filteredPhotos.length; openLightbox(currentPhotoIndex); }
         function prevPhoto() { currentPhotoIndex=(currentPhotoIndex-1+filteredPhotos.length)%filteredPhotos.length; openLightbox(currentPhotoIndex); }
         
-        document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');const f=this.dataset.filter;filteredPhotos=f==='all'?[...DATA.photos]:DATA.photos.filter(p=>p.category===f);renderGallery(filteredPhotos);});});
+        document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active');const f=this.dataset.filter;filteredPhotos=f==='all'?[...DATA.photos].reverse():DATA.photos.filter(p=>p.category===f).reverse();renderGallery(filteredPhotos);});});
         document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('active')){if(e.key==='Escape')closeLightbox();if(e.key==='ArrowRight')nextPhoto();if(e.key==='ArrowLeft')prevPhoto();}});
         
         function showTab(t,btn) {
