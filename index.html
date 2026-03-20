@@ -65,7 +65,7 @@
         .goal-record .assist { font-size: 12px; color: var(--text-muted); background: var(--bg-card); padding: 2px 8px; border-radius: 10px; }
         .goal-record .team-badge { font-size: 11px; padding: 2px 6px; border-radius: 8px; font-weight: 600; margin-right: 4px; }
         .goal-record .team-a { background: #E3F2FD; color: #1565C0; }
-        .goal-record .team-b { background: #FCE4EC; color: #C2185B; }
+        .goal-record .team-b { background: #E8F5E9; color: #2E7D32; }
         .final-score { background: linear-gradient(135deg, var(--accent) 0%, #4A7A5A 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; margin-top: 16px; }
         .final-score-title { font-size: 12px; opacity: 0.9; margin-bottom: 8px; }
         .final-score-num { font-size: 36px; font-weight: 700; }
@@ -467,8 +467,8 @@
 },
             lineup: {
     date: '2026년 3월 14일 (토)',
-    teamA: ['이동욱', '황성웅', '정진관', '정철', '유성호', '정윤', '정병삼', '이종휘', '강명수', '신재만', '박광수', '정무용'],
-    teamB: ['송승남', '박윤호', '윤남엽', '이수일', '국제문', '김진신', '이노일', '이범호', '박승철', '윤영훈', '최경도'],
+    teamA: ['박윤호', '정진관(~2Q)', '이수일', '정윤', '심상욱(~2Q)', '김진신', '이노일', '박승철', '신재만'],
+    teamB: ['신준관', '윤남엽', '황성웅', '유성호', '국제문(~2Q)', '이종휘', '이범호', '강명수', '박광수(미정)'],
     referee: ''
 },
             prediction: {
@@ -757,7 +757,7 @@
             html+='<div style="background:'+(actual.winner==='A'?'#E8F5E9':'#E3F2FD')+';padding:12px;border-radius:10px;'+(actual.winner==='A'?'border:2px solid var(--accent);':'')+'"><div style="font-size:12px;font-weight:600;color:'+(actual.winner==='A'?'var(--accent)':'#1565C0')+';margin-bottom:8px;">🔵 A팀 예측 ('+aPicks.length+'명) '+(actual.winner==='A'?'✅ 적중!':'❌')+'</div>';
             aPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:#666;">'+t.name+'</div>';});
             html+='</div>';
-            html+='<div style="background:'+(actual.winner==='B'?'#E8F5E9':'#FCE4EC')+';padding:12px;border-radius:10px;'+(actual.winner==='B'?'border:2px solid var(--accent);':'')+'"><div style="font-size:12px;font-weight:600;color:'+(actual.winner==='B'?'var(--accent)':'#C2185B')+';margin-bottom:8px;">🔴 B팀 예측 ('+bPicks.length+'명) '+(actual.winner==='B'?'✅ 적중!':'❌')+'</div>';
+            html+='<div style="background:'+(actual.winner==='B'?'#DCEDC8':'#E8F5E9')+';padding:12px;border-radius:10px;'+(actual.winner==='B'?'border:2px solid var(--accent);':'')+'"><div style="font-size:12px;font-weight:600;color:'+(actual.winner==='B'?'var(--accent)':'#2E7D32')+';margin-bottom:8px;">🟢 B팀 예측 ('+bPicks.length+'명) '+(actual.winner==='B'?'✅ 적중!':'❌')+'</div>';
             bPicks.forEach(t=>{html+='<div style="font-size:13px;padding:3px 0;color:var(--text-primary);font-weight:500;">'+t.name+'</div>';});
             html+='</div></div></div>';
             html+='<div style="background:var(--bg-soft);border-radius:12px;padding:16px;margin-bottom:12px;"><div style="font-size:14px;font-weight:700;color:#FF9800;margin-bottom:10px;">📊 스코어 예측 (실제: A'+actual.a+':B'+actual.b+')</div>';
@@ -796,7 +796,7 @@
             if(assistStats.length){
                 assistHtml='<div class="card"><div class="card-header"><div class="card-icon green">🅰️</div>어시스트 기록</div><div class="card-body">'+assistStats.map((s,i)=>'<div class="rank-item '+(i<3?'top':'')+'"><div class="rank-left"><span class="rank-num">'+(i+1)+'</span><span class="rank-name">'+s.name+'</span></div><span class="rank-goals">'+s.assists+'도움</span></div>').join('')+'</div></div>';
             }
-            document.getElementById('history-tab').innerHTML='<div class="card"><div class="card-header"><div class="card-icon green">⚽</div>'+lineup.date+' 경기 결과</div><div class="card-body"><div class="final-score" style="margin-bottom:20px;"><div class="final-score-title">최종 스코어</div><div class="final-score-num">A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀</div></div>'+renderQuartersHtml(m.quarters)+'<div style="text-align:center;margin-top:16px;"><div class="mom-badge">🏆 MVP: '+m.mom+' ('+m.momNote+')</div></div></div></div>'+assistHtml+'<div class="card"><div class="card-header"><div class="card-icon warm">👥</div>출전선수 명단</div><div class="card-body"><div class="goals-row"><div class="goals-box" style="background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%);"><div class="goals-title" style="color:#1565C0;">🔵 A팀 - '+lineup.teamA.length+'명</div>'+lineup.teamA.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div><div class="goals-box" style="background:linear-gradient(135deg,#FCE4EC 0%,#F8BBD9 100%);"><div class="goals-title" style="color:#C2185B;">🔴 B팀 - '+lineup.teamB.length+'명</div>'+lineup.teamB.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div></div></div></div>';
+            document.getElementById('history-tab').innerHTML='<div class="card"><div class="card-header"><div class="card-icon green">⚽</div>'+lineup.date+' 경기 결과</div><div class="card-body"><div class="final-score" style="margin-bottom:20px;"><div class="final-score-title">최종 스코어</div><div class="final-score-num">A팀 '+m.finalScore.a+' : '+m.finalScore.b+' B팀</div></div>'+renderQuartersHtml(m.quarters)+'<div style="text-align:center;margin-top:16px;"><div class="mom-badge">🏆 MVP: '+m.mom+' ('+m.momNote+')</div></div></div></div>'+assistHtml+'<div class="card"><div class="card-header"><div class="card-icon warm">👥</div>출전선수 명단</div><div class="card-body"><div class="goals-row"><div class="goals-box" style="background:linear-gradient(135deg,#E3F2FD 0%,#BBDEFB 100%);"><div class="goals-title" style="color:#1565C0;">🔵 A팀 - '+lineup.teamA.length+'명</div>'+lineup.teamA.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div><div class="goals-box" style="background:linear-gradient(135deg,#E8F5E9 0%,#C8E6C9 100%);"><div class="goals-title" style="color:#2E7D32;">🟢 B팀 - '+lineup.teamB.length+'명</div>'+lineup.teamB.map(n=>'<div class="goal-item" style="padding:6px 0;">• '+n+'</div>').join('')+'</div></div></div></div>';
         }
         
         let currentMonth=new Date();
